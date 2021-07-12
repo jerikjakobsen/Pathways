@@ -54,6 +54,7 @@
 		E594D3C4269CA61300DB5A4F /* PathwaysUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathwaysUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E594D3C8269CA61300DB5A4F /* PathwaysUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathwaysUITests.m; sourceTree = "<group>"; };
 		E594D3CA269CA61300DB5A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E594D3D6269CADED00DB5A4F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 		E594D395269CA61100DB5A4F = {
 			isa = PBXGroup;
 			children = (
+				E594D3D6269CADED00DB5A4F /* README.md */,
 				E594D3A0269CA61100DB5A4F /* Pathways */,
 				E594D3BC269CA61300DB5A4F /* PathwaysTests */,
 				E594D3C7269CA61300DB5A4F /* PathwaysUITests */,
