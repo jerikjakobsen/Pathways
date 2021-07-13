@@ -7,6 +7,7 @@ target 'Pathways' do
 
   # Pods for Pathways
 	pod 'Parse'
+	pod 'GoogleMaps', '5.1.0'
   target 'PathwaysTests' do
     inherit! :search_paths
     # Pods for testing

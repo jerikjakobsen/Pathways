@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <GoogleMaps/GMSServices.h>
 
 @interface AppDelegate ()
 
@@ -17,9 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Key" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-     
+    
     NSString *appID = [dict objectForKey: @"ParseAppId"];
     NSString *clientKey = [dict objectForKey: @"ParseClientKey"];
     ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration>  _Nonnull configuration) {
@@ -29,7 +30,8 @@
     }];
     
     [Parse initializeWithConfiguration:parseConfig];
-    return YES;
+    [GMSServices provideAPIKey:dict[@"GoogleAPIKey"]];
+    
     return YES;
 }
 
