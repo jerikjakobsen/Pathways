@@ -11,6 +11,10 @@
 		704FB904E2E2391E2FA3BA00 /* Pods_PathwaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9210721B57CCF3295F22D5A2 /* Pods_PathwaysTests.framework */; };
 		E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF454269DFF7200556BCC /* HomeViewController.m */; };
 		E51AF459269E4D5700556BCC /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF458269E4D5700556BCC /* Path.m */; };
+		E51AF4A9269E691200556BCC /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E51AF4A8269E691200556BCC /* Keys.plist */; };
+		E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4AB269E6CB200556BCC /* Pathway.m */; };
+		E51AF4AF269E753200556BCC /* Landmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4AE269E753200556BCC /* Landmark.m */; };
+		E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4B1269E7FB000556BCC /* NewPathViewController.m */; };
 		E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3A2269CA61100DB5A4F /* AppDelegate.m */; };
 		E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3A5269CA61100DB5A4F /* SceneDelegate.m */; };
 		E594D3AC269CA61100DB5A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E594D3AA269CA61100DB5A4F /* Main.storyboard */; };
@@ -22,7 +26,6 @@
 		E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE93F269CDB3A0052A515 /* LoginViewController.m */; };
 		E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */; };
 		E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE945269D1B9A0052A515 /* ParseUserManager.m */; };
-		E5BB9610269DF669001D1A37 /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5BB960F269DF669001D1A37 /* Key.plist */; };
 		E8B473CA6C790747628DF4DB /* Pods_Pathways_PathwaysUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE2A8885D3DA5368C8B800D /* Pods_Pathways_PathwaysUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,13 @@
 		E51AF454269DFF7200556BCC /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		E51AF457269E4D5700556BCC /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
 		E51AF458269E4D5700556BCC /* Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Path.m; sourceTree = "<group>"; };
+		E51AF4A8269E691200556BCC /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		E51AF4AA269E6CB200556BCC /* Pathway.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pathway.h; sourceTree = "<group>"; };
+		E51AF4AB269E6CB200556BCC /* Pathway.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pathway.m; sourceTree = "<group>"; };
+		E51AF4AD269E753200556BCC /* Landmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Landmark.h; sourceTree = "<group>"; };
+		E51AF4AE269E753200556BCC /* Landmark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Landmark.m; sourceTree = "<group>"; };
+		E51AF4B0269E7FB000556BCC /* NewPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPathViewController.h; sourceTree = "<group>"; };
+		E51AF4B1269E7FB000556BCC /* NewPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPathViewController.m; sourceTree = "<group>"; };
 		E594D39E269CA61100DB5A4F /* Pathways.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathways.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E594D3A1269CA61100DB5A4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E594D3A2269CA61100DB5A4F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,7 +90,6 @@
 		E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		E5BAE944269D1B9A0052A515 /* ParseUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseUserManager.h; sourceTree = "<group>"; };
 		E5BAE945269D1B9A0052A515 /* ParseUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseUserManager.m; sourceTree = "<group>"; };
-		E5BB960F269DF669001D1A37 /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +148,10 @@
 			children = (
 				E51AF457269E4D5700556BCC /* Path.h */,
 				E51AF458269E4D5700556BCC /* Path.m */,
+				E51AF4AA269E6CB200556BCC /* Pathway.h */,
+				E51AF4AB269E6CB200556BCC /* Pathway.m */,
+				E51AF4AD269E753200556BCC /* Landmark.h */,
+				E51AF4AE269E753200556BCC /* Landmark.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,7 +190,7 @@
 				E594D3D7269CC1DF00DB5A4F /* ViewControllers */,
 				E594D3AD269CA61200DB5A4F /* Assets.xcassets */,
 				E594D3B2269CA61200DB5A4F /* Info.plist */,
-				E5BB960F269DF669001D1A37 /* Key.plist */,
+				E51AF4A8269E691200556BCC /* Keys.plist */,
 			);
 			path = Pathways;
 			sourceTree = "<group>";
@@ -209,6 +222,8 @@
 				E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */,
 				E51AF453269DFF7200556BCC /* HomeViewController.h */,
 				E51AF454269DFF7200556BCC /* HomeViewController.m */,
+				E51AF4B0269E7FB000556BCC /* NewPathViewController.h */,
+				E51AF4B1269E7FB000556BCC /* NewPathViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -359,7 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5BB9610269DF669001D1A37 /* Key.plist in Resources */,
+				E51AF4A9269E691200556BCC /* Keys.plist in Resources */,
 				E594D3B1269CA61200DB5A4F /* LaunchScreen.storyboard in Resources */,
 				E594D3AE269CA61200DB5A4F /* Assets.xcassets in Resources */,
 				E594D3AC269CA61100DB5A4F /* Main.storyboard in Resources */,
@@ -527,8 +542,11 @@
 				E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */,
 				E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */,
 				E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */,
+				E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */,
 				E594D3B4269CA61200DB5A4F /* main.m in Sources */,
+				E51AF4AF269E753200556BCC /* Landmark.m in Sources */,
 				E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */,
+				E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */,
 				E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */,
 				E51AF459269E4D5700556BCC /* Path.m in Sources */,
 				E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */,

@@ -205,6 +205,9 @@
                                     <color key="titleColor" red="0.0078431372549019607" green="0.050980392156862744" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <state key="highlighted" backgroundImage="map-editing"/>
+                                <connections>
+                                    <segue destination="MKI-7u-UP0" kind="show" id="W89-Oc-7gO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HqH-Wd-lWg"/>
@@ -228,7 +231,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxw-bu-jjT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2266.666666666667" y="193.52678571428569"/>
+            <point key="canvasLocation" x="2374" y="194"/>
+        </scene>
+        <!--New Path View Controller-->
+        <scene sceneID="1Pt-Rl-0Ha">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="MKI-7u-UP0" customClass="NewPathViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YjN-Ug-uTD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tza-Bb-e6u" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gPP-nd-8Dx">
+                                <rect key="frame" x="16" y="72" width="51" height="31"/>
+                                <color key="onTintColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNt-kP-lae">
+                                <rect key="frame" x="89" y="77" width="89" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CUc-DX-Nss"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gPP-nd-8Dx" firstAttribute="leading" secondItem="YjN-Ug-uTD" secondAttribute="leading" constant="16" id="9AG-ve-cV5"/>
+                            <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="tza-Bb-e6u" secondAttribute="trailing" id="XXq-EY-xwU"/>
+                            <constraint firstItem="gPP-nd-8Dx" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="Xdt-Jk-NcQ"/>
+                            <constraint firstAttribute="bottom" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="Ylz-ZC-3xS"/>
+                            <constraint firstItem="QNt-kP-lae" firstAttribute="centerY" secondItem="gPP-nd-8Dx" secondAttribute="centerY" id="blX-Ac-XTe"/>
+                            <constraint firstItem="tza-Bb-e6u" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" id="fgC-zl-eNd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QNt-kP-lae" secondAttribute="trailing" constant="48" id="hvC-Ki-8cf"/>
+                            <constraint firstItem="tza-Bb-e6u" firstAttribute="top" secondItem="YjN-Ug-uTD" secondAttribute="top" id="i1I-VZ-sy4"/>
+                            <constraint firstItem="QNt-kP-lae" firstAttribute="leading" secondItem="gPP-nd-8Dx" secondAttribute="trailing" constant="24" id="v1u-1l-1k5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="followUserSwitch" destination="blX-Ac-XTe" id="VPB-Ix-UjZ"/>
+                        <outlet property="gMapView" destination="tza-Bb-e6u" id="gVp-gR-SxF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TjR-qu-BHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3417" y="194"/>
         </scene>
         <!--Item-->
         <scene sceneID="vnS-RG-ENi">

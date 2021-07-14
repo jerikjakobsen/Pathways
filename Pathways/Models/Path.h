@@ -6,24 +6,35 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
+#import <Parse/PFObject.h>
+#import <CoreLocation/CLLocation.h>
+#import "Pathway.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Path : NSManagedObject
+@interface Path : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *timeElapsed;
 @property (nonatomic, strong) NSDate *createdAt;
-@property (nonatomic) CLLocationCoordinate2D startPoint;
-@property (nonatomic) CLLocationCoordinate2D endPoint;
+@property (nonatomic) CLLocation *startPoint;
+@property (nonatomic) CLLocation *endPoint;
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSString *pathId;
 @property (nonatomic, strong) NSString *authorId;
 
-
-
-
+- (instancetype) init: (NSString *) name
+            timeElapsed: (NSNumber *) timeElapsed
+            createdAt: (NSDate *) createdAt
+            startPoint: (CLLocation *) startPoint
+            endPoint: (CLLocation *) endPoint
+            distance: (NSNumber *) distance
+            authorId: (NSString *) authorId;
+- (instancetype) init: (NSString *) name
+            timeElapsed: (NSNumber *) timeElapsed
+            createdAt: (NSDate *) createdAt
+            authorId: (NSString *) authorId
+              pathway: (Pathway *) pathway;
+- (void) postPath: (Pathway *) pathway completion: (PFBooleanResultBlock _Nullable) completion;
 
 @end
 
