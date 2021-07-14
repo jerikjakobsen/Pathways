@@ -18,7 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *pathwayId;
 
 - (void) addCoordinate: (CLLocation *) coordinate;
+
 - (void) postPathway: (PFBooleanResultBlock _Nullable) completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

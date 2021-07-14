@@ -242,15 +242,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tza-Bb-e6u" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="651.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gPP-nd-8Dx">
                                 <rect key="frame" x="16" y="72" width="51" height="31"/>
                                 <color key="onTintColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="didSwitchFollow:" destination="MKI-7u-UP0" eventType="valueChanged" id="TOx-kC-e0K"/>
+                                </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNt-kP-lae">
-                                <rect key="frame" x="89" y="77" width="89" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGd-00-ARt">
+                                <rect key="frame" x="0.0" y="651.5" width="414" height="210.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2e0-h8-wyS">
+                                        <rect key="frame" x="170" y="48.5" width="74" height="73.5"/>
+                                        <state key="normal" backgroundImage="colosseum"/>
+                                        <state key="highlighted" backgroundImage="colosseum-filled"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlE-A5-J7a">
+                                        <rect key="frame" x="45" y="48.5" width="73.5" height="73.5"/>
+                                        <state key="normal" backgroundImage="wildfire"/>
+                                        <state key="highlighted" backgroundImage="wildfire-filled"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8G-sT-CtN">
+                                        <rect key="frame" x="295.5" y="48.5" width="73.5" height="73.5"/>
+                                        <state key="normal" backgroundImage="exit"/>
+                                        <state key="highlighted" backgroundImage="exit-filled"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="L8G-sT-CtN" secondAttribute="trailing" constant="45" id="5tZ-EN-O8i"/>
+                                    <constraint firstItem="WlE-A5-J7a" firstAttribute="width" secondItem="iGd-00-ARt" secondAttribute="height" multiplier="7:20" id="6me-in-XLH"/>
+                                    <constraint firstItem="2e0-h8-wyS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WlE-A5-J7a" secondAttribute="trailing" constant="10" id="Cp9-XB-dea"/>
+                                    <constraint firstItem="L8G-sT-CtN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2e0-h8-wyS" secondAttribute="trailing" constant="10" id="L6o-cN-mNw"/>
+                                    <constraint firstItem="L8G-sT-CtN" firstAttribute="height" secondItem="WlE-A5-J7a" secondAttribute="height" id="M0m-CD-8Sf"/>
+                                    <constraint firstItem="2e0-h8-wyS" firstAttribute="width" secondItem="WlE-A5-J7a" secondAttribute="width" id="QoT-vj-DIM"/>
+                                    <constraint firstItem="L8G-sT-CtN" firstAttribute="centerY" secondItem="WlE-A5-J7a" secondAttribute="centerY" id="TZ2-w3-8Lf"/>
+                                    <constraint firstItem="WlE-A5-J7a" firstAttribute="centerY" secondItem="iGd-00-ARt" secondAttribute="centerY" constant="-20" id="WQO-QH-Q7j"/>
+                                    <constraint firstItem="2e0-h8-wyS" firstAttribute="height" secondItem="WlE-A5-J7a" secondAttribute="height" id="ZJY-RV-4c1"/>
+                                    <constraint firstItem="L8G-sT-CtN" firstAttribute="width" secondItem="WlE-A5-J7a" secondAttribute="width" id="dA0-Ma-oIE"/>
+                                    <constraint firstItem="2e0-h8-wyS" firstAttribute="centerY" secondItem="WlE-A5-J7a" secondAttribute="centerY" id="q9D-ZZ-3cl"/>
+                                    <constraint firstItem="WlE-A5-J7a" firstAttribute="leading" secondItem="iGd-00-ARt" secondAttribute="leading" constant="45" id="wVb-qX-V5o"/>
+                                    <constraint firstItem="2e0-h8-wyS" firstAttribute="centerX" secondItem="iGd-00-ARt" secondAttribute="centerX" id="wfh-os-2PN"/>
+                                    <constraint firstItem="WlE-A5-J7a" firstAttribute="height" secondItem="iGd-00-ARt" secondAttribute="height" multiplier="7:20" id="yI2-lG-f6F"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNt-kP-lae">
+                                <rect key="frame" x="89" y="77" width="49" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -259,25 +299,31 @@
                         <viewLayoutGuide key="safeArea" id="CUc-DX-Nss"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="iGd-00-ARt" secondAttribute="trailing" id="0Vp-en-y2u"/>
                             <constraint firstItem="gPP-nd-8Dx" firstAttribute="leading" secondItem="YjN-Ug-uTD" secondAttribute="leading" constant="16" id="9AG-ve-cV5"/>
+                            <constraint firstAttribute="bottom" secondItem="iGd-00-ARt" secondAttribute="bottom" constant="-20" id="W6z-VV-lrZ"/>
+                            <constraint firstItem="iGd-00-ARt" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" id="X3B-7Z-91U"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="tza-Bb-e6u" secondAttribute="trailing" id="XXq-EY-xwU"/>
                             <constraint firstItem="gPP-nd-8Dx" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="Xdt-Jk-NcQ"/>
-                            <constraint firstAttribute="bottom" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="Ylz-ZC-3xS"/>
                             <constraint firstItem="QNt-kP-lae" firstAttribute="centerY" secondItem="gPP-nd-8Dx" secondAttribute="centerY" id="blX-Ac-XTe"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" id="fgC-zl-eNd"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QNt-kP-lae" secondAttribute="trailing" constant="48" id="hvC-Ki-8cf"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="top" secondItem="YjN-Ug-uTD" secondAttribute="top" id="i1I-VZ-sy4"/>
+                            <constraint firstItem="iGd-00-ARt" firstAttribute="height" secondItem="YjN-Ug-uTD" secondAttribute="height" multiplier="1:4" id="r99-DM-Pxe"/>
                             <constraint firstItem="QNt-kP-lae" firstAttribute="leading" secondItem="gPP-nd-8Dx" secondAttribute="trailing" constant="24" id="v1u-1l-1k5"/>
+                            <constraint firstItem="iGd-00-ARt" firstAttribute="top" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="xOw-er-x7x"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="followUserSwitch" destination="blX-Ac-XTe" id="VPB-Ix-UjZ"/>
+                        <outlet property="bottomView" destination="iGd-00-ARt" id="vv5-fT-17b"/>
+                        <outlet property="bottomViewToMapViewConstraint" destination="xOw-er-x7x" id="Ker-fv-J8Y"/>
+                        <outlet property="followSwitch" destination="gPP-nd-8Dx" id="5kW-8V-L0w"/>
                         <outlet property="gMapView" destination="tza-Bb-e6u" id="gVp-gR-SxF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjR-qu-BHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3417" y="194"/>
+            <point key="canvasLocation" x="3415.9420289855075" y="193.52678571428569"/>
         </scene>
         <!--Item-->
         <scene sceneID="vnS-RG-ENi">
@@ -306,6 +352,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7Xb-6Z-NXn"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lt5-8w-5WC">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
@@ -322,10 +369,16 @@
         <segue reference="pWw-Gg-RHJ"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="colosseum" width="50" height="50"/>
+        <image name="colosseum-filled" width="50" height="50"/>
+        <image name="exit" width="50" height="50"/>
+        <image name="exit-filled" width="50" height="50"/>
         <image name="map-editing" width="50" height="50"/>
         <image name="map-editing-filled" width="50" height="50"/>
         <image name="stop" catalog="system" width="128" height="113"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
+        <image name="wildfire" width="50" height="50"/>
+        <image name="wildfire-filled" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

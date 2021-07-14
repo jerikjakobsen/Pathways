@@ -59,4 +59,5 @@
 + (nonnull NSString *)parseClassName {
     return @"Landmark";
 }
+
 @end

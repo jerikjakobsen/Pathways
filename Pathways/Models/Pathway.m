@@ -14,13 +14,19 @@
 @dynamic pathwayId;
 
 - (void) addCoordinate: (CLLocation *) coordinate {
-    //If path array is not set initialize it
-    if (self.path == nil) self.path = [[NSMutableArray alloc] init];
-    // Update distance
-    if (self.path.count == 0) self.distance = 0.0;
-    else self.distance += [coordinate distanceFromLocation: self.path.lastObject];
-    // If the distance between is less than 6 meters dont add to path
-    if (self.path.count > 1 && !([coordinate distanceFromLocation: self.path.lastObject] < 6.0)) [self.path addObject: coordinate];
+    if (self.path == nil) {
+        self.path = [[NSMutableArray alloc] init];
+    }
+    
+    if (self.path.count == 0) {
+        self.distance = 0.0;
+    }
+    else {
+        self.distance += [coordinate distanceFromLocation: self.path.lastObject];
+    }
+    if (self.path.count > 1 && [coordinate distanceFromLocation: self.path.lastObject] > 6.0) {
+        [self.path addObject: coordinate];
+    }
     
 }
 
@@ -31,4 +37,5 @@
 + (nonnull NSString *)parseClassName {
     return @"Pathway";
 }
+
 @end

@@ -35,8 +35,8 @@
         self.authorId = authorId;
     }
     return self;
-        
 }
+
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
             createdAt: (NSDate *) createdAt

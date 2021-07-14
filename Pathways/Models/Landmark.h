@@ -8,11 +8,11 @@
 #import <Parse/Parse.h>
 #import <CoreLocation/CLLocation.h>
 #import <UIKit/UIImage.h>
-#import "Landmark.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Landmark : PFObject<PFSubclassing>
+
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *details;
 @property (nonatomic, strong) NSString *type;
@@ -26,13 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
             details: (NSString *) details
             type: (NSString *) type
             location: (CLLocation *) location
-               pathId: (NSString *) pathId;
+            pathId: (NSString *) pathId;
 
 - (void) addPhoto: (UIImage *) photo;
 
 - (void) postLandmark:(PFBooleanResultBlock _Nullable) completion;
 
-+ (void) postLandmarks: (NSMutableArray *) landmarks completion: (PFBooleanResultBlock _Nullable) completion;
++ (void) postLandmarks: (NSMutableArray *) landmarks
+            completion: (PFBooleanResultBlock _Nullable) completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

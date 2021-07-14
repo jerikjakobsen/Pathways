@@ -29,12 +29,15 @@ NS_ASSUME_NONNULL_BEGIN
             endPoint: (CLLocation *) endPoint
             distance: (NSNumber *) distance
             authorId: (NSString *) authorId;
+
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
             createdAt: (NSDate *) createdAt
             authorId: (NSString *) authorId
               pathway: (Pathway *) pathway;
-- (void) postPath: (Pathway *) pathway completion: (PFBooleanResultBlock _Nullable) completion;
+
+- (void) postPath: (Pathway *) pathway
+       completion: (PFBooleanResultBlock _Nullable) completion;
 
 @end
 
