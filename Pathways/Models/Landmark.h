@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) postLandmark:(PFBooleanResultBlock _Nullable) completion;
 
 + (void) postLandmarks: (NSMutableArray *) landmarks
+            pathId: (NSString *) pathId
             completion: (PFBooleanResultBlock _Nullable) completion;
 
 @end

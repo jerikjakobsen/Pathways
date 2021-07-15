@@ -16,6 +16,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Pathway.h"
 #import "Path.h"
+#import "Landmark.h"
 
 @interface NewPathViewController () <CLLocationManagerDelegate, AddLandMarkViewControllerDelegate, EndPathViewControllerDelegate>
 
@@ -157,7 +158,9 @@
     self.path.timeElapsed = timeElapsed;
     self.path.name = pathName;
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
     }];
     
 }
