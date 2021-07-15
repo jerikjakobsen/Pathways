@@ -11,10 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface HomeViewController () <CLLocationManagerDelegate>
+
 @property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
-@property CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UIButton *startPathButton;
+@property CLLocationManager *locationManager;
 @property BOOL didSetUserLocation;
+
 @end
 
 @implementation HomeViewController
@@ -34,7 +36,6 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    NSLog(@"%@", locations);
     if (!self.didSetUserLocation) {
         GMSCameraPosition *camera = [GMSCameraPosition
                                      cameraWithLatitude: locations.lastObject.coordinate.latitude
@@ -45,6 +46,15 @@
         self.didSetUserLocation = TRUE;
         [self.locationManager stopUpdatingLocation];
     }
+}
+
+- (IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue {
+    // This is a tag for the unwind segue to work
+    // Leave this function in as a signal for any view controller that wants to use the unwind segue
+    // "UnwindToHome" to return back to this view controller
+    
+    self.tabBarController.tabBar.hidden = false;
+    self.navigationController.navigationBarHidden = false;
 }
 
 @end

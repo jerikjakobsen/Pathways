@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface AddLandmarkViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (strong, nonatomic) Landmark *landmark;

@@ -101,8 +101,6 @@
     }
 }
 
-
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
     if ([self.followSwitch isOn]) {
@@ -159,12 +157,9 @@
     self.path.name = pathName;
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
         [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
         }];
     }];
     
 }
-
-- (IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue {}
 
 @end

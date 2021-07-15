@@ -9,6 +9,7 @@
 
 
 @interface EndPathViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *distanceTravelledLabel;
 @property (weak, nonatomic) IBOutlet UILabel *startedAtLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeTakenLabel;
@@ -58,12 +59,27 @@
     }
     return timeTaken;
 }
+
 - (IBAction)onCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)onEndPath:(id) sender {
     NSTimeInterval interval = [self.delegate startedAt].timeIntervalSinceNow;
     [self.delegate endPath:self.pathNameTextField.text timeElapsed: @(interval)];
+    [self performSegueWithIdentifier:@"UnwindToHome" sender:self];
+    
+}
+
+- (IBAction)cancelPath:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"Cancelling the path will cause your path to be deleted forever" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *deletePath = [UIAlertAction actionWithTitle:@"Delete Path" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self performSegueWithIdentifier:@"UnwindToHome" sender:self];
+    }];
+    UIAlertAction *cancelDeletePath = [UIAlertAction actionWithTitle:@"Nevermind" style:UIAlertActionStyleCancel handler: nil];
+    [alert addAction: cancelDeletePath];
+    [alert addAction: deletePath];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

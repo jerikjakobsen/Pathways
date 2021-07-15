@@ -324,6 +324,7 @@
                             <constraint firstItem="iGd-00-ARt" firstAttribute="top" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="xOw-er-x7x"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TXS-LU-O33"/>
                     <connections>
                         <outlet property="addHazardButton" destination="WlE-A5-J7a" id="FR7-Hy-0eZ"/>
                         <outlet property="addLandmarkButton" destination="2e0-h8-wyS" id="GJV-MX-yqg"/>
@@ -431,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zw-eW-a2P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3344.9275362318845" y="1020.5357142857142"/>
+            <point key="canvasLocation" x="3381" y="1021"/>
         </scene>
         <!--End Path View Controller-->
         <scene sceneID="BU3-4K-ldb">
@@ -446,7 +447,6 @@
                                 <state key="normal" title="End Path"/>
                                 <connections>
                                     <action selector="onEndPath:" destination="1eB-sd-8tk" eventType="touchUpInside" id="hL7-EE-tLg"/>
-                                    <segue destination="2r6-PI-NSd" kind="unwind" unwindAction="unwindToHomeViewController:" id="Cwg-e0-Wkk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bn-Cp-n0I">
@@ -522,6 +522,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-fM-RZe">
+                                <rect key="frame" x="314" y="428" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel Path">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelPath:" destination="1eB-sd-8tk" eventType="touchUpInside" id="wY7-2U-1iE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X9Z-8j-6oe"/>
                         <color key="backgroundColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -568,12 +578,13 @@
                         <outlet property="pathNameTextField" destination="ZY5-9K-Ccv" id="LWP-Ca-0GJ"/>
                         <outlet property="startedAtLabel" destination="cWL-Rx-qS4" id="EGC-gy-eOO"/>
                         <outlet property="timeTakenLabel" destination="quB-f8-tuf" id="FqM-ZC-gUV"/>
+                        <segue destination="2r6-PI-NSd" kind="unwind" identifier="UnwindToHome" unwindAction="unwindToHomeViewController:" id="Kfd-yb-mGT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co2-mc-9Ol" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="2r6-PI-NSd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4403" y="1039"/>
+            <point key="canvasLocation" x="4046" y="1021"/>
         </scene>
         <!--Item-->
         <scene sceneID="vnS-RG-ENi">
@@ -635,6 +646,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

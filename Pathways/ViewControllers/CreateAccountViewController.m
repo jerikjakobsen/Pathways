@@ -8,6 +8,7 @@
 #import "CreateAccountViewController.h"
 #import "ParseUserManager.h"
 @interface CreateAccountViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;

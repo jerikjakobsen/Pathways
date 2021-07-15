@@ -21,7 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface EndPathViewController : UIViewController
+
 @property (weak, nonatomic) id<EndPathViewControllerDelegate> delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END
