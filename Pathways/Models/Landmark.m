@@ -21,7 +21,7 @@
 - (instancetype) init: (NSString *) name
             details: (NSString *) details
             type: (NSString *) type
-            location: (CLLocation *) location
+            location: (PFGeoPoint *) location
             pathId: (NSString *) pathId {
     if (self = [super init]) {
         self.name = name;

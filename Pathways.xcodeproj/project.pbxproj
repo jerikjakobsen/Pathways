@@ -15,6 +15,7 @@
 		E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4AB269E6CB200556BCC /* Pathway.m */; };
 		E51AF4AF269E753200556BCC /* Landmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4AE269E753200556BCC /* Landmark.m */; };
 		E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4B1269E7FB000556BCC /* NewPathViewController.m */; };
+		E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */; };
 		E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3A2269CA61100DB5A4F /* AppDelegate.m */; };
 		E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3A5269CA61100DB5A4F /* SceneDelegate.m */; };
 		E594D3AC269CA61100DB5A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E594D3AA269CA61100DB5A4F /* Main.storyboard */; };
@@ -67,6 +68,8 @@
 		E51AF4AE269E753200556BCC /* Landmark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Landmark.m; sourceTree = "<group>"; };
 		E51AF4B0269E7FB000556BCC /* NewPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPathViewController.h; sourceTree = "<group>"; };
 		E51AF4B1269E7FB000556BCC /* NewPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPathViewController.m; sourceTree = "<group>"; };
+		E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLandmarkViewController.h; sourceTree = "<group>"; };
+		E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLandmarkViewController.m; sourceTree = "<group>"; };
 		E594D39E269CA61100DB5A4F /* Pathways.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathways.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E594D3A1269CA61100DB5A4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E594D3A2269CA61100DB5A4F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				E51AF454269DFF7200556BCC /* HomeViewController.m */,
 				E51AF4B0269E7FB000556BCC /* NewPathViewController.h */,
 				E51AF4B1269E7FB000556BCC /* NewPathViewController.m */,
+				E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */,
+				E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 				E51AF4AF269E753200556BCC /* Landmark.m in Sources */,
 				E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */,
 				E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */,
+				E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */,
 				E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */,
 				E51AF459269E4D5700556BCC /* Path.m in Sources */,
 				E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */,

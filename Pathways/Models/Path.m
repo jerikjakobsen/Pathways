@@ -6,6 +6,8 @@
 //
 
 #import "Path.h"
+#import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 
 @implementation Path
 @dynamic name;
@@ -21,8 +23,8 @@
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
             createdAt: (NSDate *) createdAt
-            startPoint: (CLLocation *) startPoint
-            endPoint: (CLLocation *) endPoint
+            startPoint: (PFGeoPoint *) startPoint
+            endPoint: (PFGeoPoint *) endPoint
             distance: (NSNumber *) distance
              authorId: (NSString *) authorId {
     if (self = [super init]) {
@@ -48,8 +50,10 @@
                     self.createdAt = createdAt;
                     self.authorId = authorId;
                     if (pathway != nil) {
-                        self.startPoint = pathway.path.firstObject;
-                        self.endPoint = pathway.path.lastObject;
+                        CLLocation *firstp = pathway.path.firstObject;
+                        CLLocation *lastp = pathway.path.lastObject;
+                        self.startPoint = [PFGeoPoint geoPointWithLocation: firstp];
+                        self.endPoint = [PFGeoPoint geoPointWithLocation: lastp];
                         self.distance = @(pathway.distance);
                     }
                 }

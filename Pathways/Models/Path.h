@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *timeElapsed;
 @property (nonatomic, strong) NSDate *createdAt;
-@property (nonatomic) CLLocation *startPoint;
-@property (nonatomic) CLLocation *endPoint;
+@property (nonatomic) PFGeoPoint *startPoint;
+@property (nonatomic) PFGeoPoint *endPoint;
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSString *pathId;
 @property (nonatomic, strong) NSString *authorId;
@@ -25,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
             createdAt: (NSDate *) createdAt
-            startPoint: (CLLocation *) startPoint
-            endPoint: (CLLocation *) endPoint
+            startPoint: (PFGeoPoint *) startPoint
+            endPoint: (PFGeoPoint *) endPoint
             distance: (NSNumber *) distance
             authorId: (NSString *) authorId;
 

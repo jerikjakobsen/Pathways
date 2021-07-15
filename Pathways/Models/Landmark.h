@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *details;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSMutableArray *photos;
-@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSString *pathId;
 @property (nonatomic, strong) NSString *landmarkId;
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype) init: (NSString *) name
             details: (NSString *) details
             type: (NSString *) type
-            location: (CLLocation *) location
+            location: (PFGeoPoint *) location
             pathId: (NSString *) pathId;
 
 - (void) addPhoto: (UIImage *) photo;

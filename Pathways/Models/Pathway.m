@@ -25,7 +25,7 @@
         self.distance += [coordinate distanceFromLocation: self.path.lastObject];
     }
     if (self.path.count > 1 && [coordinate distanceFromLocation: self.path.lastObject] > 6.0) {
-        [self.path addObject: coordinate];
+        [self.path addObject: [PFGeoPoint geoPointWithLocation: coordinate]];
     }
     
 }
