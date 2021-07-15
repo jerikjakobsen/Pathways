@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.distanceTravelledLabel.text = [NSString stringWithFormat:@"%@ meters", [self.delegate distanceTravelled] ];
-    NSLog(@"Started at %@", [self.delegate startedAt]);
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat: @"h:mm a"];
     self.startedAtLabel.text = [format stringFromDate: [self.delegate startedAt]];

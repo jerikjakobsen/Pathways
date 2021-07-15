@@ -57,7 +57,6 @@
 }
 - (void) postPath: (Pathway *) pathway completion: (PFBooleanResultBlock _Nullable) completion {
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        NSLog(@"Its a path problem");
         if (succeeded) {
             pathway.pathId = self.objectId;
             [pathway saveInBackgroundWithBlock: completion];
