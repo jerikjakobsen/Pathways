@@ -56,7 +56,7 @@
     }
 }
 
-+ (nonnull NSString *)parseClassName {
++ (nonnull NSString *) parseClassName {
     return @"Landmark";
 }
 

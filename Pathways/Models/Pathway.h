@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString* pathId;
 @property (nonatomic, strong) NSMutableArray* path;
-@property float distance;
+@property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSString *pathwayId;
 
 - (void) addCoordinate: (CLLocation *) coordinate;

@@ -6,6 +6,8 @@
 //
 
 #import "Pathway.h"
+#import <CoreLocation/CoreLocation.h>
+#import <Parse/PFGeoPoint.h>
 
 @implementation Pathway
 @dynamic path;
@@ -19,15 +21,16 @@
     }
     
     if (self.path.count == 0) {
-        self.distance = 0.0;
-    }
-    else {
-        self.distance += [coordinate distanceFromLocation: self.path.lastObject];
-    }
-    if (self.path.count > 1 && [coordinate distanceFromLocation: self.path.lastObject] > 6.0) {
-        [self.path addObject: [PFGeoPoint geoPointWithLocation: coordinate]];
+        self.distance = [NSNumber numberWithFloat: 0.0];
     }
     
+    if (self.path.count > 1) {
+        PFGeoPoint *point = self.path.lastObject;
+        CLLocation *coord = [[CLLocation alloc] initWithLatitude: point.latitude longitude: point.longitude];
+        float newDistance =  [coordinate distanceFromLocation: coord];
+        self.distance = @(self.distance.floatValue + newDistance);
+    }
+    [self.path addObject: [PFGeoPoint geoPointWithLocation: coordinate]];
 }
 
 - (void) postPathway: (PFBooleanResultBlock _Nullable) completion {

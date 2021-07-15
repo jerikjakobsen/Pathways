@@ -12,27 +12,25 @@
 @implementation Path
 @dynamic name;
 @dynamic timeElapsed;
-@dynamic createdAt;
 @dynamic startPoint;
-@dynamic endPoint;
+//@dynamic endPoint;
 @dynamic distance;
 @dynamic pathId;
 @dynamic authorId;
+@dynamic startedAt;
 
 
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
-            createdAt: (NSDate *) createdAt
             startPoint: (PFGeoPoint *) startPoint
-            endPoint: (PFGeoPoint *) endPoint
+            //endPoint: (PFGeoPoint *) endPoint
             distance: (NSNumber *) distance
              authorId: (NSString *) authorId {
     if (self = [super init]) {
         self.name = name;
         self.timeElapsed = timeElapsed;
-        self.createdAt = createdAt;
         self.startPoint = startPoint;
-        self.endPoint = endPoint;
+        //self.endPoint = endPoint;
         self.distance = distance;
         self.authorId = authorId;
     }
@@ -41,27 +39,27 @@
 
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
-            createdAt: (NSDate *) createdAt
             authorId: (NSString *) authorId
             pathway: (Pathway *) pathway {
                 if (self = [super init]) {
                     self.name = name;
                     self.timeElapsed = timeElapsed;
-                    self.createdAt = createdAt;
                     self.authorId = authorId;
                     if (pathway != nil) {
                         CLLocation *firstp = pathway.path.firstObject;
-                        CLLocation *lastp = pathway.path.lastObject;
+                        //CLLocation *lastp = pathway.path.lastObject;
                         self.startPoint = [PFGeoPoint geoPointWithLocation: firstp];
-                        self.endPoint = [PFGeoPoint geoPointWithLocation: lastp];
-                        self.distance = @(pathway.distance);
+                        //self.endPoint = [PFGeoPoint geoPointWithLocation: lastp];
+                        self.distance = pathway.distance;
                     }
                 }
                 return self;
 }
 - (void) postPath: (Pathway *) pathway completion: (PFBooleanResultBlock _Nullable) completion {
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        NSLog(@"Its a path problem");
         if (succeeded) {
+            pathway.pathId = self.objectId;
             [pathway saveInBackgroundWithBlock: completion];
         } else {
             NSLog(@"%@", error.localizedDescription);

@@ -27,6 +27,7 @@
 		E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE93F269CDB3A0052A515 /* LoginViewController.m */; };
 		E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */; };
 		E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE945269D1B9A0052A515 /* ParseUserManager.m */; };
+		E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */; };
 		E8B473CA6C790747628DF4DB /* Pods_Pathways_PathwaysUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE2A8885D3DA5368C8B800D /* Pods_Pathways_PathwaysUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,8 @@
 		E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		E5BAE944269D1B9A0052A515 /* ParseUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseUserManager.h; sourceTree = "<group>"; };
 		E5BAE945269D1B9A0052A515 /* ParseUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseUserManager.m; sourceTree = "<group>"; };
+		E5DA69DA269FD18C000C29A0 /* EndPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndPathViewController.h; sourceTree = "<group>"; };
+		E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EndPathViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +232,8 @@
 				E51AF4B1269E7FB000556BCC /* NewPathViewController.m */,
 				E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */,
 				E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */,
+				E5DA69DA269FD18C000C29A0 /* EndPathViewController.h */,
+				E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 				E51AF4AF269E753200556BCC /* Landmark.m in Sources */,
 				E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */,
 				E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */,
+				E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */,
 				E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */,
 				E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */,
 				E51AF459269E4D5700556BCC /* Path.m in Sources */,

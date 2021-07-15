@@ -7,6 +7,7 @@
 
 #import "NewPathViewController.h"
 #import "AddLandmarkViewController.h"
+#import "EndPathViewController.h"
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <GoogleMaps/GMSCameraPosition.h>
@@ -16,7 +17,7 @@
 #import "Pathway.h"
 #import "Path.h"
 
-@interface NewPathViewController () <CLLocationManagerDelegate, AddLandMarkViewControllerDelegate>
+@interface NewPathViewController () <CLLocationManagerDelegate, AddLandMarkViewControllerDelegate, EndPathViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
 @property (weak, nonatomic) IBOutlet UISwitch *followSwitch;
@@ -50,7 +51,7 @@
     self.pathLine = [GMSMutablePath path];
     self.pathway = [Pathway new];
     self.path = [Path new];
-    
+    self.path.startedAt = [NSDate now];
     self.gMapView.myLocationEnabled = YES;
     self.gMapView.settings.myLocationButton  = YES;
     [self.gMapView animateToLocation: self.gMapView.myLocation.coordinate];
@@ -68,7 +69,6 @@
 
 - (IBAction)didSwitchFollow:(id)sender {
     if ([self.followSwitch isOn]) {
-        NSLog(@"Switched");
         [self.gMapView animateToLocation: self.gMapView.myLocation.coordinate];
         [self.gMapView animateToZoom: 20];
         self.gMapView.settings.scrollGestures = FALSE;
@@ -87,12 +87,16 @@
     }
     if ([segue.identifier isEqualToString:@"NewPathToLandmark"]) {
         AddLandmarkViewController *landmarkVC = (AddLandmarkViewController *) segue.destinationViewController;
-        NSLog(@"%@", landmarkVC.addLandmarkLabel.text);
         landmarkVC.type = @"Landmark";
         landmarkVC.location = self.locationManager.location;
         landmarkVC.pathId = self.path.objectId;
         landmarkVC.delegate = self;
 
+    }
+    if ([segue.identifier isEqualToString:@"NewPathToDone"]) {
+        EndPathViewController *endPathVC = (EndPathViewController *) segue.destinationViewController;
+
+        endPathVC.delegate = self;
     }
 }
 
@@ -106,6 +110,7 @@
     
     [self.pathLine addCoordinate: locations.lastObject.coordinate];
     [self.gMapView clear];
+    [self.pathway addCoordinate: locations.lastObject];
     GMSPolyline *polyline = [GMSPolyline polylineWithPath: self.pathLine];
     polyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
     polyline.strokeWidth = 10.0;
@@ -115,5 +120,48 @@
 - (void)addLandmark:(nonnull Landmark *)landmark {
     [self.landmarks addObject: landmark];
 }
+
+- (NSNumber *) numberOfHazards {
+    int count = 0;
+    for (Landmark *landmark in self.landmarks) {
+        if ([landmark.type isEqualToString: @"Hazard"]) {
+            count++;
+        }
+    }
+    return @(count);
+}
+
+- (NSNumber *) numberOfLandmarks {
+    int count = 0;
+    for (Landmark *landmark in self.landmarks) {
+        if ([landmark.type isEqualToString: @"Landmark"]) {
+            count++;
+        }
+    }
+    return @(count);
+}
+
+- (nonnull NSDate *)startedAt {
+    return self.path.startedAt;
+}
+
+- (NSNumber *) distanceTravelled {
+    return self.pathway.distance;
+}
+
+- (void) endPath:(NSString *)pathName timeElapsed: (NSNumber *) timeElapsed  {
+    self.path.authorId = [PFUser currentUser].objectId;
+    self.path.distance = self.pathway.distance;
+    self.path.startPoint = self.pathway.path.firstObject;
+    //self.path.endPoint = self.pathway.path.lastObject;
+    self.path.timeElapsed = timeElapsed;
+    self.path.name = pathName;
+    [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    
+}
+
+- (IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue {}
 
 @end
