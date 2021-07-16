@@ -19,11 +19,19 @@
 
     // Configure the view for the selected state
 }
--(void) configureCell:  (Path *) path username: (NSString *) username
+-(void) configureCell:  (Path *) path username: (NSString *) username showUsername: (BOOL) showUsername
 {
     self.path = path;
     self.titleLabel.text = path.name;
-    self.usernameLabel.text = username;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%.2f meters", path.distance.floatValue];
+    if (showUsername) {
+        self.usernameLabel.text = username;
+    } else {
+        [self.usernameLabel removeFromSuperview];
+        NSLayoutConstraint *newConstraint = [NSLayoutConstraint constraintWithItem:self.pathOverViewPFImage attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:10];
+        [self.contentView addConstraint: newConstraint];
+        
+    }
     self.landmarkCountLabel.text = [NSString stringWithFormat:@"%@", path.landmarkCount];
     self.hazardCountLabel.text = [NSString stringWithFormat: @"%@", path.hazardCount];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];

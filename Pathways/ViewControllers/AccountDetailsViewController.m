@@ -49,7 +49,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PathCell *cell = [self.pathsTableView dequeueReusableCellWithIdentifier:@"PathCell"];
     Path *path = self.paths[indexPath.row];
-    [cell configureCell:path username:[PFUser currentUser].username];
+    [cell configureCell:path username:[PFUser currentUser].username showUsername: FALSE];
     return cell;
 }
 

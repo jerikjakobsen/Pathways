@@ -18,11 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *landmarkCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *hazardCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) Path *path;
 
 -(void) configureCell:  (Path *) path
-             username: (NSString *) username;
+             username: (NSString *) username
+         showUsername: (BOOL) showUsername;
 @end
 
 NS_ASSUME_NONNULL_END

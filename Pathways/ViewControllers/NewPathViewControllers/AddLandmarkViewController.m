@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.descriptionTextView.layer.cornerRadius = 6;
     self.landmark = [Landmark new];
     self.landmark.location = [PFGeoPoint geoPointWithLocation: self.location];
     self.landmark.pathId = self.pathId;
@@ -37,11 +38,18 @@
 }
 
 - (IBAction)onDone:(id)sender {
-    self.landmark.name = self.titleTextField.text;
-    self.landmark.details = self.descriptionTextView.text;
-    self.landmark.createdAt = [NSDate now];
-    [self.delegate addLandmark: self.landmark];
-    [self dismissViewControllerAnimated:TRUE completion:nil];
+    if (self.titleTextField.text.length < 3) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Title too Short" message:@"Title must be at least 2 characters long" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        self.landmark.name = self.titleTextField.text;
+        self.landmark.details = self.descriptionTextView.text;
+        self.landmark.createdAt = [NSDate now];
+        [self.delegate addLandmark: self.landmark];
+        [self dismissViewControllerAnimated:TRUE completion:nil];
+    }
 }
 
 - (IBAction)onAddPhotos:(id)sender {
