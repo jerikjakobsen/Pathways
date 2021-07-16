@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -251,7 +251,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z08-SR-tyo">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="bag-Dz-we1"/>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="bag-Dz-we1">
+                            <connections>
+                                <action selector="didLogout:" destination="jUc-kf-RJd" id="rhP-mv-cTo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="numberOfPathsLabel" destination="sLx-Pa-IWx" id="AiM-BV-ax3"/>
@@ -736,7 +740,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pWw-Gg-RHJ"/>
+        <segue reference="Jtp-kf-74b"/>
         <segue reference="PS9-Mn-qd1"/>
     </inferredMetricsTieBreakers>
     <resources>

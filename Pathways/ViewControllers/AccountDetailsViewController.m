@@ -6,6 +6,8 @@
 //
 
 #import "AccountDetailsViewController.h"
+#import "LoginViewController.h"
+#import "SceneDelegate.h"
 #import "Path.h"
 #import "PathCell.h"
 #import <Parse/PFImageView.h>
@@ -53,6 +55,18 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.paths.count;
+    
+}
+- (IBAction)didLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+            if (error == nil) {
+                SceneDelegate *sceneDelegate = (SceneDelegate *) self.view.window.windowScene.delegate;
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                LoginViewController *LoginVC = [storyboard instantiateViewControllerWithIdentifier: @"LoginViewController"];
+                sceneDelegate.window.rootViewController = LoginVC;
+            }
+    }];
+    
 }
 
 @end
