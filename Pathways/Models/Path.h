@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSString *pathId;
 @property (nonatomic, strong) NSString *authorId;
+@property (nonatomic, strong) NSNumber *hazardCount;
+@property (nonatomic, strong) NSNumber *landmarkCount;
 
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
@@ -32,10 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
             authorId: (NSString *) authorId
-              pathway: (Pathway *) pathway;
+            pathway: (Pathway *) pathway;
 
 - (void) postPath: (Pathway *) pathway
        completion: (PFBooleanResultBlock _Nullable) completion;
+
++ (void) getUserPaths: (NSString *) userId completion: (void (^)(NSArray *, NSError *) ) completion;
 
 @end
 

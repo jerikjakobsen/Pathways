@@ -70,4 +70,12 @@
     return @"Path";
 }
 
++ (void) getUserPaths: (NSString *) userId completion: (void (^)(NSArray *, NSError *) )  completion{
+    PFQuery *query = [PFQuery queryWithClassName: @"Path"];
+    [query whereKey:@"authorId" containsString: [PFUser currentUser].objectId ];
+    query.limit = 10;
+    [query orderByDescending: @"createdAt"];
+    [query findObjectsInBackgroundWithBlock:completion];
+}
+
 @end

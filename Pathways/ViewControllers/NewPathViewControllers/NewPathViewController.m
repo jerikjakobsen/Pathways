@@ -33,7 +33,11 @@
 @property (strong, nonatomic) Path *path;
 @property (strong, nonatomic) NSMutableArray *landmarks;
 @property GMSMutablePath *pathLine;
+@property GMSPolyline *pathpolyline;
 @property (strong, nonatomic) NSMutableArray *bottomViewLayoutConstraints;
+@property (strong, nonatomic) UIImage *hazardImage;
+@property (strong, nonatomic) UIImage *landmarkImage;
+@property BOOL initialZoom;
 
 @end
 
@@ -41,23 +45,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.landmarkImage = [UIImage imageNamed:@"colosseum"];
+    self.hazardImage = [UIImage imageNamed:@"wildfire"];
     self.landmarks = [[NSMutableArray alloc] init];
-    self.bottomView.layer.cornerRadius = self.bottomView.frame.size.width /20;
-    self.bottomViewToMapViewConstraint.constant = -5 - self.bottomView.frame.size.width /20;
-    UIEdgeInsets mapInsets = UIEdgeInsetsMake(0.0, 0.0, 5 + self.bottomView.frame.size.width /20, 0.0);
-    self.gMapView.padding = mapInsets;
-    self.navigationController.navigationBarHidden = TRUE;
-    self.tabBarController.tabBar.hidden = TRUE;
-    
-    self.pathLine = [GMSMutablePath path];
     self.pathway = [Pathway new];
     self.path = [Path new];
     self.path.startedAt = [NSDate now];
+    self.path.hazardCount = @(0);
+    self.path.landmarkCount = @(0);
+    self.initialZoom = FALSE;
+
+    self.bottomView.layer.cornerRadius = self.bottomView.frame.size.width /20;
+    self.bottomViewToMapViewConstraint.constant = -5 - self.bottomView.frame.size.width /20;
+    self.navigationController.navigationBarHidden = TRUE;
+    self.tabBarController.tabBar.hidden = TRUE;
+    
+    UIEdgeInsets mapInsets = UIEdgeInsetsMake(0.0, 0.0, 5 + self.bottomView.frame.size.width /20, 0.0);
+    self.gMapView.padding = mapInsets;
+    self.pathLine = [GMSMutablePath path];
     self.gMapView.myLocationEnabled = YES;
     self.gMapView.settings.myLocationButton  = YES;
-    [self.gMapView animateToLocation: self.gMapView.myLocation.coordinate];
     [self.gMapView animateToZoom: 20];
-    
+
     self.locationManager = [[CLLocationManager alloc]  init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -66,6 +75,7 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingLocation];
+    
 }
 
 - (IBAction)didSwitchFollow:(id)sender {
@@ -102,21 +112,39 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    
+    if (!self.initialZoom) {
+        self.initialZoom = TRUE;
+        [self.gMapView animateToLocation:locations.lastObject.coordinate];
+    }
     if ([self.followSwitch isOn]) {
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
     }
     
     [self.pathLine addCoordinate: locations.lastObject.coordinate];
-    [self.gMapView clear];
+    //[self.gMapView clear];
     [self.pathway addCoordinate: locations.lastObject];
-    GMSPolyline *polyline = [GMSPolyline polylineWithPath: self.pathLine];
-    polyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
-    polyline.strokeWidth = 10.0;
-    polyline.map = self.gMapView;
+    self.pathpolyline = nil;
+    self.pathpolyline = [GMSPolyline polylineWithPath: self.pathLine];
+    self.pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
+    self.pathpolyline.strokeWidth = 8.0;
+    self.pathpolyline.map = self.gMapView;
 }
 
 - (void)addLandmark:(nonnull Landmark *)landmark {
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(landmark.location.latitude, landmark.location.longitude);
+    GMSMarker *landmarkMarker = [GMSMarker markerWithPosition: coord];
+    landmarkMarker.title = landmark.name;
+    if ([landmark.type isEqualToString: @"Landmark"]) {
+        landmarkMarker.icon = self.landmarkImage;
+        self.path.landmarkCount = @(self.path.landmarkCount.intValue + 1);
+    }
+    if ([landmark.type isEqualToString: @"Hazard"]) {
+        landmarkMarker.icon = self.hazardImage;
+        
+        self.path.landmarkCount = @(self.path.hazardCount.intValue + 1);
+    }
+    
+    landmarkMarker.map = self.gMapView;
     [self.landmarks addObject: landmark];
 }
 
@@ -155,9 +183,20 @@
     //self.path.endPoint = self.pathway.path.lastObject;
     self.path.timeElapsed = timeElapsed;
     self.path.name = pathName;
+    NSNumber *totalPaths = [PFUser currentUser][@"totalPaths"];
+    [PFUser currentUser][@"totalPaths"] = @(totalPaths.intValue + 1);
+    NSLog(@"%@", [PFUser currentUser]);
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
-        [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
-        }];
+        if (succeeded) {
+            [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (error != nil) {
+                    NSLog(@"%@", error.localizedDescription);
+                } else {
+                    NSLog(@"Success!");
+                }
+            }];
+            [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion: nil];
+        }
     }];
     
 }

@@ -28,6 +28,9 @@
 		E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */; };
 		E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE945269D1B9A0052A515 /* ParseUserManager.m */; };
 		E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */; };
+		E5DA69E226A11951000C29A0 /* AccountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */; };
+		E5DA69E626A11BE6000C29A0 /* PathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69E426A11BE6000C29A0 /* PathCell.m */; };
+		E5DA69E726A11BE6000C29A0 /* PathCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5DA69E526A11BE6000C29A0 /* PathCell.xib */; };
 		E8B473CA6C790747628DF4DB /* Pods_Pathways_PathwaysUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE2A8885D3DA5368C8B800D /* Pods_Pathways_PathwaysUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +99,11 @@
 		E5BAE945269D1B9A0052A515 /* ParseUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseUserManager.m; sourceTree = "<group>"; };
 		E5DA69DA269FD18C000C29A0 /* EndPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndPathViewController.h; sourceTree = "<group>"; };
 		E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EndPathViewController.m; sourceTree = "<group>"; };
+		E5DA69E026A11951000C29A0 /* AccountDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountDetailsViewController.h; sourceTree = "<group>"; };
+		E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountDetailsViewController.m; sourceTree = "<group>"; };
+		E5DA69E326A11BE6000C29A0 /* PathCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathCell.h; sourceTree = "<group>"; };
+		E5DA69E426A11BE6000C29A0 /* PathCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathCell.m; sourceTree = "<group>"; };
+		E5DA69E526A11BE6000C29A0 /* PathCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PathCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,18 +230,12 @@
 		E594D3D7269CC1DF00DB5A4F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E5BAE93E269CDB3A0052A515 /* LoginViewController.h */,
-				E5BAE93F269CDB3A0052A515 /* LoginViewController.m */,
-				E5BAE941269CDBB80052A515 /* CreateAccountViewController.h */,
-				E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */,
+				E5DA69DF26A11908000C29A0 /* NewPathViewControllers */,
+				E5DA69DE26A118F0000C29A0 /* AccountCreationViewControllers */,
 				E51AF453269DFF7200556BCC /* HomeViewController.h */,
 				E51AF454269DFF7200556BCC /* HomeViewController.m */,
-				E51AF4B0269E7FB000556BCC /* NewPathViewController.h */,
-				E51AF4B1269E7FB000556BCC /* NewPathViewController.m */,
-				E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */,
-				E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */,
-				E5DA69DA269FD18C000C29A0 /* EndPathViewController.h */,
-				E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */,
+				E5DA69E026A11951000C29A0 /* AccountDetailsViewController.h */,
+				E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -241,6 +243,9 @@
 		E594D3D8269CC1F800DB5A4F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E5DA69E326A11BE6000C29A0 /* PathCell.h */,
+				E5DA69E426A11BE6000C29A0 /* PathCell.m */,
+				E5DA69E526A11BE6000C29A0 /* PathCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,6 +278,30 @@
 				E594D3AF269CA61200DB5A4F /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		E5DA69DE26A118F0000C29A0 /* AccountCreationViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E5BAE93E269CDB3A0052A515 /* LoginViewController.h */,
+				E5BAE93F269CDB3A0052A515 /* LoginViewController.m */,
+				E5BAE941269CDBB80052A515 /* CreateAccountViewController.h */,
+				E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */,
+			);
+			path = AccountCreationViewControllers;
+			sourceTree = "<group>";
+		};
+		E5DA69DF26A11908000C29A0 /* NewPathViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E51AF4B0269E7FB000556BCC /* NewPathViewController.h */,
+				E51AF4B1269E7FB000556BCC /* NewPathViewController.m */,
+				E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */,
+				E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */,
+				E5DA69DA269FD18C000C29A0 /* EndPathViewController.h */,
+				E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */,
+			);
+			path = NewPathViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DA69E726A11BE6000C29A0 /* PathCell.xib in Resources */,
 				E51AF4A9269E691200556BCC /* Keys.plist in Resources */,
 				E594D3B1269CA61200DB5A4F /* LaunchScreen.storyboard in Resources */,
 				E594D3AE269CA61200DB5A4F /* Assets.xcassets in Resources */,
@@ -552,6 +582,7 @@
 				E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */,
 				E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */,
 				E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */,
+				E5DA69E626A11BE6000C29A0 /* PathCell.m in Sources */,
 				E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */,
 				E594D3B4269CA61200DB5A4F /* main.m in Sources */,
 				E51AF4AF269E753200556BCC /* Landmark.m in Sources */,
@@ -560,6 +591,7 @@
 				E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */,
 				E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */,
 				E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */,
+				E5DA69E226A11951000C29A0 /* AccountDetailsViewController.m in Sources */,
 				E51AF459269E4D5700556BCC /* Path.m in Sources */,
 				E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */,
 			);

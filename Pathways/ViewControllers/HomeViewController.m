@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = TRUE;
     self.gMapView.myLocationEnabled = YES;
     self.didSetUserLocation = FALSE;
     self.gMapView.settings.myLocationButton  = YES;
@@ -54,7 +55,6 @@
     // "UnwindToHome" to return back to this view controller
     
     self.tabBarController.tabBar.hidden = false;
-    self.navigationController.navigationBarHidden = false;
 }
 
 @end

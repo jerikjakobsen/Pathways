@@ -54,10 +54,12 @@
     __block int count = 0;
     for (Landmark *landmark in landmarks) {
         landmark.pathId = pathId;
+        NSLog(@"pooooo");
         [landmark postLandmark:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 count += 1;
                 if (count == landmarks.count) {
+                    NSLog(@"yayaya");
                     completion(TRUE, nil);
                 }
             }
