@@ -24,6 +24,7 @@
 		E594D3B4269CA61200DB5A4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3B3269CA61200DB5A4F /* main.m */; };
 		E594D3BE269CA61300DB5A4F /* PathwaysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3BD269CA61300DB5A4F /* PathwaysTests.m */; };
 		E594D3C9269CA61300DB5A4F /* PathwaysUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3C8269CA61300DB5A4F /* PathwaysUITests.m */; };
+		E598E48D26A3F6CF00718E22 /* LandmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E598E48C26A3F6CF00718E22 /* LandmarkCell.m */; };
 		E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE93F269CDB3A0052A515 /* LoginViewController.m */; };
 		E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */; };
 		E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE945269D1B9A0052A515 /* ParseUserManager.m */; };
@@ -31,6 +32,9 @@
 		E5DA69E226A11951000C29A0 /* AccountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */; };
 		E5DA69E626A11BE6000C29A0 /* PathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69E426A11BE6000C29A0 /* PathCell.m */; };
 		E5DA69E726A11BE6000C29A0 /* PathCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5DA69E526A11BE6000C29A0 /* PathCell.xib */; };
+		E5DA69EA26A1CE63000C29A0 /* GoogleMapsStaticAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69E926A1CE63000C29A0 /* GoogleMapsStaticAPI.m */; };
+		E5DA69ED26A3ED34000C29A0 /* PathDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69EC26A3ED34000C29A0 /* PathDetailsViewController.m */; };
+		E5DA69F726A3F39C000C29A0 /* LandmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5DA69F526A3F39C000C29A0 /* LandmarkCell.xib */; };
 		E8B473CA6C790747628DF4DB /* Pods_Pathways_PathwaysUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE2A8885D3DA5368C8B800D /* Pods_Pathways_PathwaysUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +95,8 @@
 		E594D3C8269CA61300DB5A4F /* PathwaysUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathwaysUITests.m; sourceTree = "<group>"; };
 		E594D3CA269CA61300DB5A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E594D3D6269CADED00DB5A4F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E598E48B26A3F6CF00718E22 /* LandmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandmarkCell.h; sourceTree = "<group>"; };
+		E598E48C26A3F6CF00718E22 /* LandmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandmarkCell.m; sourceTree = "<group>"; };
 		E5BAE93E269CDB3A0052A515 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E5BAE93F269CDB3A0052A515 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E5BAE941269CDBB80052A515 /* CreateAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
@@ -104,6 +110,11 @@
 		E5DA69E326A11BE6000C29A0 /* PathCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathCell.h; sourceTree = "<group>"; };
 		E5DA69E426A11BE6000C29A0 /* PathCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathCell.m; sourceTree = "<group>"; };
 		E5DA69E526A11BE6000C29A0 /* PathCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PathCell.xib; sourceTree = "<group>"; };
+		E5DA69E826A1CE63000C29A0 /* GoogleMapsStaticAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMapsStaticAPI.h; sourceTree = "<group>"; };
+		E5DA69E926A1CE63000C29A0 /* GoogleMapsStaticAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsStaticAPI.m; sourceTree = "<group>"; };
+		E5DA69EB26A3ED34000C29A0 /* PathDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathDetailsViewController.h; sourceTree = "<group>"; };
+		E5DA69EC26A3ED34000C29A0 /* PathDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathDetailsViewController.m; sourceTree = "<group>"; };
+		E5DA69F526A3F39C000C29A0 /* LandmarkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandmarkCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +247,8 @@
 				E51AF454269DFF7200556BCC /* HomeViewController.m */,
 				E5DA69E026A11951000C29A0 /* AccountDetailsViewController.h */,
 				E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */,
+				E5DA69EB26A3ED34000C29A0 /* PathDetailsViewController.h */,
+				E5DA69EC26A3ED34000C29A0 /* PathDetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -243,9 +256,8 @@
 		E594D3D8269CC1F800DB5A4F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E5DA69E326A11BE6000C29A0 /* PathCell.h */,
-				E5DA69E426A11BE6000C29A0 /* PathCell.m */,
-				E5DA69E526A11BE6000C29A0 /* PathCell.xib */,
+				E5DA69EF26A3F302000C29A0 /* Path */,
+				E5DA69F826A3F3A1000C29A0 /* Landmark */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +267,8 @@
 			children = (
 				E5BAE944269D1B9A0052A515 /* ParseUserManager.h */,
 				E5BAE945269D1B9A0052A515 /* ParseUserManager.m */,
+				E5DA69E826A1CE63000C29A0 /* GoogleMapsStaticAPI.h */,
+				E5DA69E926A1CE63000C29A0 /* GoogleMapsStaticAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -302,6 +316,26 @@
 				E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */,
 			);
 			path = NewPathViewControllers;
+			sourceTree = "<group>";
+		};
+		E5DA69EF26A3F302000C29A0 /* Path */ = {
+			isa = PBXGroup;
+			children = (
+				E5DA69E326A11BE6000C29A0 /* PathCell.h */,
+				E5DA69E426A11BE6000C29A0 /* PathCell.m */,
+				E5DA69E526A11BE6000C29A0 /* PathCell.xib */,
+			);
+			path = Path;
+			sourceTree = "<group>";
+		};
+		E5DA69F826A3F3A1000C29A0 /* Landmark */ = {
+			isa = PBXGroup;
+			children = (
+				E598E48B26A3F6CF00718E22 /* LandmarkCell.h */,
+				E598E48C26A3F6CF00718E22 /* LandmarkCell.m */,
+				E5DA69F526A3F39C000C29A0 /* LandmarkCell.xib */,
+			);
+			path = Landmark;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,6 +450,7 @@
 				E5DA69E726A11BE6000C29A0 /* PathCell.xib in Resources */,
 				E51AF4A9269E691200556BCC /* Keys.plist in Resources */,
 				E594D3B1269CA61200DB5A4F /* LaunchScreen.storyboard in Resources */,
+				E5DA69F726A3F39C000C29A0 /* LandmarkCell.xib in Resources */,
 				E594D3AE269CA61200DB5A4F /* Assets.xcassets in Resources */,
 				E594D3AC269CA61100DB5A4F /* Main.storyboard in Resources */,
 			);
@@ -579,14 +614,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DA69EA26A1CE63000C29A0 /* GoogleMapsStaticAPI.m in Sources */,
 				E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */,
 				E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */,
+				E598E48D26A3F6CF00718E22 /* LandmarkCell.m in Sources */,
 				E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */,
 				E5DA69E626A11BE6000C29A0 /* PathCell.m in Sources */,
 				E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */,
 				E594D3B4269CA61200DB5A4F /* main.m in Sources */,
 				E51AF4AF269E753200556BCC /* Landmark.m in Sources */,
 				E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */,
+				E5DA69ED26A3ED34000C29A0 /* PathDetailsViewController.m in Sources */,
 				E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */,
 				E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */,
 				E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */,

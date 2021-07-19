@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="573" height="225"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qey-ay-ysq" customClass="PFImageView">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colosseum-filled" translatesAutoresizingMaskIntoConstraints="NO" id="qey-ay-ysq" customClass="PFImageView">
                         <rect key="frame" x="10" y="10" width="114.5" height="114.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmZ-0w-2g5">
@@ -115,6 +115,7 @@
     </objects>
     <resources>
         <image name="colosseum" width="50" height="50"/>
+        <image name="colosseum-filled" width="50" height="50"/>
         <image name="wildfire" width="50" height="50"/>
     </resources>
 </document>

@@ -6,6 +6,7 @@
 //
 
 #import "HomeViewController.h"
+#import "GoogleMapsStaticAPI.h"
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GMSCameraPosition.h>
 #import <CoreLocation/CoreLocation.h>
@@ -24,9 +25,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = TRUE;
+    self.tabBarController.tabBar.hidden = FALSE;
     self.gMapView.myLocationEnabled = YES;
     self.didSetUserLocation = FALSE;
     self.gMapView.settings.myLocationButton  = YES;
+    
     self.locationManager = [[CLLocationManager alloc]  init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -34,6 +37,7 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingLocation];
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
@@ -46,7 +50,10 @@
         [self.gMapView setCamera: camera];
         self.didSetUserLocation = TRUE;
         [self.locationManager stopUpdatingLocation];
+        
     }
+    
+    
 }
 
 - (IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue {

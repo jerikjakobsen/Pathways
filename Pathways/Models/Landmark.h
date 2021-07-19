@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
             pathId: (NSString *) pathId
             completion: (PFBooleanResultBlock _Nullable) completion;
 
++ (void) getLandmarks: (NSString *) pathId completion: (void (^)(NSArray *, NSError* )) completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

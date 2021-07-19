@@ -68,6 +68,13 @@
     }
 }
 
++ (void) getLandmarks: (NSString *) pathId completion: (void (^)(NSArray *, NSError* )) completion {
+    PFQuery *query = [PFQuery queryWithClassName: @"Landmark"];
+    query.limit = 10;
+    [query whereKey:@"pathId" equalTo:pathId];
+    [query findObjectsInBackgroundWithBlock:completion];
+}
+
 + (nonnull NSString *) parseClassName {
     return @"Landmark";
 }

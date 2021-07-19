@@ -6,6 +6,7 @@
 //
 
 #import "AccountDetailsViewController.h"
+#import "PathDetailsViewController.h"
 #import "LoginViewController.h"
 #import "SceneDelegate.h"
 #import "Path.h"
@@ -23,6 +24,7 @@
 @end
 
 @implementation AccountDetailsViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +44,7 @@
 - (void) setupTableView {
     self.pathsTableView.delegate = self;
     self.pathsTableView.dataSource = self;
+    
     UINib *nib = [UINib nibWithNibName:@"PathCell" bundle: nil];
     [self.pathsTableView registerNib:nib forCellReuseIdentifier:@"PathCell"];
 }
@@ -57,6 +60,16 @@
     return self.paths.count;
     
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Path *path = self.paths[indexPath.row];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PathDetailsViewController *detailsVC = [storyboard instantiateViewControllerWithIdentifier: @"PathDetailsViewController"];
+    detailsVC.path = path;
+    [self.navigationController pushViewController: detailsVC animated: YES];
+}
+
+
 - (IBAction)didLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
             if (error == nil) {

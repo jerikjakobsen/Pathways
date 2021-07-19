@@ -141,7 +141,7 @@
     if ([landmark.type isEqualToString: @"Hazard"]) {
         landmarkMarker.icon = self.hazardImage;
         
-        self.path.landmarkCount = @(self.path.hazardCount.intValue + 1);
+        self.path.hazardCount = @(self.path.hazardCount.intValue + 1);
     }
     
     landmarkMarker.map = self.gMapView;
