@@ -8,6 +8,7 @@
 #import "Pathway.h"
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/PFGeoPoint.h>
+#import <Parse/PFQuery.h>
 
 @implementation Pathway
 @dynamic path;
@@ -36,6 +37,16 @@
 - (void) postPathway: (PFBooleanResultBlock _Nullable) completion {
     [self saveInBackgroundWithBlock:completion];
 }
+
++ (void) GET: (NSString *) pathId completion: (void (^)(Pathway *, NSError *)) completion {
+    PFQuery *query = [PFQuery queryWithClassName: @"Pathway"];
+    [query whereKey: @"pathId" equalTo:pathId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            Pathway *pathway = objects.lastObject;
+            completion(pathway, error);
+    }];
+}
+
 
 + (nonnull NSString *)parseClassName {
     return @"Pathway";

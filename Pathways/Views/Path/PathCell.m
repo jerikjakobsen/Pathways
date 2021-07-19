@@ -24,14 +24,11 @@
     self.path = path;
     self.titleLabel.text = path.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%.2f meters", path.distance.floatValue];
-//    if (showUsername) {
-//        self.usernameLabel.text = username;
-//    } else {
-//        [self.usernameLabel removeFromSuperview];
-//        NSLayoutConstraint *newConstraint = [NSLayoutConstraint constraintWithItem:self.pathOverViewPFImage attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:10];
-//        [self.contentView addConstraint: newConstraint];
-//        
-//    }
+    if (showUsername) {
+        self.usernameLabel.text = username;
+    } else {
+        [self.usernameLabel removeFromSuperview];
+    }
     self.landmarkCountLabel.text = [NSString stringWithFormat:@"%@", path.landmarkCount];
     self.hazardCountLabel.text = [NSString stringWithFormat: @"%@", path.hazardCount];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];

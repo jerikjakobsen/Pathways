@@ -9,6 +9,9 @@
 #import "LandmarkCell.h"
 #import "Landmark.h"
 #import "Path.h"
+#import "Pathway.h"
+#import <GoogleMaps/GoogleMaps.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface PathDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -17,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeTakenLabel;
 @property (weak, nonatomic) IBOutlet UITableView *landmarkTableView;
 @property (strong, nonatomic) NSArray *landmarks;
+@property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
 
 @end
 
@@ -41,6 +45,26 @@
             [self.landmarkTableView reloadData];
         }
     }];
+    
+    [Pathway GET: self.path.objectId completion:^(Pathway * _Nonnull pathway, NSError * _Nonnull error) {
+        GMSMutablePath *pathLine = [GMSMutablePath path];
+        if (error == nil) {
+            for (PFGeoPoint *point in pathway.path) {
+                [pathLine addLatitude:point.latitude longitude:point.longitude];
+            }
+            GMSPolyline *pathpolyline = [GMSPolyline polylineWithPath: pathLine];
+            pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
+            pathpolyline.strokeWidth = 7.0;
+            pathpolyline.map = self.gMapView;
+            GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:pathLine];
+            UIEdgeInsets mapInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+            GMSCameraPosition* camera = [self.gMapView cameraForBounds:bounds insets:mapInsets];
+            [self.gMapView animateToCameraPosition: camera];
+        } else {
+            NSLog(@"Error getting Pathway:%@", error.localizedDescription);
+        }
+    }];
+    [self.gMapView animateToZoom: 20];
 }
 
 - (void) setupTableView {

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) postPathway: (PFBooleanResultBlock _Nullable) completion;
 
++ (void) GET: (NSString *) pathId completion: (void (^)(Pathway *, NSError *)) completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

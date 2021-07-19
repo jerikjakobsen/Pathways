@@ -386,6 +386,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="VEL-wv-Wjm" id="tQV-Cz-AdX"/>
                         <outlet property="distanceWalkedLabel" destination="IMC-sN-UHg" id="7SQ-OB-By7"/>
+                        <outlet property="gMapView" destination="Kri-wi-9Fr" id="O0m-3C-3Ym"/>
                         <outlet property="landmarkTableView" destination="SK9-bE-CEV" id="L40-q2-CMa"/>
                         <outlet property="timeTakenLabel" destination="awo-HV-Bnu" id="4dc-FW-Hox"/>
                         <outlet property="titleLabel" destination="c0k-Uk-7UP" id="pc9-Xv-W6L"/>

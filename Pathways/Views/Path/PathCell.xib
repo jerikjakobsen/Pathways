@@ -16,8 +16,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="573" height="225"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colosseum-filled" translatesAutoresizingMaskIntoConstraints="NO" id="qey-ay-ysq" customClass="PFImageView">
-                        <rect key="frame" x="10" y="10" width="114.5" height="114.5"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qey-ay-ysq" customClass="PFImageView">
+                        <rect key="frame" x="10" y="10.5" width="114.5" height="113"/>
+                        <color key="tintColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmZ-0w-2g5">
                         <rect key="frame" x="139.5" y="25" width="36.5" height="20.5"/>
@@ -25,47 +26,47 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fle-N1-Ujw">
-                        <rect key="frame" x="28" y="132.5" width="78.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fle-N1-Ujw">
+                        <rect key="frame" x="33.5" y="132.5" width="68" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 17th, 2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmG-kI-cBb">
-                        <rect key="frame" x="275.5" y="61.5" width="114" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmG-kI-cBb">
+                        <rect key="frame" x="271.5" y="60.5" width="55" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wx8-la-0Y1">
-                        <rect key="frame" x="139.5" y="61.5" width="10" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="139.5" y="61.5" width="8" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colosseum" translatesAutoresizingMaskIntoConstraints="NO" id="vps-cY-fol">
-                        <rect key="frame" x="157.5" y="59.5" width="25" height="25"/>
+                        <rect key="frame" x="155.5" y="56.5" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="16O-Le-rYi"/>
                             <constraint firstAttribute="width" constant="25" id="89H-rz-vOt"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10m-wW-gEW">
-                        <rect key="frame" x="202.5" y="61.5" width="10" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="200.5" y="61.5" width="8" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wildfire" translatesAutoresizingMaskIntoConstraints="NO" id="QId-I1-4B3">
-                        <rect key="frame" x="220.5" y="59.5" width="25" height="25"/>
+                        <rect key="frame" x="216.5" y="56.5" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="OsJ-jx-z9u"/>
                             <constraint firstAttribute="height" constant="25" id="rer-Fu-mvW"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ea-J1-6Tv">
-                        <rect key="frame" x="139.5" y="96.5" width="67" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ea-J1-6Tv">
+                        <rect key="frame" x="139.5" y="93.5" width="29" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -81,6 +82,7 @@
                     <constraint firstItem="hmG-kI-cBb" firstAttribute="leading" secondItem="QId-I1-4B3" secondAttribute="trailing" constant="30" id="NQg-22-f3H"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="hmG-kI-cBb" secondAttribute="trailing" constant="10" id="NXV-eO-TF9"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fle-N1-Ujw" secondAttribute="trailing" constant="10" id="NwS-3H-lua"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qey-ay-ysq" secondAttribute="bottom" constant="10" id="O92-5H-fHT"/>
                     <constraint firstItem="qey-ay-ysq" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1:5" id="RHn-0S-w6A"/>
                     <constraint firstItem="10m-wW-gEW" firstAttribute="leading" secondItem="vps-cY-fol" secondAttribute="trailing" constant="20" id="XPf-ze-8Wr"/>
                     <constraint firstItem="8Ea-J1-6Tv" firstAttribute="top" secondItem="vps-cY-fol" secondAttribute="bottom" constant="12" id="XjM-Yn-BpA"/>
@@ -115,7 +117,7 @@
     </objects>
     <resources>
         <image name="colosseum" width="50" height="50"/>
-        <image name="colosseum-filled" width="50" height="50"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <image name="wildfire" width="50" height="50"/>
     </resources>
 </document>
