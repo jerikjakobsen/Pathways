@@ -12,10 +12,11 @@
 #import "Path.h"
 #import "PathCell.h"
 #import <Parse/PFImageView.h>
+#import <Parse/PFUser.h>
 
 @interface AccountDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfPathsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *pathsTableView;
@@ -30,6 +31,10 @@
     [super viewDidLoad];
     [self setupTableView];
     self.usernameLabel.text = [PFUser currentUser].username;
+    self.profileImageView.file = [PFUser currentUser][@"profile_image"];
+    [self.profileImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
+    }];
     self.numberOfPathsLabel.text = [NSString stringWithFormat: @"%@ Paths Created", [PFUser currentUser][@"totalPaths"]];
     [Path getUserPaths:[PFUser currentUser].objectId completion:^(NSArray * _Nonnull paths, NSError * _Nonnull error) {
         if (error != nil) {
