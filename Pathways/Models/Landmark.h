@@ -8,6 +8,7 @@
 #import <Parse/Parse.h>
 #import <CoreLocation/CLLocation.h>
 #import <UIKit/UIImage.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) addPhoto: (UIImage *) photo;
 
 - (void) postLandmark:(PFBooleanResultBlock _Nullable) completion;
+
+- (void) addToMap: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage;
+
++ (void) addLandmarksToMap: (NSArray *) landmarks mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage;
 
 + (void) postLandmarks: (NSMutableArray *) landmarks
             pathId: (NSString *) pathId

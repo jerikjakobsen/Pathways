@@ -75,6 +75,27 @@
     [query findObjectsInBackgroundWithBlock:completion];
 }
 
+- (void) addToMap: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage {
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.location.latitude, self.location.longitude);
+    GMSMarker *landmarkMarker = [GMSMarker markerWithPosition: coord];
+    landmarkMarker.title = self.name;
+    if ([self.type isEqualToString: @"Landmark"]) {
+        landmarkMarker.icon = landmarkImage;
+    }
+    if ([self.type isEqualToString: @"Hazard"]) {
+        landmarkMarker.icon = hazardImage;
+        
+    }
+    
+    landmarkMarker.map = mapView;
+}
+
++ (void) addLandmarksToMap: (NSArray *) landmarks mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage {
+    for (Landmark *landmark in landmarks) {
+        [landmark addToMap: mapView landmarkImage:landmarkImage hazardImage:hazardImage];
+    }
+}
+
 + (nonnull NSString *) parseClassName {
     return @"Landmark";
 }

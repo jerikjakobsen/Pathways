@@ -14,13 +14,16 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface PathDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceWalkedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeTakenLabel;
 @property (weak, nonatomic) IBOutlet UITableView *landmarkTableView;
-@property (strong, nonatomic) NSArray *landmarks;
 @property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
+@property (strong, nonatomic) NSArray *landmarks;
+@property (strong, nonatomic) UIImage *hazardImage;
+@property (strong, nonatomic) UIImage *landmarkImage;
 
 @end
 
@@ -30,6 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.landmarkImage = [UIImage imageNamed:@"colosseum"];
+    self.hazardImage = [UIImage imageNamed:@"wildfire"];
     self.titleLabel.text = self.path.name;
     self.distanceWalkedLabel.text = [NSString stringWithFormat: @"Walked %.2f meters", self.path.distance.floatValue];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
@@ -64,13 +69,19 @@
             NSLog(@"Error getting Pathway:%@", error.localizedDescription);
         }
     }];
+    [Landmark getLandmarks:self.path.objectId completion:^(NSArray * _Nonnull landmarks, NSError * _Nonnull error) {
+        if (error == nil) {
+            [Landmark addLandmarksToMap:landmarks mapView:self.gMapView landmarkImage:self.landmarkImage hazardImage:self.hazardImage];
+        } else {
+            NSLog(@"Error getting landmarks: %@", error.localizedDescription);
+        }
+    }];
     [self.gMapView animateToZoom: 20];
 }
 
 - (void) setupTableView {
     self.landmarkTableView.delegate = self;
     self.landmarkTableView.dataSource = self;
-    
     UINib *nib = [UINib nibWithNibName:@"LandmarkCell" bundle: nil];
     [self.landmarkTableView registerNib:nib forCellReuseIdentifier:@"LandmarkCell"];
 }

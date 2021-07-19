@@ -131,21 +131,16 @@
 }
 
 - (void)addLandmark:(nonnull Landmark *)landmark {
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(landmark.location.latitude, landmark.location.longitude);
-    GMSMarker *landmarkMarker = [GMSMarker markerWithPosition: coord];
-    landmarkMarker.title = landmark.name;
+    
     if ([landmark.type isEqualToString: @"Landmark"]) {
-        landmarkMarker.icon = self.landmarkImage;
         self.path.landmarkCount = @(self.path.landmarkCount.intValue + 1);
     }
     if ([landmark.type isEqualToString: @"Hazard"]) {
-        landmarkMarker.icon = self.hazardImage;
-        
         self.path.hazardCount = @(self.path.hazardCount.intValue + 1);
     }
     
-    landmarkMarker.map = self.gMapView;
     [self.landmarks addObject: landmark];
+    [landmark addToMap:self.gMapView landmarkImage:self.landmarkImage hazardImage: self.hazardImage];
 }
 
 - (NSNumber *) numberOfHazards {
