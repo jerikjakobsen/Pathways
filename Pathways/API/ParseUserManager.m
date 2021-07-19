@@ -25,7 +25,9 @@
                 newUser.password = password;
                 newUser.email =  email;
                 newUser[@"totalPaths"] = @(0);
-                if (profilePic != nil) newUser[@"profile_image"] = [self getPFFileFromImage: profilePic];
+                if (profilePic != nil) {
+                    newUser[@"profile_image"] = [self getPFFileFromImage: profilePic];
+                }
                 [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                     if (error != nil) NSLog(@"%@", error.localizedDescription);
                     else NSLog(@"Account creation successful");

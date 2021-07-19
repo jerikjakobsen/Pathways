@@ -7,7 +7,7 @@
 
 #import "CreateAccountViewController.h"
 #import "ParseUserManager.h"
-@interface CreateAccountViewController ()
+@interface CreateAccountViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -36,6 +36,7 @@
         self.passwordTextField.text = pretext;
     }
 }
+
 - (IBAction)onSignup:(id)sender {
     [ParseUserManager registerUser:self.usernameTextField.text email: self.emailTextField.text password:self.passwordTextField.text profilePic:self.profileImageView.image completion:^(NSError * error) {
         if (error != nil) {
@@ -58,8 +59,27 @@
     }];
     
 }
+
 - (IBAction)didTapView:(id)sender {
     [self.view endEditing:YES];
 }
+
+- (IBAction)didTapProfileImageView:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController: imagePickerVC animated:YES completion:nil];
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    self.profileImageView.image = editedImage;
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

@@ -59,7 +59,7 @@
 - (IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue {
     // This is a tag for the unwind segue to work
     // Leave this function in as a signal for any view controller that wants to use the unwind segue
-    // "UnwindToHome" to return back to this view controller
+    // Use the "UnwindToHome" segue identifier to return back to this view controller
     
     self.tabBarController.tabBar.hidden = false;
 }

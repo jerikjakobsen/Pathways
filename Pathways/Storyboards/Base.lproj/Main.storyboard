@@ -19,12 +19,12 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gkB-tI-LDB">
                                 <rect key="frame" x="77.5" y="381" width="259" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3xP-dU-7lU">
                                 <rect key="frame" x="77.5" y="455" width="259" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-Mt-bPG">
                                 <rect key="frame" x="97.5" y="519" width="38" height="30"/>
@@ -88,24 +88,28 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfp-Z2-wtf">
                                         <rect key="frame" x="8" y="143" width="243" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QQd-ho-PNk">
                                         <rect key="frame" x="8" y="207" width="243" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EMS-Rt-wAl">
                                         <rect key="frame" x="8" y="271" width="243" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kB6-Ni-YyX">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="kB6-Ni-YyX">
                                         <rect key="frame" x="84.5" y="8" width="90" height="90"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="my4-Le-vw5"/>
                                             <constraint firstAttribute="width" constant="90" id="viE-du-nd1"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="1zL-ws-pVQ" appends="YES" id="foC-E7-s4K"/>
+                                        </connections>
                                     </imageView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbD-rq-oEu">
                                         <rect key="frame" x="12" y="312" width="18" height="16"/>
@@ -199,6 +203,11 @@
                 <tapGestureRecognizer id="5Q8-6k-cTx">
                     <connections>
                         <action selector="didTapView:" destination="A5E-4x-muR" id="fXz-M1-CFS"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="1zL-ws-pVQ">
+                    <connections>
+                        <action selector="didTapProfileImageView:" destination="A5E-4x-muR" id="vG8-Mh-liF"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -353,9 +362,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SK9-bE-CEV">
-                                <rect key="frame" x="0.0" y="442" width="414" height="400"/>
+                                <rect key="frame" x="0.0" y="432" width="414" height="410"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxJ-LF-ekc">
+                                <rect key="frame" x="326" y="388.5" width="68" height="30"/>
+                                <state key="normal" title="Walk Path"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fZo-H0-3uA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -364,22 +377,24 @@
                             <constraint firstItem="VEL-wv-Wjm" firstAttribute="leading" secondItem="IMC-sN-UHg" secondAttribute="leading" id="5f1-in-rw2"/>
                             <constraint firstItem="awo-HV-Bnu" firstAttribute="top" secondItem="VEL-wv-Wjm" secondAttribute="bottom" constant="10" id="79M-vg-TKq"/>
                             <constraint firstItem="IMC-sN-UHg" firstAttribute="leading" secondItem="c0k-Uk-7UP" secondAttribute="leading" id="7Mn-F3-zTc"/>
-                            <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="awo-HV-Bnu" secondAttribute="trailing" constant="20" id="9mu-TY-N4N"/>
                             <constraint firstItem="SK9-bE-CEV" firstAttribute="leading" secondItem="fZo-H0-3uA" secondAttribute="leading" id="Cq2-mR-wYp"/>
+                            <constraint firstItem="ZxJ-LF-ekc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="awo-HV-Bnu" secondAttribute="trailing" constant="10" id="EP0-eN-ESs"/>
                             <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IMC-sN-UHg" secondAttribute="trailing" constant="20" id="LBY-N6-9y3"/>
                             <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c0k-Uk-7UP" secondAttribute="trailing" constant="20" id="QVp-i0-edH"/>
                             <constraint firstItem="SK9-bE-CEV" firstAttribute="trailing" secondItem="fZo-H0-3uA" secondAttribute="trailing" id="RmW-9l-qzE"/>
                             <constraint firstItem="awo-HV-Bnu" firstAttribute="leading" secondItem="VEL-wv-Wjm" secondAttribute="leading" id="SzK-Ef-fs2"/>
                             <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VEL-wv-Wjm" secondAttribute="trailing" constant="20" id="TgC-la-6O2"/>
                             <constraint firstItem="IMC-sN-UHg" firstAttribute="top" secondItem="c0k-Uk-7UP" secondAttribute="bottom" constant="12" id="UH0-vm-N7I"/>
+                            <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" secondItem="ZxJ-LF-ekc" secondAttribute="trailing" constant="20" id="V2K-kD-Q9i"/>
                             <constraint firstItem="Kri-wi-9Fr" firstAttribute="top" secondItem="Qot-gB-Mzh" secondAttribute="top" id="Wy3-MS-cbr"/>
                             <constraint firstItem="c0k-Uk-7UP" firstAttribute="top" secondItem="Kri-wi-9Fr" secondAttribute="bottom" constant="28" id="ZBY-3w-eEt"/>
+                            <constraint firstItem="ZxJ-LF-ekc" firstAttribute="centerY" secondItem="awo-HV-Bnu" secondAttribute="centerY" id="aHD-8M-3bO"/>
                             <constraint firstItem="Kri-wi-9Fr" firstAttribute="leading" secondItem="fZo-H0-3uA" secondAttribute="leading" id="e4w-2D-mte"/>
                             <constraint firstItem="Kri-wi-9Fr" firstAttribute="height" secondItem="Qot-gB-Mzh" secondAttribute="height" multiplier="1:3" id="euS-h7-Eap"/>
                             <constraint firstItem="VEL-wv-Wjm" firstAttribute="top" secondItem="IMC-sN-UHg" secondAttribute="bottom" constant="10" id="htc-Id-sEv"/>
                             <constraint firstAttribute="bottom" secondItem="SK9-bE-CEV" secondAttribute="bottom" id="nQv-rR-AEE"/>
                             <constraint firstItem="Kri-wi-9Fr" firstAttribute="trailing" secondItem="fZo-H0-3uA" secondAttribute="trailing" id="q9O-W1-9m2"/>
-                            <constraint firstItem="SK9-bE-CEV" firstAttribute="top" secondItem="awo-HV-Bnu" secondAttribute="bottom" constant="30" id="wGk-SB-s7b"/>
+                            <constraint firstItem="SK9-bE-CEV" firstAttribute="top" secondItem="awo-HV-Bnu" secondAttribute="bottom" constant="20" id="wGk-SB-s7b"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="47I-Ul-udR"/>
@@ -825,6 +840,7 @@
         <segue reference="PS9-Mn-qd1"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ProfileImagePlaceholder" width="286.66665649414062" height="226"/>
         <image name="colosseum" width="50" height="50"/>
         <image name="colosseum-filled" width="50" height="50"/>
         <image name="exit" width="50" height="50"/>

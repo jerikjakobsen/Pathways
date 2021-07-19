@@ -29,8 +29,6 @@
 
 @implementation PathDetailsViewController
 
-//TODO: Configure map view
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.landmarkImage = [UIImage imageNamed:@"colosseum"];
