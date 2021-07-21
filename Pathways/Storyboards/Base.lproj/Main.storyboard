@@ -427,18 +427,38 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d4X-hE-sc7">
+                                <rect key="frame" x="16" y="72" width="51" height="31"/>
+                                <color key="onTintColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="didSwitchFollow:" destination="MKI-7u-UP0" eventType="valueChanged" id="Pii-Fv-S6p"/>
+                                    <action selector="didSwitchFollow:" destination="C7Q-07-Mhw" eventType="valueChanged" id="ozB-Kh-aYz"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKl-Ux-g0m">
+                                <rect key="frame" x="89" y="77" width="49" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H9h-jc-CeA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="d4X-hE-sc7" firstAttribute="leading" secondItem="H9h-jc-CeA" secondAttribute="leading" constant="16" id="Hth-fZ-I4m"/>
+                            <constraint firstItem="HKl-Ux-g0m" firstAttribute="leading" secondItem="d4X-hE-sc7" secondAttribute="trailing" constant="24" id="Qpm-hw-2lz"/>
                             <constraint firstItem="o4A-Of-l9i" firstAttribute="top" secondItem="CGM-TB-4fc" secondAttribute="top" id="YgO-8C-z2y"/>
                             <constraint firstItem="o4A-Of-l9i" firstAttribute="leading" secondItem="H9h-jc-CeA" secondAttribute="leading" id="cJb-YH-7HX"/>
+                            <constraint firstItem="d4X-hE-sc7" firstAttribute="top" secondItem="H9h-jc-CeA" secondAttribute="top" constant="16" id="ifp-F1-H9B"/>
                             <constraint firstAttribute="bottom" secondItem="o4A-Of-l9i" secondAttribute="bottom" id="l8l-58-8HG"/>
+                            <constraint firstItem="HKl-Ux-g0m" firstAttribute="leading" secondItem="d4X-hE-sc7" secondAttribute="trailing" constant="24" id="oHU-cu-nvR"/>
                             <constraint firstItem="o4A-Of-l9i" firstAttribute="trailing" secondItem="H9h-jc-CeA" secondAttribute="trailing" id="uTm-dg-tT7"/>
+                            <constraint firstItem="HKl-Ux-g0m" firstAttribute="centerY" secondItem="d4X-hE-sc7" secondAttribute="centerY" id="vY6-Qp-BJk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="213-bb-y18"/>
                     <connections>
+                        <outlet property="followSwitch" destination="d4X-hE-sc7" id="YEf-Q6-qJU"/>
                         <outlet property="gMapView" destination="o4A-Of-l9i" id="6eL-Xv-DBc"/>
                     </connections>
                 </viewController>

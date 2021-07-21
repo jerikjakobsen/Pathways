@@ -122,7 +122,6 @@
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
     }
     [self.pathLine addCoordinate: locations.lastObject.coordinate];
-    //[self.gMapView clear];
     [self.pathway addCoordinate: locations.lastObject];
     self.pathpolyline = nil;
     self.pathpolyline = [GMSPolyline polylineWithPath: self.pathLine];
@@ -176,7 +175,6 @@
     self.path.authorId = [PFUser currentUser].objectId;
     self.path.distance = self.pathway.distance;
     self.path.startPoint = self.pathway.path.firstObject;
-    //self.path.endPoint = self.pathway.path.lastObject;
     self.path.timeElapsed = timeElapsed;
     self.path.name = pathName;
     NSNumber *totalPaths = [PFUser currentUser][@"totalPaths"];
