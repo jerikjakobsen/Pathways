@@ -9,6 +9,8 @@
 #import <Parse/PFObject.h>
 #import <CoreLocation/CLLocation.h>
 #import "Pathway.h"
+#import <GoogleMaps/GMSMapView.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Path : PFObject<PFSubclassing>
@@ -16,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *timeElapsed;
 @property (nonatomic) PFGeoPoint *startPoint;
-//@property (nonatomic) PFGeoPoint *endPoint;
 @property (nonatomic, strong) NSDate *startedAt;
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSString *pathId;
@@ -27,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
             startPoint: (PFGeoPoint *) startPoint
-            //endPoint: (PFGeoPoint *) endPoint
             distance: (NSNumber *) distance
             authorId: (NSString *) authorId;
 
@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) postPath: (Pathway *) pathway
        completion: (PFBooleanResultBlock _Nullable) completion;
+
+- (void) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview;
+
+- (void) drawPathToMapWithLandmarksWithCompletion: (void (^)(NSError *, NSArray *, Pathway *)) completion map: (GMSMapView *) mapview;
 
 + (void) getUserPaths: (NSString *) userId completion: (void (^)(NSArray *, NSError *) ) completion;
 

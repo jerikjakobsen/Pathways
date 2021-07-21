@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) postPathway: (PFBooleanResultBlock _Nullable) completion;
 
+// The orientation of the path from the start point to the second point
+- (double) startBearing;
+
 + (void) GET: (NSString *) pathId completion: (void (^)(Pathway *, NSError *)) completion;
 
 @end

@@ -38,6 +38,17 @@
     [self saveInBackgroundWithBlock:completion];
 }
 
+- (double) startBearing {
+    PFGeoPoint *firstPoint = self.path.firstObject;
+    PFGeoPoint *secondPoint = self.path[1];
+    if (secondPoint == nil || firstPoint == nil) {
+        return 0.0;
+    }
+    CLLocationDirection direction = atan2(secondPoint.longitude - firstPoint.longitude, secondPoint.latitude - firstPoint.latitude) * 180.0/ M_PI;
+    return direction;
+}
+
+
 + (void) GET: (NSString *) pathId completion: (void (^)(Pathway *, NSError *)) completion {
     PFQuery *query = [PFQuery queryWithClassName: @"Pathway"];
     [query whereKey: @"pathId" equalTo:pathId];
@@ -46,7 +57,6 @@
             completion(pathway, error);
     }];
 }
-
 
 + (nonnull NSString *)parseClassName {
     return @"Pathway";

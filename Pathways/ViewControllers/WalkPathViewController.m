@@ -7,7 +7,7 @@
 
 #import "WalkPathViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import "Pathway.h"
+
 
 @interface WalkPathViewController ()
 
@@ -20,23 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    GMSMutablePath *pathLine = [GMSMutablePath path];
-    
-    [Pathway GET: self.path.objectId completion:^(Pathway * _Nonnull pathway, NSError * _Nonnull error) {
-        if (error == nil) {
-            GMSMutablePath *pathLine = [GMSMutablePath path];
-
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
-    
+    [self.path drawPathToMapWithLandmarks:self.landmarks pathway:self.pathway map:self.gMapView];
+    self.gMapView.camera = [GMSCameraPosition cameraWithLatitude:self.path.startPoint.latitude longitude:self.path.startPoint.longitude zoom:20 bearing: [self.pathway startBearing] viewingAngle:0.0];
     self.gMapView.myLocationEnabled = YES;
     self.gMapView.settings.myLocationButton  = YES;
-    [self.gMapView animateToZoom: 20];
     
 }
-
-
 
 @end

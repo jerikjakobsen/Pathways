@@ -368,6 +368,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxJ-LF-ekc">
                                 <rect key="frame" x="326" y="388.5" width="68" height="30"/>
                                 <state key="normal" title="Walk Path"/>
+                                <connections>
+                                    <action selector="didTapWalkPath:" destination="rtf-eU-WXP" eventType="touchUpInside" id="tJ9-0Z-T0E"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fZo-H0-3uA"/>
@@ -868,7 +871,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pWw-Gg-RHJ"/>
+        <segue reference="Jtp-kf-74b"/>
         <segue reference="PS9-Mn-qd1"/>
     </inferredMetricsTieBreakers>
     <resources>

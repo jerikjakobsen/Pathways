@@ -6,19 +6,24 @@
 //
 
 #import "Path.h"
+#import "Landmark.h"
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
+#import <GoogleMaps/GMSPolyline.h>
+#import <GoogleMaps/GMSMutablePath.h>
+#import <GoogleMaps/GMSCameraPosition.h>
 
 @implementation Path
+
 @dynamic name;
 @dynamic timeElapsed;
 @dynamic startPoint;
-//@dynamic endPoint;
 @dynamic distance;
 @dynamic pathId;
 @dynamic authorId;
 @dynamic startedAt;
-
+@dynamic hazardCount;
+@dynamic landmarkCount;
 
 - (instancetype) init: (NSString *) name
             timeElapsed: (NSNumber *) timeElapsed
@@ -62,6 +67,72 @@
             [pathway saveInBackgroundWithBlock: completion];
         } else {
             NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+
+
+- (void) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview {
+    // Draw Pathway
+    if (pathway != nil) {
+        GMSMutablePath *pathLine = [GMSMutablePath path];
+        for (PFGeoPoint *point in pathway.path) {
+            [pathLine addLatitude:point.latitude longitude:point.longitude];
+    }
+    GMSPolyline *pathpolyline = [GMSPolyline polylineWithPath: pathLine];
+    pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
+    pathpolyline.strokeWidth = 7.0;
+    pathpolyline.map = mapview;
+    }
+    
+    // Draw landmarks
+    if (landmarks != nil) {
+        UIImage *hazardImage = [UIImage imageNamed:@"wildfire"];
+        UIImage *landmarkImage = [UIImage imageNamed:@"colosseum"];
+        for (Landmark *landmark in landmarks) {
+            [landmark addToMap: mapview landmarkImage:landmarkImage hazardImage:hazardImage];
+        }
+    }
+    
+}
+
+- (void) drawPathToMapWithLandmarksWithCompletion: (void (^)(NSError *, NSArray *, Pathway *)) completion map: (GMSMapView *) mapview {
+    __block Pathway *bPathway = nil;
+    __block NSArray *bLandmarks = nil;
+    __block NSError *bError = nil;
+    [Pathway GET: self.objectId completion:^(Pathway * _Nonnull pathway, NSError * _Nonnull error) {
+        if (bError != nil) {
+            return;
+        }
+        if (error != nil) {
+            bError = error;
+            completion(error, nil, nil);
+            return;
+        }
+        if (bLandmarks != nil) {
+            bPathway = pathway;
+            [self drawPathToMapWithLandmarks:bLandmarks pathway: bPathway map: mapview];
+            completion(error, bLandmarks, bPathway);
+        } else {
+            bPathway = pathway;
+        }
+    }];
+    [Landmark getLandmarks: self.objectId completion:^(NSArray * _Nonnull landmarks, NSError * _Nonnull error) {
+        if (bError != nil) {
+            return;
+        }
+        if (error != nil) {
+            bError = error;
+            completion(error, nil, nil);
+            return;
+        }
+        if (bPathway != nil) {
+            bLandmarks = landmarks;
+            [self drawPathToMapWithLandmarks: bLandmarks pathway:bPathway map:mapview];
+            completion(error, bLandmarks, bPathway);
+        } else {
+            bLandmarks = landmarks;
         }
     }];
 }
