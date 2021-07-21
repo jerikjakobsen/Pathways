@@ -65,8 +65,8 @@
 }
 
 - (IBAction)onEndPath:(id) sender {
-    if (self.pathNameTextField.text.length < 3) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Path Name too Short" message:@"Title must be at least 2 characters long" preferredStyle:UIAlertControllerStyleAlert];
+    if (self.pathNameTextField.text.length < 4) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Path Name too Short" message:@"Name must be at least 2 characters long" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];

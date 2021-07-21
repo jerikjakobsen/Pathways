@@ -405,11 +405,43 @@
                         <outlet property="landmarkTableView" destination="SK9-bE-CEV" id="L40-q2-CMa"/>
                         <outlet property="timeTakenLabel" destination="awo-HV-Bnu" id="4dc-FW-Hox"/>
                         <outlet property="titleLabel" destination="c0k-Uk-7UP" id="pc9-Xv-W6L"/>
+                        <segue destination="C7Q-07-Mhw" kind="show" identifier="PathDetailsToWalkPath" id="DPA-p2-mQJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwK-ha-gdM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="411.59420289855075" y="2825.8928571428569"/>
+        </scene>
+        <!--Walk Path View Controller-->
+        <scene sceneID="dir-Dx-mz1">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="C7Q-07-Mhw" customClass="WalkPathViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CGM-TB-4fc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4A-Of-l9i" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="H9h-jc-CeA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="o4A-Of-l9i" firstAttribute="top" secondItem="CGM-TB-4fc" secondAttribute="top" id="YgO-8C-z2y"/>
+                            <constraint firstItem="o4A-Of-l9i" firstAttribute="leading" secondItem="H9h-jc-CeA" secondAttribute="leading" id="cJb-YH-7HX"/>
+                            <constraint firstAttribute="bottom" secondItem="o4A-Of-l9i" secondAttribute="bottom" id="l8l-58-8HG"/>
+                            <constraint firstItem="o4A-Of-l9i" firstAttribute="trailing" secondItem="H9h-jc-CeA" secondAttribute="trailing" id="uTm-dg-tT7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="213-bb-y18"/>
+                    <connections>
+                        <outlet property="gMapView" destination="o4A-Of-l9i" id="6eL-Xv-DBc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yGz-x8-GYm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="411.59420289855075" y="3647.5446428571427"/>
         </scene>
         <!--New Path View Controller-->
         <scene sceneID="1Pt-Rl-0Ha">

@@ -71,8 +71,10 @@
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 6;
+    self.locationManager.allowsBackgroundLocationUpdates = TRUE;
+    self.locationManager.pausesLocationUpdatesAutomatically = FALSE;
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
     }
     [self.locationManager startUpdatingLocation];
     
@@ -119,7 +121,6 @@
     if ([self.followSwitch isOn]) {
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
     }
-    
     [self.pathLine addCoordinate: locations.lastObject.coordinate];
     //[self.gMapView clear];
     [self.pathway addCoordinate: locations.lastObject];

@@ -25,6 +25,7 @@
 		E594D3BE269CA61300DB5A4F /* PathwaysTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3BD269CA61300DB5A4F /* PathwaysTests.m */; };
 		E594D3C9269CA61300DB5A4F /* PathwaysUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3C8269CA61300DB5A4F /* PathwaysUITests.m */; };
 		E598E48D26A3F6CF00718E22 /* LandmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E598E48C26A3F6CF00718E22 /* LandmarkCell.m */; };
+		E598E49026A7120400718E22 /* WalkPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E598E48F26A7120400718E22 /* WalkPathViewController.m */; };
 		E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE93F269CDB3A0052A515 /* LoginViewController.m */; };
 		E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */; };
 		E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE945269D1B9A0052A515 /* ParseUserManager.m */; };
@@ -97,6 +98,8 @@
 		E594D3D6269CADED00DB5A4F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E598E48B26A3F6CF00718E22 /* LandmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandmarkCell.h; sourceTree = "<group>"; };
 		E598E48C26A3F6CF00718E22 /* LandmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandmarkCell.m; sourceTree = "<group>"; };
+		E598E48E26A7120400718E22 /* WalkPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalkPathViewController.h; sourceTree = "<group>"; };
+		E598E48F26A7120400718E22 /* WalkPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalkPathViewController.m; sourceTree = "<group>"; };
 		E5BAE93E269CDB3A0052A515 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E5BAE93F269CDB3A0052A515 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E5BAE941269CDBB80052A515 /* CreateAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */,
 				E5DA69EB26A3ED34000C29A0 /* PathDetailsViewController.h */,
 				E5DA69EC26A3ED34000C29A0 /* PathDetailsViewController.m */,
+				E598E48E26A7120400718E22 /* WalkPathViewController.h */,
+				E598E48F26A7120400718E22 /* WalkPathViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E598E49026A7120400718E22 /* WalkPathViewController.m in Sources */,
 				E5DA69EA26A1CE63000C29A0 /* GoogleMapsStaticAPI.m in Sources */,
 				E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */,
 				E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */,
