@@ -15,7 +15,11 @@
 		E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4AB269E6CB200556BCC /* Pathway.m */; };
 		E51AF4AF269E753200556BCC /* Landmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4AE269E753200556BCC /* Landmark.m */; };
 		E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4B1269E7FB000556BCC /* NewPathViewController.m */; };
+		E539147D26A901E30011EFEA /* LandmarkPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E539147A26A901E30011EFEA /* LandmarkPhotoCell.xib */; };
+		E539147E26A901E30011EFEA /* LandmarkPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E539147B26A901E30011EFEA /* LandmarkPhotoCell.m */; };
 		E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */; };
+		E5528E0826A8E528001CAC77 /* LandmarkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5528E0626A8E528001CAC77 /* LandmarkDetailsViewController.m */; };
+		E5528E0926A8E528001CAC77 /* LandmarkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5528E0726A8E528001CAC77 /* LandmarkDetailsViewController.xib */; };
 		E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3A2269CA61100DB5A4F /* AppDelegate.m */; };
 		E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E594D3A5269CA61100DB5A4F /* SceneDelegate.m */; };
 		E594D3AC269CA61100DB5A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E594D3AA269CA61100DB5A4F /* Main.storyboard */; };
@@ -77,8 +81,14 @@
 		E51AF4AE269E753200556BCC /* Landmark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Landmark.m; sourceTree = "<group>"; };
 		E51AF4B0269E7FB000556BCC /* NewPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPathViewController.h; sourceTree = "<group>"; };
 		E51AF4B1269E7FB000556BCC /* NewPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPathViewController.m; sourceTree = "<group>"; };
+		E539147A26A901E30011EFEA /* LandmarkPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandmarkPhotoCell.xib; sourceTree = "<group>"; };
+		E539147B26A901E30011EFEA /* LandmarkPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandmarkPhotoCell.m; sourceTree = "<group>"; };
+		E539147C26A901E30011EFEA /* LandmarkPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandmarkPhotoCell.h; sourceTree = "<group>"; };
 		E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLandmarkViewController.h; sourceTree = "<group>"; };
 		E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLandmarkViewController.m; sourceTree = "<group>"; };
+		E5528E0526A8E528001CAC77 /* LandmarkDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandmarkDetailsViewController.h; sourceTree = "<group>"; };
+		E5528E0626A8E528001CAC77 /* LandmarkDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandmarkDetailsViewController.m; sourceTree = "<group>"; };
+		E5528E0726A8E528001CAC77 /* LandmarkDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandmarkDetailsViewController.xib; sourceTree = "<group>"; };
 		E594D39E269CA61100DB5A4F /* Pathways.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathways.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E594D3A1269CA61100DB5A4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E594D3A2269CA61100DB5A4F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -184,6 +194,26 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E539147926A901B90011EFEA /* LandmarkPhotoCell */ = {
+			isa = PBXGroup;
+			children = (
+				E539147C26A901E30011EFEA /* LandmarkPhotoCell.h */,
+				E539147B26A901E30011EFEA /* LandmarkPhotoCell.m */,
+				E539147A26A901E30011EFEA /* LandmarkPhotoCell.xib */,
+			);
+			path = LandmarkPhotoCell;
+			sourceTree = "<group>";
+		};
+		E5528E1326A8FFF8001CAC77 /* LandmarkDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E5528E0526A8E528001CAC77 /* LandmarkDetailsViewController.h */,
+				E5528E0626A8E528001CAC77 /* LandmarkDetailsViewController.m */,
+				E5528E0726A8E528001CAC77 /* LandmarkDetailsViewController.xib */,
+			);
+			path = LandmarkDetail;
+			sourceTree = "<group>";
+		};
 		E594D395269CA61100DB5A4F = {
 			isa = PBXGroup;
 			children = (
@@ -210,12 +240,12 @@
 		E594D3A0269CA61100DB5A4F /* Pathways */ = {
 			isa = PBXGroup;
 			children = (
+				E594D3D7269CC1DF00DB5A4F /* ViewControllers */,
 				E51AF456269E4D0E00556BCC /* Models */,
 				E5BAE93B269CD8810052A515 /* Storyboards */,
 				E5BAE93A269CD85B0052A515 /* AppManagement */,
 				E5BAE938269CD80F0052A515 /* API */,
 				E594D3D8269CC1F800DB5A4F /* Views */,
-				E594D3D7269CC1DF00DB5A4F /* ViewControllers */,
 				E594D3AD269CA61200DB5A4F /* Assets.xcassets */,
 				E594D3B2269CA61200DB5A4F /* Info.plist */,
 				E51AF4A8269E691200556BCC /* Keys.plist */,
@@ -244,14 +274,11 @@
 		E594D3D7269CC1DF00DB5A4F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E5FEB2B626A875C9007BA86A /* DetailViewControllers */,
 				E5DA69DF26A11908000C29A0 /* NewPathViewControllers */,
 				E5DA69DE26A118F0000C29A0 /* AccountCreationViewControllers */,
 				E51AF453269DFF7200556BCC /* HomeViewController.h */,
 				E51AF454269DFF7200556BCC /* HomeViewController.m */,
-				E5DA69E026A11951000C29A0 /* AccountDetailsViewController.h */,
-				E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */,
-				E5DA69EB26A3ED34000C29A0 /* PathDetailsViewController.h */,
-				E5DA69EC26A3ED34000C29A0 /* PathDetailsViewController.m */,
 				E598E48E26A7120400718E22 /* WalkPathViewController.h */,
 				E598E48F26A7120400718E22 /* WalkPathViewController.m */,
 			);
@@ -261,8 +288,10 @@
 		E594D3D8269CC1F800DB5A4F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E539147926A901B90011EFEA /* LandmarkPhotoCell */,
 				E5DA69EF26A3F302000C29A0 /* Path */,
 				E5DA69F826A3F3A1000C29A0 /* Landmark */,
+				E5528E1326A8FFF8001CAC77 /* LandmarkDetail */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +370,17 @@
 				E5DA69F526A3F39C000C29A0 /* LandmarkCell.xib */,
 			);
 			path = Landmark;
+			sourceTree = "<group>";
+		};
+		E5FEB2B626A875C9007BA86A /* DetailViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E5DA69E026A11951000C29A0 /* AccountDetailsViewController.h */,
+				E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */,
+				E5DA69EB26A3ED34000C29A0 /* PathDetailsViewController.h */,
+				E5DA69EC26A3ED34000C29A0 /* PathDetailsViewController.m */,
+			);
+			path = DetailViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,7 +492,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5528E0926A8E528001CAC77 /* LandmarkDetailsViewController.xib in Resources */,
 				E5DA69E726A11BE6000C29A0 /* PathCell.xib in Resources */,
+				E539147D26A901E30011EFEA /* LandmarkPhotoCell.xib in Resources */,
 				E51AF4A9269E691200556BCC /* Keys.plist in Resources */,
 				E594D3B1269CA61200DB5A4F /* LaunchScreen.storyboard in Resources */,
 				E5DA69F726A3F39C000C29A0 /* LandmarkCell.xib in Resources */,
@@ -631,11 +673,13 @@
 				E51AF4AF269E753200556BCC /* Landmark.m in Sources */,
 				E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */,
 				E5DA69ED26A3ED34000C29A0 /* PathDetailsViewController.m in Sources */,
+				E539147E26A901E30011EFEA /* LandmarkPhotoCell.m in Sources */,
 				E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */,
 				E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */,
 				E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */,
 				E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */,
 				E5DA69E226A11951000C29A0 /* AccountDetailsViewController.m in Sources */,
+				E5528E0826A8E528001CAC77 /* LandmarkDetailsViewController.m in Sources */,
 				E51AF459269E4D5700556BCC /* Path.m in Sources */,
 				E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */,
 			);

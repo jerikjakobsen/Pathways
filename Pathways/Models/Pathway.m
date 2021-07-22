@@ -48,7 +48,6 @@
     return direction;
 }
 
-
 + (void) GET: (NSString *) pathId completion: (void (^)(Pathway *, NSError *)) completion {
     PFQuery *query = [PFQuery queryWithClassName: @"Pathway"];
     [query whereKey: @"pathId" equalTo:pathId];

@@ -13,6 +13,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CoreLocation.h>
 #import "WalkPathViewController.h"
+#import "LandmarkDetailsViewController.h"
 
 @interface PathDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -41,6 +42,7 @@
     [format setDateFormat: @"MMMM d, yyyy"];
     self.dateLabel.text = [format stringFromDate: self.path.startedAt];
     self.timeTakenLabel.text = [self timeTakenString: self.path.startedAt];
+    self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self setupTableView];
     
     [self.path drawPathToMapWithLandmarksWithCompletion:^(NSError * error, NSArray * landmarks, Pathway * pathway) {
@@ -122,6 +124,12 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.landmarks.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    LandmarkDetailsViewController *detView = [LandmarkDetailsViewController detailViewAttachedToParentView:self];
+    [detView setLandmarkDetail:self.landmarks[indexPath.row]];
 }
 
 @end

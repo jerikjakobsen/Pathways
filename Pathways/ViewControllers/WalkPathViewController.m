@@ -49,6 +49,7 @@
     } else {
         self.gMapView.settings.scrollGestures = TRUE;
     }
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
