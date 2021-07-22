@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DMF-km-eRi" customClass="PFImageView">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DMF-km-eRi" customClass="PFImageView">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     </imageView>
                 </subviews>
@@ -31,7 +31,7 @@
             <connections>
                 <outlet property="photoImageView" destination="DMF-km-eRi" id="nz2-XL-4HN"/>
             </connections>
-            <point key="canvasLocation" x="84" y="132"/>
+            <point key="canvasLocation" x="82.608695652173921" y="131.91964285714286"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -8,13 +8,16 @@
 #import "LandmarkDetailsViewController.h"
 #import "LandmarkPhotoCell.h"
 
-@interface LandmarkDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate>
+@interface LandmarkDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) UIViewController *parent;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *landmarkName;
 @property (weak, nonatomic) IBOutlet UILabel *landmarkDescription;
+@property (weak, nonatomic) IBOutlet UIImageView *landmarkTypeImageView;
+@property (strong, nonatomic) UIImage *hazardImage;
+@property (strong, nonatomic) UIImage *landmarkImage;
 
 @end
 
@@ -22,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.landmarkImage = [UIImage imageNamed:@"colosseum"];
+    self.hazardImage = [UIImage imageNamed:@"wildfire"];
     UITapGestureRecognizer *tappedBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground:)];
     tappedBackground.delegate = self;
     [self.view addGestureRecognizer: tappedBackground];
@@ -31,6 +36,7 @@
     self.photoCollectionView.dataSource = self ;
     UINib *nib = [UINib nibWithNibName:@"LandmarkPhotoCell" bundle: nil];
     [self.photoCollectionView registerNib:nib forCellWithReuseIdentifier:@"LandmarkPhotoCell"];
+
 }
 
 - (void) configureConstraintsOnParentView: (UIView *) parentView {
@@ -68,9 +74,13 @@
     self.landmark = landmark;
     self.landmarkName.text = self.landmark.name;
     self.landmarkDescription.text = self.landmark.details;
+    if ([landmark.type isEqualToString: @"Landmark"]) {
+        [self.landmarkTypeImageView setImage: self.landmarkImage];
+    } else {
+        [self.landmarkTypeImageView setImage: self.hazardImage];
+    }
     
 }
-
 
 - (void) didTapBackground:(UITapGestureRecognizer *)recognizer {
     [UIView animateWithDuration: 0.2 animations:^{
@@ -85,32 +95,19 @@
     
 }
 
-
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
-
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     LandmarkPhotoCell *cell = [self.photoCollectionView dequeueReusableCellWithReuseIdentifier:@"LandmarkPhotoCell" forIndexPath:indexPath];
     cell.photoImageView.file = self.landmark.photos[indexPath.row];
-    [cell.photoImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
-        cell.photoImageView.image = [self resizeImage:image withSize:CGSizeMake(self.photoCollectionView.frame.size.width/3, self.photoCollectionView.frame.size.width/ 3 * 1.5)];
-    }];
+    [cell.photoImageView loadInBackground];
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.landmark.photos.count;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(self.photoCollectionView.frame.size.width/3 - 4, (self.photoCollectionView.frame.size.width/3 - 4) * 1.5 );
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
