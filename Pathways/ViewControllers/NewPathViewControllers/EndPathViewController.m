@@ -72,7 +72,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else {
     NSTimeInterval interval = [self.delegate startedAt].timeIntervalSinceNow * -1;
-    [self.delegate endPath:self.pathNameTextField.text timeElapsed: @(interval)];
+    [self.delegate endPathViewController: self endPathWithName: self.pathNameTextField.text timeElapsed: @(interval)];
     [self performSegueWithIdentifier:@"UnwindToHome" sender:self];
     }
     

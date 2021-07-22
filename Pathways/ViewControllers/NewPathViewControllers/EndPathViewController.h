@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSNumber *) numberOfLandmarks;
 - (NSNumber *) distanceTravelled;
 - (NSDate *) startedAt;
-- (void) endPath: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed;
+- (void) endPathViewController: (id) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed;
 
 @end
 

@@ -15,7 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
 @property (weak, nonatomic) IBOutlet UISwitch *followSwitch;
-@property CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 
 

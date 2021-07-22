@@ -47,7 +47,7 @@
         self.landmark.name = self.titleTextField.text;
         self.landmark.details = self.descriptionTextView.text;
         self.landmark.createdAt = [NSDate now];
-        [self.delegate addLandmark: self.landmark];
+        [self.delegate addLandmarkViewController:self didAddLandmark: self.landmark];
         [self dismissViewControllerAnimated:TRUE completion:nil];
     }
 }

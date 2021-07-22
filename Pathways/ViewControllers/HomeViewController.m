@@ -15,8 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
 @property (weak, nonatomic) IBOutlet UIButton *startPathButton;
-@property CLLocationManager *locationManager;
-@property BOOL didSetUserLocation;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (assign, nonatomic) BOOL didSetUserLocation;
 
 @end
 

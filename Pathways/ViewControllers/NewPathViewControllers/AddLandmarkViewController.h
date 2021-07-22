@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol AddLandMarkViewControllerDelegate
 
-- (void) addLandmark: (Landmark *) landmark;
+- (void) addLandmarkViewController: (id) landmarkVC didAddLandmark: (Landmark *) landmark;
 
 @end
 

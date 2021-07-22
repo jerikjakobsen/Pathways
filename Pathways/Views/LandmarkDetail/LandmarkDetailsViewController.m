@@ -36,7 +36,6 @@
     self.photoCollectionView.dataSource = self ;
     UINib *nib = [UINib nibWithNibName:@"LandmarkPhotoCell" bundle: nil];
     [self.photoCollectionView registerNib:nib forCellWithReuseIdentifier:@"LandmarkPhotoCell"];
-
 }
 
 - (void) configureConstraintsOnParentView: (UIView *) parentView {

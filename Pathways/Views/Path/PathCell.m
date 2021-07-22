@@ -27,7 +27,7 @@
     if (showUsername) {
         self.usernameLabel.text = username;
     } else {
-        [self.usernameLabel removeFromSuperview];
+        self.usernameLabel.hidden = TRUE;
     }
     self.landmarkCountLabel.text = [NSString stringWithFormat:@"%@", path.landmarkCount];
     self.hazardCountLabel.text = [NSString stringWithFormat: @"%@", path.hazardCount];

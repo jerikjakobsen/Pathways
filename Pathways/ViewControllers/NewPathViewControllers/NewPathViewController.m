@@ -28,16 +28,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *addLandmarkButton;
 @property (weak, nonatomic) IBOutlet UIButton *endPathButton;
 
-@property CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Pathway *pathway;
 @property (strong, nonatomic) Path *path;
 @property (strong, nonatomic) NSMutableArray *landmarks;
-@property GMSMutablePath *pathLine;
-@property GMSPolyline *pathpolyline;
+@property (strong, nonatomic) GMSMutablePath *pathLine;
+@property (strong, nonatomic) GMSPolyline *pathpolyline;
 @property (strong, nonatomic) NSMutableArray *bottomViewLayoutConstraints;
 @property (strong, nonatomic) UIImage *hazardImage;
 @property (strong, nonatomic) UIImage *landmarkImage;
-@property BOOL initialZoom;
+@property (nonatomic, assign) BOOL initialZoom;
 
 @end
 
@@ -130,7 +130,7 @@
     self.pathpolyline.map = self.gMapView;
 }
 
-- (void)addLandmark:(nonnull Landmark *)landmark {
+- (void)addLandmarkViewController:(id)landmarkVC didAddLandmark:(Landmark *) landmark {
     
     if ([landmark.type isEqualToString: @"Landmark"]) {
         self.path.landmarkCount = @(self.path.landmarkCount.intValue + 1);
@@ -171,7 +171,7 @@
     return self.pathway.distance;
 }
 
-- (void) endPath:(NSString *)pathName timeElapsed: (NSNumber *) timeElapsed  {
+- (void) endPathViewController: (EndPathViewController *) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed {
     self.path.authorId = [PFUser currentUser].objectId;
     self.path.distance = self.pathway.distance;
     self.path.startPoint = self.pathway.path.firstObject;
