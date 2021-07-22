@@ -50,15 +50,11 @@
     [topConstraint setActive: YES];
 }
 
-- (void) addToParentView: (UIViewController *) viewController {
-    [viewController addChildViewController: self];
-    [viewController.view addSubview: self.view];
-}
-
 + (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController {
     LandmarkDetailsViewController *detailViewController = [[LandmarkDetailsViewController alloc] init];
     detailViewController.parent = viewController;
-    [detailViewController addToParentView: viewController];
+    [viewController addChildViewController: detailViewController];
+    [viewController.view addSubview: detailViewController.view];
     [detailViewController configureConstraintsOnParentView: viewController.view];
     detailViewController.view.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent: 0.0];
     detailViewController.contentView.alpha = 0.0;
@@ -87,8 +83,8 @@
             self.contentView.alpha = 0.0;
     } completion:^(BOOL finished) {
         if (finished) {
-            [self removeFromParentViewController];
             [self.view removeFromSuperview];
+            [self removeFromParentViewController];
         }
     }];
     
