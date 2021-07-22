@@ -140,7 +140,7 @@
     }
     
     [self.landmarks addObject: landmark];
-    [landmark addToMap:self.gMapView landmarkImage:self.landmarkImage hazardImage: self.hazardImage];
+    [landmark addToMapWithDetailPopUp: self mapView: self.gMapView landmarkImage:self.landmarkImage hazardImage: self.hazardImage];
 }
 
 - (NSNumber *) numberOfHazards {

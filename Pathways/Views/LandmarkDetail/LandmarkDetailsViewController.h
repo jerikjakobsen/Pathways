@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) configureConstraintsOnParentView: (UIView *) parentView;
 
-- (void) addToParentView: (UIViewController *) viewController;
-
 - (void) setLandmarkDetail: (Landmark *) landmark;
 
 + (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController;

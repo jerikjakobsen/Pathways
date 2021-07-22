@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *) invert: (NSString *) bin;
 + (NSString *) decToBin2ComplementWith8digits:(NSNumber *)dec;
 + (NSMutableArray *) breakIntoGroupsOf5ReverseOrder: (NSString *) bin;
+
 @end
 
 NS_ASSUME_NONNULL_END

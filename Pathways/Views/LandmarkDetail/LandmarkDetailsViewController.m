@@ -10,7 +10,6 @@
 
 @interface LandmarkDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) UIViewController *parent;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *landmarkName;
@@ -52,7 +51,7 @@
 
 + (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController {
     LandmarkDetailsViewController *detailViewController = [[LandmarkDetailsViewController alloc] init];
-    detailViewController.parent = viewController;
+    [detailViewController willMoveToParentViewController: viewController];
     [viewController addChildViewController: detailViewController];
     [viewController.view addSubview: detailViewController.view];
     [detailViewController configureConstraintsOnParentView: viewController.view];
