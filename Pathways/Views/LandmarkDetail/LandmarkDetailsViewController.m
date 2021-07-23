@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loadImagesLocally = FALSE;
     self.landmarkImage = [UIImage imageNamed:@"colosseum"];
     self.hazardImage = [UIImage imageNamed:@"wildfire"];
     UITapGestureRecognizer *tappedBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground:)];
@@ -91,8 +92,12 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     LandmarkPhotoCell *cell = [self.photoCollectionView dequeueReusableCellWithReuseIdentifier:@"LandmarkPhotoCell" forIndexPath:indexPath];
-    cell.photoImageView.file = self.landmark.photos[indexPath.row];
-    [cell.photoImageView loadInBackground];
+    if (self.loadImagesLocally) {
+        cell.photoImageView.image = self.landmark.localPhotos[indexPath.row];
+    } else {
+        cell.photoImageView.file = self.landmark.photos[indexPath.row];
+        [cell.photoImageView loadInBackground];
+    }
     return cell;
 }
 

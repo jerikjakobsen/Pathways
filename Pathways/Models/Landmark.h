@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSString *pathId;
 @property (nonatomic, strong) NSString *landmarkId;
+@property (nonatomic, strong) NSMutableArray *localPhotos;
 
 - (instancetype) init: (NSString *) name
             details: (NSString *) details

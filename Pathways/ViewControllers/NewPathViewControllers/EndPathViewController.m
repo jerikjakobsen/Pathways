@@ -66,14 +66,15 @@
 
 - (IBAction)onEndPath:(id) sender {
     if (self.pathNameTextField.text.length < 4) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Path Name too Short" message:@"Name must be at least 2 characters long" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Path Name too Short" message:@"Name must be at least 4 characters long" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     } else {
     NSTimeInterval interval = [self.delegate startedAt].timeIntervalSinceNow * -1;
-    [self.delegate endPathViewController: self endPathWithName: self.pathNameTextField.text timeElapsed: @(interval)];
-    [self performSegueWithIdentifier:@"UnwindToHome" sender:self];
+        [self.delegate endPathViewController: self endPathWithName: self.pathNameTextField.text timeElapsed: @(interval)  completion:^{
+            [self performSegueWithIdentifier:@"UnwindToHome" sender:self];
+        }];
     }
     
 }

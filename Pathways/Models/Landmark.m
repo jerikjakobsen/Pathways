@@ -19,6 +19,7 @@
 @dynamic pathId;
 @dynamic photos;
 @dynamic landmarkId;
+@dynamic localPhotos;
 
 - (instancetype) init: (NSString *) name
             details: (NSString *) details
@@ -40,12 +41,17 @@
     if (self.photos == nil) {
         self.photos = [[NSMutableArray alloc] init];
     }
-    NSString *imageName = [NSString stringWithFormat: @"image%lu", (unsigned long)self.photos.count ];
+    if (self.localPhotos == nil) {
+        self.localPhotos = [[NSMutableArray alloc] init];
+    }
+    [self.localPhotos addObject: photo];
+    NSString *imageName = [NSString stringWithFormat: @"image%lu", (unsigned long)self.photos.count];
     PFFileObject *file = [PFFileObject fileObjectWithName:imageName data: UIImagePNGRepresentation(photo)];
     [self.photos addObject: file];
 }
 
 - (void) postLandmark:(PFBooleanResultBlock _Nullable) completion {
+    self.localPhotos = nil;
     [self saveInBackgroundWithBlock:completion];
 }
 

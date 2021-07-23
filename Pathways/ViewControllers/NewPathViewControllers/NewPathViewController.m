@@ -176,7 +176,7 @@
     return self.pathway.distance;
 }
 
-- (void) endPathViewController: (EndPathViewController *) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed {
+- (void) endPathViewController: (EndPathViewController *) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed completion:( void (^)(void))completion{
     self.path.authorId = [PFUser currentUser].objectId;
     self.path.distance = self.pathway.distance;
     self.path.startPoint = self.pathway.path.firstObject;
@@ -184,19 +184,45 @@
     self.path.name = pathName;
     NSNumber *totalPaths = [PFUser currentUser][@"totalPaths"];
     [PFUser currentUser][@"totalPaths"] = @(totalPaths.intValue + 1);
-    NSLog(@"%@", [PFUser currentUser]);
+    __block int calls = 0;
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (error != nil) {
-                    NSLog(@"%@", error.localizedDescription);
-                } else {
-                    NSLog(@"Success!");
-                }
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
+                 if (error != nil) {
+                     NSLog(@"%@", error.localizedDescription);
+                 } else {
+                     if (calls < 2) {
+                         calls ++;
+                         NSLog(@"post landmarks done");
+                     } else {
+                         completion();
+                     }
+                 }
             }];
-            [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion: nil];
+            if (calls < 2) {
+                calls ++;
+                NSLog(@"postPath done");
+            } else {
+                completion();
+            }
         }
     }];
+    
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            if (calls < 2) {
+                calls ++;
+                NSLog(@"user upload done");
+            } else {
+                completion();
+            }
+        }
+    }];
+    
     
 }
 
@@ -204,6 +230,7 @@
     for (int i = 0; i < self.landmarkMarkers.count; i++) {
         if (marker == self.landmarkMarkers[i]) {
             LandmarkDetailsViewController *dtvc = [LandmarkDetailsViewController detailViewAttachedToParentView: self];
+            dtvc.loadImagesLocally = TRUE;
             [dtvc setLandmarkDetail: self.landmarks[i]];
         }
     }

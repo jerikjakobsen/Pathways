@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LandmarkDetailsViewController : UIViewController
 
 @property (strong, nonatomic) Landmark *landmark;
+@property (nonatomic) bool loadImagesLocally;
 
 - (void) configureConstraintsOnParentView: (UIView *) parentView;
 
