@@ -9,6 +9,7 @@
 #import "AddLandmarkViewController.h"
 #import "EndPathViewController.h"
 #import "LandmarkDetailsViewController.h"
+#import "NewPathBottomView.h"
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <GoogleMaps/GMSCameraPosition.h>
@@ -23,11 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
 @property (weak, nonatomic) IBOutlet UISwitch *followSwitch;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewToMapViewConstraint;
-@property (weak, nonatomic) IBOutlet UIButton *addHazardButton;
-@property (weak, nonatomic) IBOutlet UIButton *addLandmarkButton;
-@property (weak, nonatomic) IBOutlet UIButton *endPathButton;
+@property (weak, nonatomic) IBOutlet UIView *followView;
+@property (weak, nonatomic) IBOutlet UIButton *addPathButton;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Pathway *pathway;
@@ -40,6 +38,9 @@
 @property (strong, nonatomic) UIImage *landmarkImage;
 @property (nonatomic, assign) BOOL initialZoom;
 @property (strong, nonatomic) NSMutableArray *landmarkMarkers;
+@property (strong, nonatomic) NewPathBottomView *bottomView;
+@property (weak, nonatomic) NSLayoutConstraint *heightConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
 
 @end
 
@@ -58,10 +59,9 @@
     self.path.landmarkCount = @(0);
     self.initialZoom = FALSE;
 
-    self.bottomView.layer.cornerRadius = self.bottomView.frame.size.width /20;
-    self.bottomViewToMapViewConstraint.constant = -5 - self.bottomView.frame.size.width /20;
     self.navigationController.navigationBarHidden = TRUE;
-    self.tabBarController.tabBar.hidden = TRUE;
+    [self setUpBottomView];
+    [self hideFollowView];
     
     UIEdgeInsets mapInsets = UIEdgeInsetsMake(0.0, 0.0, 5 + self.bottomView.frame.size.width /20, 0.0);
     self.gMapView.padding = mapInsets;
@@ -70,6 +70,7 @@
     self.gMapView.settings.myLocationButton  = YES;
     [self.gMapView animateToZoom: 20];
     self.gMapView.delegate = self;
+    [self.gMapView animateToLocation: self.gMapView.myLocation.coordinate];
 
     self.locationManager = [[CLLocationManager alloc]  init];
     self.locationManager.delegate = self;
@@ -80,8 +81,6 @@
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
         [self.locationManager requestAlwaysAuthorization];
     }
-    [self.locationManager startUpdatingLocation];
-    
 }
 
 - (IBAction)didSwitchFollow:(id)sender {
@@ -195,7 +194,6 @@
                  } else {
                      if (calls < 2) {
                          calls ++;
-                         NSLog(@"post landmarks done");
                      } else {
                          completion();
                      }
@@ -203,7 +201,6 @@
             }];
             if (calls < 2) {
                 calls ++;
-                NSLog(@"postPath done");
             } else {
                 completion();
             }
@@ -234,6 +231,99 @@
             [dtvc setLandmarkDetail: self.landmarks[i]];
         }
     }
+}
+
+- (void) didPressAddHazard: (id) sender {
+    [self performSegueWithIdentifier: @"NewPathToHazard" sender: self.bottomView.addHazardButton];
+}
+
+- (void) didPressAddLandmark: (id) sender {
+    [self performSegueWithIdentifier: @"NewPathToLandmark" sender: self.bottomView.addLandmarkButton];
+}
+
+- (void) didPressEndPath: (id) sender {
+    [self performSegueWithIdentifier: @"NewPathToDone" sender: self.bottomView.endPathButton];
+}
+- (IBAction)didPressNewPath:(id)sender {
+    [self startPath];
+}
+
+// Animation Transitions
+
+- (void) setUpBottomView {
+    self.bottomView = [[NewPathBottomView alloc] init];
+    [self.bottomView.addHazardButton addTarget: self action:@selector(didPressAddHazard:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView.addLandmarkButton addTarget: self action:@selector(didPressAddLandmark:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView.endPathButton addTarget: self action:@selector(didPressEndPath:) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview: self.bottomView];
+    self.bottomView.translatesAutoresizingMaskIntoConstraints = FALSE;
+    
+    NSLayoutConstraint *leftConstraint = [self.bottomView.leftAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.leftAnchor];
+    [leftConstraint setActive: YES];
+    
+    NSLayoutConstraint *rightConstraint = [self.bottomView.rightAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.rightAnchor];
+    [rightConstraint setActive: YES];
+    
+    NSLayoutConstraint *bottomConstraint = [self.bottomView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
+    [bottomConstraint setActive: YES];
+
+    self.heightConstraint = [self.bottomView.heightAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.heightAnchor multiplier:0.0];
+    [self.heightConstraint setActive: YES];
+    self.maximizedHeightConstraint = [self.bottomView.heightAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.heightAnchor multiplier: 0.2];
+}
+
+- (void) showBottomView {
+    [UIView animateWithDuration:1.0 animations:^{
+        CGRect tabBarFrame = self.tabBarController.tabBar.frame;
+        self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y + tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
+        [self.heightConstraint setActive: NO];
+        [self.maximizedHeightConstraint setActive: YES];
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            CGRect tabBarFrame = self.tabBarController.tabBar.frame;
+            self.tabBarController.tabBar.hidden = true;
+            self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y - tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
+        }
+    }];
+}
+
+- (void) hideBottomView {
+    [UIView animateWithDuration:1.0 animations:^{
+        CGRect tabBarFrame = self.tabBarController.tabBar.frame;
+        self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y - tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
+        [self.heightConstraint setActive: YES];
+        [self.maximizedHeightConstraint setActive: NO];
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            self.tabBarController.tabBar.hidden = false;
+        }
+    }];
+}
+
+- (void) showFollowView {
+    self.followView.hidden = NO;
+}
+
+- (void) hideFollowView {
+    self.followView.hidden = YES;
+}
+
+- (void) showAddPathButton {
+    self.addPathButton.hidden = NO;
+}
+
+- (void) hideAddPathButton {
+    self.addPathButton.hidden = YES;
+}
+
+- (void) startPath {
+    [self.locationManager startUpdatingLocation];
+    [self showBottomView];
+    [self hideAddPathButton];
+    [self showFollowView];
 }
 
 @end

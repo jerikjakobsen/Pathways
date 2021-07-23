@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) postPath: (Pathway *) pathway
        completion: (PFBooleanResultBlock _Nullable) completion;
 
-- (void) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview;
+- (NSArray *) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview;
 
 - (void) drawPathToMapWithLandmarksWithCompletion: (void (^)(NSError *, NSArray *, Pathway *)) completion map: (GMSMapView *) mapview;
 

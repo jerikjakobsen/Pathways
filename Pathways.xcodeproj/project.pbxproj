@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3E3F74EA2021600B648EEC6B /* Pods_Pathways.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9547BED3BFEA45B196D277ED /* Pods_Pathways.framework */; };
 		704FB904E2E2391E2FA3BA00 /* Pods_PathwaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9210721B57CCF3295F22D5A2 /* Pods_PathwaysTests.framework */; };
-		E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF454269DFF7200556BCC /* HomeViewController.m */; };
 		E51AF459269E4D5700556BCC /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF458269E4D5700556BCC /* Path.m */; };
 		E51AF4A9269E691200556BCC /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E51AF4A8269E691200556BCC /* Keys.plist */; };
 		E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4AB269E6CB200556BCC /* Pathway.m */; };
@@ -17,6 +16,8 @@
 		E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AF4B1269E7FB000556BCC /* NewPathViewController.m */; };
 		E539147D26A901E30011EFEA /* LandmarkPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E539147A26A901E30011EFEA /* LandmarkPhotoCell.xib */; };
 		E539147E26A901E30011EFEA /* LandmarkPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E539147B26A901E30011EFEA /* LandmarkPhotoCell.m */; };
+		E539148026AA781E0011EFEA /* NewPathBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E539147F26AA781E0011EFEA /* NewPathBottomView.xib */; };
+		E539148326AA785E0011EFEA /* NewPathBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E539148226AA785E0011EFEA /* NewPathBottomView.m */; };
 		E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */; };
 		E5528E0826A8E528001CAC77 /* LandmarkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5528E0626A8E528001CAC77 /* LandmarkDetailsViewController.m */; };
 		E5528E0926A8E528001CAC77 /* LandmarkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5528E0726A8E528001CAC77 /* LandmarkDetailsViewController.xib */; };
@@ -70,8 +71,6 @@
 		9547BED3BFEA45B196D277ED /* Pods_Pathways.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pathways.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C25CCC6A67DCAC0A6AF067 /* Pods-Pathways.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pathways.debug.xcconfig"; path = "Target Support Files/Pods-Pathways/Pods-Pathways.debug.xcconfig"; sourceTree = "<group>"; };
 		D24C76C18B3076CB6228ACD0 /* Pods-Pathways-PathwaysUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pathways-PathwaysUITests.release.xcconfig"; path = "Target Support Files/Pods-Pathways-PathwaysUITests/Pods-Pathways-PathwaysUITests.release.xcconfig"; sourceTree = "<group>"; };
-		E51AF453269DFF7200556BCC /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		E51AF454269DFF7200556BCC /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		E51AF457269E4D5700556BCC /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
 		E51AF458269E4D5700556BCC /* Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Path.m; sourceTree = "<group>"; };
 		E51AF4A8269E691200556BCC /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
@@ -84,6 +83,9 @@
 		E539147A26A901E30011EFEA /* LandmarkPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandmarkPhotoCell.xib; sourceTree = "<group>"; };
 		E539147B26A901E30011EFEA /* LandmarkPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandmarkPhotoCell.m; sourceTree = "<group>"; };
 		E539147C26A901E30011EFEA /* LandmarkPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandmarkPhotoCell.h; sourceTree = "<group>"; };
+		E539147F26AA781E0011EFEA /* NewPathBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPathBottomView.xib; sourceTree = "<group>"; };
+		E539148126AA785E0011EFEA /* NewPathBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPathBottomView.h; sourceTree = "<group>"; };
+		E539148226AA785E0011EFEA /* NewPathBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPathBottomView.m; sourceTree = "<group>"; };
 		E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLandmarkViewController.h; sourceTree = "<group>"; };
 		E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLandmarkViewController.m; sourceTree = "<group>"; };
 		E5528E0526A8E528001CAC77 /* LandmarkDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandmarkDetailsViewController.h; sourceTree = "<group>"; };
@@ -277,8 +279,6 @@
 				E5FEB2B626A875C9007BA86A /* DetailViewControllers */,
 				E5DA69DF26A11908000C29A0 /* NewPathViewControllers */,
 				E5DA69DE26A118F0000C29A0 /* AccountCreationViewControllers */,
-				E51AF453269DFF7200556BCC /* HomeViewController.h */,
-				E51AF454269DFF7200556BCC /* HomeViewController.m */,
 				E598E48E26A7120400718E22 /* WalkPathViewController.h */,
 				E598E48F26A7120400718E22 /* WalkPathViewController.m */,
 			);
@@ -292,6 +292,9 @@
 				E5DA69EF26A3F302000C29A0 /* Path */,
 				E5DA69F826A3F3A1000C29A0 /* Landmark */,
 				E5528E1326A8FFF8001CAC77 /* LandmarkDetail */,
+				E539147F26AA781E0011EFEA /* NewPathBottomView.xib */,
+				E539148126AA785E0011EFEA /* NewPathBottomView.h */,
+				E539148226AA785E0011EFEA /* NewPathBottomView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				E594D3B1269CA61200DB5A4F /* LaunchScreen.storyboard in Resources */,
 				E5DA69F726A3F39C000C29A0 /* LandmarkCell.xib in Resources */,
 				E594D3AE269CA61200DB5A4F /* Assets.xcassets in Resources */,
+				E539148026AA781E0011EFEA /* NewPathBottomView.xib in Resources */,
 				E594D3AC269CA61100DB5A4F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -668,6 +672,7 @@
 				E598E48D26A3F6CF00718E22 /* LandmarkCell.m in Sources */,
 				E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */,
 				E5DA69E626A11BE6000C29A0 /* PathCell.m in Sources */,
+				E539148326AA785E0011EFEA /* NewPathBottomView.m in Sources */,
 				E51AF4AC269E6CB200556BCC /* Pathway.m in Sources */,
 				E594D3B4269CA61200DB5A4F /* main.m in Sources */,
 				E51AF4AF269E753200556BCC /* Landmark.m in Sources */,
@@ -677,7 +682,6 @@
 				E51AF4B2269E7FB000556BCC /* NewPathViewController.m in Sources */,
 				E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */,
 				E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */,
-				E51AF455269DFF7200556BCC /* HomeViewController.m in Sources */,
 				E5DA69E226A11951000C29A0 /* AccountDetailsViewController.m in Sources */,
 				E5528E0826A8E528001CAC77 /* LandmarkDetailsViewController.m in Sources */,
 				E51AF459269E4D5700556BCC /* Path.m in Sources */,

@@ -64,7 +64,7 @@
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             pathway.pathId = self.objectId;
-            [pathway saveInBackgroundWithBlock: completion];
+            [pathway saveEventually: completion];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -73,7 +73,7 @@
 
 
 
-- (void) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview {
+- (NSArray *) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview {
     // Draw Pathway
     if (pathway != nil && pathway.path.count > 0) {
         GMSMutablePath *pathLine = [GMSMutablePath path];
@@ -88,13 +88,16 @@
     }
     
     // Draw landmarks
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
     if (landmarks != nil) {
         UIImage *hazardImage = [UIImage imageNamed:@"wildfire"];
         UIImage *landmarkImage = [UIImage imageNamed:@"colosseum"];
         for (Landmark *landmark in landmarks) {
-            [landmark addToMap: mapview landmarkImage:landmarkImage hazardImage:hazardImage];
+            [array addObject: [landmark addToMap: mapview landmarkImage:landmarkImage hazardImage:hazardImage]];
         }
     }
+    return array;
     
 }
 
