@@ -23,13 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.distanceTravelledLabel.text = [NSString stringWithFormat:@"%@ meters", [self.delegate distanceTravelled] ];
+    self.distanceTravelledLabel.text = [NSString stringWithFormat:@"%@ meters", [self.delegate endPathViewControllerDistanceTravelled] ];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat: @"h:mm a"];
-    self.startedAtLabel.text = [format stringFromDate: [self.delegate startedAt]];
-    self.timeTakenLabel.text = [self timeTakenString: [self.delegate startedAt]];
-    self.hazardsLabel.text = [NSString stringWithFormat: @"%@", [self.delegate numberOfHazards] ];
-    self.landmarksLabel.text = [NSString stringWithFormat: @"%@", [self.delegate numberOfLandmarks] ];
+    self.startedAtLabel.text = [format stringFromDate: [self.delegate endPathViewControllerStartedAt]];
+    self.timeTakenLabel.text = [self timeTakenString: [self.delegate endPathViewControllerStartedAt]];
+    self.hazardsLabel.text = [NSString stringWithFormat: @"%@", [self.delegate endPathViewControllerNumberOfHazards] ];
+    self.landmarksLabel.text = [NSString stringWithFormat: @"%@", [self.delegate endPathViewControllerNumberOfLandmarks] ];
 }
 
 - (NSString *) timeTakenString: (NSDate *) startedAt {
@@ -71,9 +71,9 @@
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     } else {
-    NSTimeInterval interval = [self.delegate startedAt].timeIntervalSinceNow * -1;
-        [self.delegate endPathViewController: self endPathWithName: self.pathNameTextField.text timeElapsed: @(interval)  completion: nil];
-        [self performSegueWithIdentifier:@"UnwindToHome" sender:self];
+    NSTimeInterval interval = [self.delegate endPathViewControllerStartedAt].timeIntervalSinceNow * -1;
+        [self.delegate endPathViewController: self endPathWithName: self.pathNameTextField.text timeElapsed: @(interval)];
+        [self dismissViewControllerAnimated: YES completion:nil];
     }
     
 }
@@ -81,7 +81,9 @@
 - (IBAction)cancelPath:(id)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"Cancelling the path will cause your path to be deleted forever" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *deletePath = [UIAlertAction actionWithTitle:@"Delete Path" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [self performSegueWithIdentifier:@"UnwindToHome" sender:self];
+        [self.delegate endPathViewControllerDidCancelPath];
+        [self dismissViewControllerAnimated:YES completion: nil];
+        
     }];
     UIAlertAction *cancelDeletePath = [UIAlertAction actionWithTitle:@"Nevermind" style:UIAlertActionStyleCancel handler: nil];
     [alert addAction: cancelDeletePath];

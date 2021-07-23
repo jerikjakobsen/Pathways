@@ -147,7 +147,7 @@
     
 }
 
-- (NSNumber *) numberOfHazards {
+- (NSNumber *) endPathViewControllerNumberOfHazards {
     int count = 0;
     for (Landmark *landmark in self.landmarks) {
         if ([landmark.type isEqualToString: @"Hazard"]) {
@@ -157,7 +157,7 @@
     return @(count);
 }
 
-- (NSNumber *) numberOfLandmarks {
+- (NSNumber *) endPathViewControllerNumberOfLandmarks {
     int count = 0;
     for (Landmark *landmark in self.landmarks) {
         if ([landmark.type isEqualToString: @"Landmark"]) {
@@ -167,15 +167,15 @@
     return @(count);
 }
 
-- (nonnull NSDate *)startedAt {
+- (nonnull NSDate *)endPathViewControllerStartedAt {
     return self.path.startedAt;
 }
 
-- (NSNumber *) distanceTravelled {
+- (NSNumber *) endPathViewControllerDistanceTravelled {
     return self.pathway.distance;
 }
 
-- (void) endPathViewController: (EndPathViewController *) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed completion:( void (^)(void))completion{
+- (void) endPathViewController: (EndPathViewController *) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed{
     self.path.authorId = [PFUser currentUser].objectId;
     self.path.distance = self.pathway.distance;
     self.path.startPoint = self.pathway.path.firstObject;
@@ -183,45 +183,31 @@
     self.path.name = pathName;
     NSNumber *totalPaths = [PFUser currentUser][@"totalPaths"];
     [PFUser currentUser][@"totalPaths"] = @(totalPaths.intValue + 1);
-    __block int calls = 0;
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
             [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
-                 if (error != nil) {
-                     NSLog(@"%@", error.localizedDescription);
-                 } else {
-                     if (calls < 2) {
-                         calls ++;
-                     } else {
-                         completion();
+                     if (error != nil) {
+                         NSLog(@"%@", error.localizedDescription);
                      }
-                 }
             }];
-            if (calls < 2) {
-                calls ++;
-            } else {
-                completion();
-            }
         }
     }];
     
     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
-        } else {
-            if (calls < 2) {
-                calls ++;
-                NSLog(@"user upload done");
-            } else {
-                completion();
-            }
         }
     }];
     
-    
+    [self endPath];
 }
+
+- (void) endPathViewControllerDidCancelPath {
+    [self endPath];
+}
+
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     for (int i = 0; i < self.landmarkMarkers.count; i++) {
@@ -274,6 +260,7 @@
 }
 
 - (void) showBottomView {
+    self.bottomView.hidden = FALSE;
     [UIView animateWithDuration:1.0 animations:^{
         CGRect tabBarFrame = self.tabBarController.tabBar.frame;
         self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y + tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
@@ -282,9 +269,8 @@
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         if (finished) {
-            CGRect tabBarFrame = self.tabBarController.tabBar.frame;
             self.tabBarController.tabBar.hidden = true;
-            self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y - tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
+
         }
     }];
 }
@@ -299,6 +285,7 @@
     } completion:^(BOOL finished) {
         if (finished) {
             self.tabBarController.tabBar.hidden = false;
+            self.bottomView.hidden = TRUE;
         }
     }];
 }
@@ -324,6 +311,14 @@
     [self showBottomView];
     [self hideAddPathButton];
     [self showFollowView];
+}
+
+- (void) endPath {
+    [self.gMapView clear];
+    [self.locationManager stopUpdatingLocation];
+    [self hideBottomView];
+    [self showAddPathButton];
+    [self hideFollowView];
 }
 
 @end

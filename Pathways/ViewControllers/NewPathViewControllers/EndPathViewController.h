@@ -12,11 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EndPathViewControllerDelegate
 
-- (NSNumber *) numberOfHazards;
-- (NSNumber *) numberOfLandmarks;
-- (NSNumber *) distanceTravelled;
-- (NSDate *) startedAt;
-- (void) endPathViewController: (id) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed completion: (void (^)(void)) completion;
+- (NSNumber *) endPathViewControllerNumberOfHazards;
+- (NSNumber *) endPathViewControllerNumberOfLandmarks;
+- (NSNumber *) endPathViewControllerDistanceTravelled;
+- (NSDate *) endPathViewControllerStartedAt;
+- (void) endPathViewController: (id) endPathVC endPathWithName: (NSString *) pathName timeElapsed: (NSNumber *) timeElapsed;
+- (void) endPathViewControllerDidCancelPath;
 
 @end
 
