@@ -127,7 +127,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     LandmarkDetailsViewController *detView = [LandmarkDetailsViewController detailViewAttachedToParentView:self];
     [detView setLandmarkDetail:self.landmarks[indexPath.row]];
 }

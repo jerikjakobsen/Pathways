@@ -35,11 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (GMSMarker *) addToMap: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage;
 
-- (void) addToMapWithDetailPopUp: (UIViewController *) viewController mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage;
-
 + (void) addLandmarksToMap: (NSArray *) landmarks mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage;
-
-+ (void) addLandmarksToMapWithDetailPopUp: (UIViewController *) viewController landmarks: (NSArray *) landmarks mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage;
 
 + (void) postLandmarks: (NSMutableArray *) landmarks
             pathId: (NSString *) pathId

@@ -93,14 +93,6 @@
     return landmarkMarker;
 }
 
-- (void) addToMapWithDetailPopUp: (UIViewController *) viewController mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage {
-    GMSMarker *marker = [self addToMap:mapView landmarkImage:landmarkImage hazardImage:hazardImage];
-    
-    UITapGestureRecognizer* didTapLandmark = [[UITapGestureRecognizer alloc] initWithTarget:marker action:@selector(didTapLandmarkMarker:)];
-    marker.iconView = [[UIView alloc] init];
-    marker.iconView.backgroundColor = [UIColor redColor];
-    
-}
 
 - (void) didTapLandmarkMarker: (UITapGestureRecognizer *) recognizer {
     
@@ -109,12 +101,6 @@
 + (void) addLandmarksToMap: (NSArray *) landmarks mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage {
     for (Landmark *landmark in landmarks) {
         [landmark addToMap: mapView landmarkImage:landmarkImage hazardImage:hazardImage];
-    }
-}
-
-+ (void) addLandmarksToMapWithDetailPopUp: (UIViewController *) viewController landmarks: (NSArray *) landmarks mapView: (GMSMapView *) mapView landmarkImage: (UIImage *) landmarkImage hazardImage: (UIImage *) hazardImage {
-    for (Landmark *landmark in landmarks) {
-        [landmark addToMapWithDetailPopUp:viewController mapView:mapView landmarkImage:landmarkImage hazardImage:hazardImage];
     }
 }
 

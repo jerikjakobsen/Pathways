@@ -8,6 +8,7 @@
 #import "NewPathViewController.h"
 #import "AddLandmarkViewController.h"
 #import "EndPathViewController.h"
+#import "LandmarkDetailsViewController.h"
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <GoogleMaps/GMSCameraPosition.h>
@@ -18,7 +19,7 @@
 #import "Path.h"
 #import "Landmark.h"
 
-@interface NewPathViewController () <CLLocationManagerDelegate, AddLandMarkViewControllerDelegate, EndPathViewControllerDelegate>
+@interface NewPathViewController () <CLLocationManagerDelegate, AddLandMarkViewControllerDelegate, EndPathViewControllerDelegate, GMSMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
 @property (weak, nonatomic) IBOutlet UISwitch *followSwitch;
@@ -38,6 +39,7 @@
 @property (strong, nonatomic) UIImage *hazardImage;
 @property (strong, nonatomic) UIImage *landmarkImage;
 @property (nonatomic, assign) BOOL initialZoom;
+@property (strong, nonatomic) NSMutableArray *landmarkMarkers;
 
 @end
 
@@ -45,6 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.landmarkMarkers = [[NSMutableArray alloc] init];
     self.landmarkImage = [UIImage imageNamed:@"colosseum"];
     self.hazardImage = [UIImage imageNamed:@"wildfire"];
     self.landmarks = [[NSMutableArray alloc] init];
@@ -66,6 +69,7 @@
     self.gMapView.myLocationEnabled = YES;
     self.gMapView.settings.myLocationButton  = YES;
     [self.gMapView animateToZoom: 20];
+    self.gMapView.delegate = self;
 
     self.locationManager = [[CLLocationManager alloc]  init];
     self.locationManager.delegate = self;
@@ -140,7 +144,8 @@
     }
     
     [self.landmarks addObject: landmark];
-    [landmark addToMapWithDetailPopUp: self mapView: self.gMapView landmarkImage:self.landmarkImage hazardImage: self.hazardImage];
+    [self.landmarkMarkers addObject: [landmark addToMap: self.gMapView landmarkImage:self.landmarkImage hazardImage: self.hazardImage]];
+    
 }
 
 - (NSNumber *) numberOfHazards {
@@ -193,6 +198,15 @@
         }
     }];
     
+}
+
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    for (int i = 0; i < self.landmarkMarkers.count; i++) {
+        if (marker == self.landmarkMarkers[i]) {
+            LandmarkDetailsViewController *dtvc = [LandmarkDetailsViewController detailViewAttachedToParentView: self];
+            [dtvc setLandmarkDetail: self.landmarks[i]];
+        }
+    }
 }
 
 @end

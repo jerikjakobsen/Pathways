@@ -75,15 +75,16 @@
 
 - (void) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview {
     // Draw Pathway
-    if (pathway != nil) {
+    if (pathway != nil && pathway.path.count > 0) {
         GMSMutablePath *pathLine = [GMSMutablePath path];
         for (PFGeoPoint *point in pathway.path) {
             [pathLine addLatitude:point.latitude longitude:point.longitude];
-    }
+    
     GMSPolyline *pathpolyline = [GMSPolyline polylineWithPath: pathLine];
     pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
     pathpolyline.strokeWidth = 7.0;
     pathpolyline.map = mapview;
+        }
     }
     
     // Draw landmarks

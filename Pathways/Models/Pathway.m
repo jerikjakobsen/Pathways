@@ -39,6 +39,7 @@
 }
 
 - (double) startBearing {
+    if (self.path. count > 1) {
     PFGeoPoint *firstPoint = self.path.firstObject;
     PFGeoPoint *secondPoint = self.path[1];
     if (secondPoint == nil || firstPoint == nil) {
@@ -46,6 +47,8 @@
     }
     CLLocationDirection direction = atan2(secondPoint.longitude - firstPoint.longitude, secondPoint.latitude - firstPoint.latitude) * 180.0/ M_PI;
     return direction;
+    }
+    return 0.0;
 }
 
 + (void) GET: (NSString *) pathId completion: (void (^)(Pathway *, NSError *)) completion {
