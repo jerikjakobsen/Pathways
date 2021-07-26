@@ -43,8 +43,6 @@
 @property (strong, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
 @property (nonatomic) UIEdgeInsets mapInsetConstant;
 @property (nonatomic) bool firstLoad;
-@property (nonatomic) CGRect tabbarFrame;
-
 
 @end
 
@@ -166,8 +164,6 @@
     
     [self.landmarks addObject: landmark];
     [self.landmarkMarkers addObject: [landmark addToMap: self.gMapView landmarkImage:self.landmarkImage hazardImage: self.hazardImage]];
-    NSLog(@"landmarks: %@ \n markers: %@", self.landmarks, self.landmarkMarkers);
-    
 }
 
 - (NSNumber *) endPathViewControllerNumberOfHazards {
@@ -207,14 +203,15 @@
     NSNumber *totalPaths = [PFUser currentUser][@"totalPaths"];
     [PFUser currentUser][@"totalPaths"] = @(totalPaths.intValue + 1);
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
-        self.path = nil;
-        self.pathway = nil;
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
+            [self endPath];
             [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
                     [self.landmarkMarkers removeAllObjects];
                     [self.landmarks removeAllObjects];
+                    self.path = nil;
+                    self.pathway = nil;
                      if (error != nil) {
                          NSLog(@"%@", error.localizedDescription);
                      }
@@ -228,7 +225,6 @@
         }
     }];
     
-    [self endPath];
 }
 
 - (void) endPathViewControllerDidCancelPath {
@@ -285,29 +281,24 @@
 }
 
 - (void) showBottomView {
-    NSLog(@"Show bottom view");
     self.bottomView.hidden = FALSE;
     [self.heightConstraint setActive: NO];
     [self.maximizedHeightConstraint setActive: YES];
+    self.tabBarController.tabBar.hidden = true;
     [UIView animateWithDuration:1.0 animations:^{
-        CGRect tabBarFrame = self.tabBarController.tabBar.frame;
-        self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y + tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
         self.gMapView.padding = self.mapInsetConstant;
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         if (finished) {
-            self.tabBarController.tabBar.hidden = true;
         }
     }];
 }
 
 - (void) hideBottomView: (bool) animated {
-    NSLog(@"hide bottom view");
     [self.maximizedHeightConstraint setActive: NO];
     [self.heightConstraint setActive: YES];
     if (animated) {
         [UIView animateWithDuration:1.0 animations:^{
-            self.tabBarController.tabBar.frame = self.tabbarFrame;
             self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
@@ -317,7 +308,6 @@
             }
         }];
     } else {
-        self.tabBarController.tabBar.frame = self.tabbarFrame;
         self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
         [self.view layoutIfNeeded];
         self.tabBarController.tabBar.hidden = false;
