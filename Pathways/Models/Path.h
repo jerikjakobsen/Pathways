@@ -25,16 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *hazardCount;
 @property (nonatomic, strong) NSNumber *landmarkCount;
 
-- (instancetype) init: (NSString *) name
-            timeElapsed: (NSNumber *) timeElapsed
-            startPoint: (PFGeoPoint *) startPoint
-            distance: (NSNumber *) distance
-            authorId: (NSString *) authorId;
-
-- (instancetype) init: (NSString *) name
-            timeElapsed: (NSNumber *) timeElapsed
-            authorId: (NSString *) authorId
-            pathway: (Pathway *) pathway;
+// Using initFromLocal and not init because parse does not allow init to set properties (Since the
+// object will be set with data from the database)
+- (instancetype) initFromLocal;
 
 - (void) postPath: (Pathway *) pathway
        completion: (PFBooleanResultBlock _Nullable) completion;

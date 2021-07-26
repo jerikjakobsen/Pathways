@@ -206,6 +206,16 @@
 			path = LandmarkPhotoCell;
 			sourceTree = "<group>";
 		};
+		E539148426AE6A1B0011EFEA /* NewPathBottomView */ = {
+			isa = PBXGroup;
+			children = (
+				E539147F26AA781E0011EFEA /* NewPathBottomView.xib */,
+				E539148126AA785E0011EFEA /* NewPathBottomView.h */,
+				E539148226AA785E0011EFEA /* NewPathBottomView.m */,
+			);
+			path = NewPathBottomView;
+			sourceTree = "<group>";
+		};
 		E5528E1326A8FFF8001CAC77 /* LandmarkDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,9 +302,7 @@
 				E5DA69EF26A3F302000C29A0 /* Path */,
 				E5DA69F826A3F3A1000C29A0 /* Landmark */,
 				E5528E1326A8FFF8001CAC77 /* LandmarkDetail */,
-				E539147F26AA781E0011EFEA /* NewPathBottomView.xib */,
-				E539148126AA785E0011EFEA /* NewPathBottomView.h */,
-				E539148226AA785E0011EFEA /* NewPathBottomView.m */,
+				E539148426AE6A1B0011EFEA /* NewPathBottomView */,
 			);
 			path = Views;
 			sourceTree = "<group>";

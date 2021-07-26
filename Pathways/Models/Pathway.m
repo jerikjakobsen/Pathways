@@ -16,13 +16,22 @@
 @dynamic distance;
 @dynamic pathwayId;
 
+- (instancetype) initFromLocal {
+    if (self = [super init]) {
+        self.distance = @(0.0);
+        self.pathId = @"";
+        self.path = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+
 - (void) addCoordinate: (CLLocation *) coordinate {
     if (self.path == nil) {
         self.path = [[NSMutableArray alloc] init];
     }
-    
-    if (self.path.count == 0) {
-        self.distance = [NSNumber numberWithFloat: 0.0];
+    if (self.path == nil) {
+        self.distance = @(0.0);
     }
     
     if (self.path.count > 1) {

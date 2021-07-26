@@ -31,16 +31,17 @@
 @property (strong, nonatomic) Pathway *pathway;
 @property (strong, nonatomic) Path *path;
 @property (strong, nonatomic) NSMutableArray *landmarks;
+@property (strong, nonatomic) NSMutableArray *landmarkMarkers;
 @property (strong, nonatomic) GMSMutablePath *pathLine;
 @property (strong, nonatomic) GMSPolyline *pathpolyline;
 @property (strong, nonatomic) NSMutableArray *bottomViewLayoutConstraints;
 @property (strong, nonatomic) UIImage *hazardImage;
 @property (strong, nonatomic) UIImage *landmarkImage;
 @property (nonatomic, assign) BOOL initialZoom;
-@property (strong, nonatomic) NSMutableArray *landmarkMarkers;
 @property (strong, nonatomic) NewPathBottomView *bottomView;
-@property (weak, nonatomic) NSLayoutConstraint *heightConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
+@property (nonatomic) UIEdgeInsets mapInsetConstant;
 
 @end
 
@@ -48,39 +49,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.landmarkMarkers = [[NSMutableArray alloc] init];
     self.landmarkImage = [UIImage imageNamed:@"colosseum"];
     self.hazardImage = [UIImage imageNamed:@"wildfire"];
-    self.landmarks = [[NSMutableArray alloc] init];
-    self.pathway = [Pathway new];
-    self.path = [Path new];
-    self.path.startedAt = [NSDate now];
-    self.path.hazardCount = @(0);
-    self.path.landmarkCount = @(0);
     self.initialZoom = FALSE;
-
     self.navigationController.navigationBarHidden = TRUE;
-    [self setUpBottomView];
     [self hideFollowView];
-    
-    UIEdgeInsets mapInsets = UIEdgeInsetsMake(0.0, 0.0, 5 + self.bottomView.frame.size.width /20, 0.0);
-    self.gMapView.padding = mapInsets;
-    self.pathLine = [GMSMutablePath path];
-    self.gMapView.myLocationEnabled = YES;
-    self.gMapView.settings.myLocationButton  = YES;
-    [self.gMapView animateToZoom: 20];
-    self.gMapView.delegate = self;
-    [self.gMapView animateToLocation: self.gMapView.myLocation.coordinate];
+    [self setUpBottomView];
+    [self setUpGMSMapView];
+    [self setUpLocationManager];
 
-    self.locationManager = [[CLLocationManager alloc]  init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 6;
-    self.locationManager.allowsBackgroundLocationUpdates = TRUE;
-    self.locationManager.pausesLocationUpdatesAutomatically = FALSE;
-    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-        [self.locationManager requestAlwaysAuthorization];
-    }
 }
 
 - (IBAction)didSwitchFollow:(id)sender {
@@ -116,10 +93,35 @@
     }
 }
 
+- (void) setUpGMSMapView {
+    self.pathLine = [GMSMutablePath path];
+    self.gMapView.myLocationEnabled = YES;
+    self.gMapView.settings.myLocationButton  = YES;
+    [self.gMapView animateToZoom: 20];
+    self.gMapView.delegate = self;
+    float insetValTabBar = (self.view.frame.size.height * 0.15 - self.tabBarController.tabBar.frame.size.height);
+    UIEdgeInsets mapInsets = UIEdgeInsetsMake(0.0, 0.0, insetValTabBar, 0.0);
+    self.mapInsetConstant = mapInsets;
+}
+
+- (void) setUpLocationManager {
+    self.locationManager = [[CLLocationManager alloc]  init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 6;
+    self.locationManager.allowsBackgroundLocationUpdates = TRUE;
+    self.locationManager.pausesLocationUpdatesAutomatically = FALSE;
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if (!self.initialZoom) {
         self.initialZoom = TRUE;
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
+        [self.locationManager stopUpdatingLocation];
     }
     if ([self.followSwitch isOn]) {
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
@@ -134,7 +136,6 @@
 }
 
 - (void)addLandmarkViewController:(id)landmarkVC didAddLandmark:(Landmark *) landmark {
-    
     if ([landmark.type isEqualToString: @"Landmark"]) {
         self.path.landmarkCount = @(self.path.landmarkCount.intValue + 1);
     }
@@ -144,6 +145,7 @@
     
     [self.landmarks addObject: landmark];
     [self.landmarkMarkers addObject: [landmark addToMap: self.gMapView landmarkImage:self.landmarkImage hazardImage: self.hazardImage]];
+    NSLog(@"landmarks: %@ \n markers: %@", self.landmarks, self.landmarkMarkers);
     
 }
 
@@ -184,10 +186,14 @@
     NSNumber *totalPaths = [PFUser currentUser][@"totalPaths"];
     [PFUser currentUser][@"totalPaths"] = @(totalPaths.intValue + 1);
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
+        self.path = nil;
+        self.pathway = nil;
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
             [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
+                    [self.landmarkMarkers removeAllObjects];
+                    [self.landmarks removeAllObjects];
                      if (error != nil) {
                          NSLog(@"%@", error.localizedDescription);
                      }
@@ -210,10 +216,11 @@
 
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    NSLog(@"yayaya");
     for (int i = 0; i < self.landmarkMarkers.count; i++) {
+        NSLog(@"landmarker = %@", self.landmarkMarkers[i]);
         if (marker == self.landmarkMarkers[i]) {
-            LandmarkDetailsViewController *dtvc = [LandmarkDetailsViewController detailViewAttachedToParentView: self];
-            dtvc.loadImagesLocally = TRUE;
+            LandmarkDetailsViewController *dtvc = [LandmarkDetailsViewController detailViewAttachedToParentView: self safeArea: NO loadImagesLocally: YES];
             [dtvc setLandmarkDetail: self.landmarks[i]];
         }
     }
@@ -241,9 +248,8 @@
     [self.bottomView.addHazardButton addTarget: self action:@selector(didPressAddHazard:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView.addLandmarkButton addTarget: self action:@selector(didPressAddLandmark:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView.endPathButton addTarget: self action:@selector(didPressEndPath:) forControlEvents:UIControlEventTouchUpInside];
-
-    [self.view addSubview: self.bottomView];
     self.bottomView.translatesAutoresizingMaskIntoConstraints = FALSE;
+    [self.view addSubview: self.bottomView];
     
     NSLayoutConstraint *leftConstraint = [self.bottomView.leftAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.leftAnchor];
     [leftConstraint setActive: YES];
@@ -253,34 +259,37 @@
     
     NSLayoutConstraint *bottomConstraint = [self.bottomView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
     [bottomConstraint setActive: YES];
-
-    self.heightConstraint = [self.bottomView.heightAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.heightAnchor multiplier:0.0];
+    
+    self.heightConstraint = [self.bottomView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:0.0];
     [self.heightConstraint setActive: YES];
-    self.maximizedHeightConstraint = [self.bottomView.heightAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.heightAnchor multiplier: 0.2];
+    self.maximizedHeightConstraint = [self.bottomView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier: 0.15];
 }
 
 - (void) showBottomView {
+
     self.bottomView.hidden = FALSE;
+    [self.heightConstraint setActive: NO];
+    [self.maximizedHeightConstraint setActive: YES];
     [UIView animateWithDuration:1.0 animations:^{
         CGRect tabBarFrame = self.tabBarController.tabBar.frame;
         self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y + tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
-        [self.heightConstraint setActive: NO];
-        [self.maximizedHeightConstraint setActive: YES];
+        self.gMapView.padding = self.mapInsetConstant;
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         if (finished) {
             self.tabBarController.tabBar.hidden = true;
-
         }
     }];
 }
 
-- (void) hideBottomView {
+- (void) hideBottomView: (bool) animated {
+    [self.maximizedHeightConstraint setActive: NO];
+    [self.heightConstraint setActive: YES];
+    if (animated) {
     [UIView animateWithDuration:1.0 animations:^{
         CGRect tabBarFrame = self.tabBarController.tabBar.frame;
         self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y - tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
-        [self.heightConstraint setActive: YES];
-        [self.maximizedHeightConstraint setActive: NO];
+        self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         if (finished) {
@@ -288,6 +297,14 @@
             self.bottomView.hidden = TRUE;
         }
     }];
+    } else {
+        CGRect tabBarFrame = self.tabBarController.tabBar.frame;
+        self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y - tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
+        self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+        [self.view layoutIfNeeded];
+        self.tabBarController.tabBar.hidden = false;
+        self.bottomView.hidden = TRUE;
+    }
 }
 
 - (void) showFollowView {
@@ -307,6 +324,23 @@
 }
 
 - (void) startPath {
+    if (self.landmarks == nil) {
+        self.landmarks = [[NSMutableArray alloc] init];
+    } else {
+        [self.landmarks removeAllObjects];
+    }
+    
+    if (self.landmarkMarkers == nil) {
+        self.landmarkMarkers = [[NSMutableArray alloc] init];
+    } else {
+        [self.landmarkMarkers removeAllObjects];
+    }
+    
+    self.path = nil;
+    self.pathway = nil;
+    self.path = [[Path alloc] initFromLocal];
+    self.pathway = [[Pathway alloc] initFromLocal];
+    
     [self.locationManager startUpdatingLocation];
     [self showBottomView];
     [self hideAddPathButton];
@@ -316,7 +350,7 @@
 - (void) endPath {
     [self.gMapView clear];
     [self.locationManager stopUpdatingLocation];
-    [self hideBottomView];
+    [self hideBottomView: NO];
     [self showAddPathButton];
     [self hideFollowView];
 }

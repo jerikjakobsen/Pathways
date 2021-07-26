@@ -30,6 +30,8 @@
     UINib *nib = [UINib nibWithNibName: @"NewPathBottomView" bundle:nil];
     [nib instantiateWithOwner: self options:nil];
     self.contentView.frame = self.bounds;
+    self.contentView.layer.cornerRadius = 20;
+    self.contentView.layer.maskedCorners =  kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner;
     [self addSubview: self.contentView];
 }
 

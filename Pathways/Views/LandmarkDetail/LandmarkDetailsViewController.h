@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) setLandmarkDetail: (Landmark *) landmark;
 
-+ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController;
++ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController safeArea: (bool) safeArea loadImagesLocally: (bool) loadImagesLocally;
 
 @end
 

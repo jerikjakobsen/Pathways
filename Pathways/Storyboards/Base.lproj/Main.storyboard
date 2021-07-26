@@ -429,7 +429,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tza-Bb-e6u" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xu4-92-Ldq">
@@ -472,7 +472,7 @@
                             <constraint firstItem="CQz-mN-HNn" firstAttribute="leading" secondItem="YjN-Ug-uTD" secondAttribute="leading" constant="16" id="1Iv-gd-peX"/>
                             <constraint firstItem="Xu4-92-Ldq" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="UvN-WJ-nTB"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="tza-Bb-e6u" secondAttribute="trailing" id="XXq-EY-xwU"/>
-                            <constraint firstItem="CUc-DX-Nss" firstAttribute="bottom" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="XzP-OL-iN3"/>
+                            <constraint firstAttribute="bottom" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="XzP-OL-iN3"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" id="fgC-zl-eNd"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="top" secondItem="YjN-Ug-uTD" secondAttribute="top" id="i1I-VZ-sy4"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="Xu4-92-Ldq" secondAttribute="trailing" constant="16" id="k9d-Uk-R2y"/>

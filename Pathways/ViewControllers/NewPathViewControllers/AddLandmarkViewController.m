@@ -22,11 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.descriptionTextView.layer.cornerRadius = 6;
-    self.landmark = [Landmark new];
-    self.landmark.location = [PFGeoPoint geoPointWithLocation: self.location];
-    self.landmark.pathId = self.pathId;
-    self.landmark.type = self.type;
-    self.landmark.photos = [[NSMutableArray alloc] init];
+    self.landmark = [[Landmark alloc] initFromLocal:self.location pathId:self.pathId type:self.type];
     self.navigationController.navigationBarHidden = TRUE;
     self.tabBarController.tabBar.hidden = TRUE;
     self.addLandmarkLabel.text = [NSString stringWithFormat:@"Add %@", self.type ];

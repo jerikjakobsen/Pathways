@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *landmarkTypeImageView;
 @property (strong, nonatomic) UIImage *hazardImage;
 @property (strong, nonatomic) UIImage *landmarkImage;
+@property (nonatomic) bool showOnlySafeArea;
 
 @end
 
@@ -31,7 +32,6 @@
     tappedBackground.delegate = self;
     [self.view addGestureRecognizer: tappedBackground];
     self.contentView.layer.cornerRadius = 10;
-    
     self.photoCollectionView.delegate = self;
     self.photoCollectionView.dataSource = self ;
     UINib *nib = [UINib nibWithNibName:@"LandmarkPhotoCell" bundle: nil];
@@ -40,18 +40,27 @@
 
 - (void) configureConstraintsOnParentView: (UIView *) parentView {
     self.view.translatesAutoresizingMaskIntoConstraints = false;
-    NSLayoutConstraint *bottomConstraint = [self.view.bottomAnchor constraintEqualToAnchor: parentView.safeAreaLayoutGuide.bottomAnchor constant:0.0];
-    [bottomConstraint setActive: YES];
     NSLayoutConstraint *leftConstraint = [self.view.leadingAnchor constraintEqualToAnchor: parentView.safeAreaLayoutGuide.leadingAnchor constant:0.0];
     [leftConstraint setActive: YES];
     NSLayoutConstraint *rightConstraint = [self.view.trailingAnchor constraintEqualToAnchor: parentView.safeAreaLayoutGuide.trailingAnchor constant:0.0];
     [rightConstraint setActive: YES];
+    
+    if (self.showOnlySafeArea) {
+    NSLayoutConstraint *bottomConstraint = [self.view.bottomAnchor constraintEqualToAnchor: parentView.safeAreaLayoutGuide.bottomAnchor constant:0.0];
+    [bottomConstraint setActive: YES];
     NSLayoutConstraint *topConstraint =  [self.view.topAnchor constraintEqualToAnchor: parentView.safeAreaLayoutGuide.topAnchor constant: 0.0];
     [topConstraint setActive: YES];
+    } else {
+        NSLayoutConstraint *bottomConstraint = [self.view.bottomAnchor constraintEqualToAnchor: parentView.bottomAnchor constant:0.0];
+        [bottomConstraint setActive: YES];
+        NSLayoutConstraint *topConstraint =  [self.view.topAnchor constraintEqualToAnchor: parentView.topAnchor constant: 0.0];
+        [topConstraint setActive: YES];
+    }
 }
 
-+ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController {
++ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController safeArea: (bool) safeArea loadImagesLocally: (bool) loadImagesLocally {
     LandmarkDetailsViewController *detailViewController = [[LandmarkDetailsViewController alloc] init];
+    detailViewController.showOnlySafeArea = safeArea;
     [detailViewController willMoveToParentViewController: viewController];
     [viewController addChildViewController: detailViewController];
     [viewController.view addSubview: detailViewController.view];
