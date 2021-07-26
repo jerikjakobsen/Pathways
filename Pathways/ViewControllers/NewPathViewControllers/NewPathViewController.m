@@ -42,22 +42,43 @@
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
 @property (nonatomic) UIEdgeInsets mapInsetConstant;
+@property (nonatomic) bool firstLoad;
+@property (nonatomic) CGRect tabbarFrame;
+
 
 @end
 
 @implementation NewPathViewController
 
+- (id) init {
+    if (self = [super init]) {
+        self.landmarkImage = [UIImage imageNamed:@"colosseum"];
+        self.hazardImage = [UIImage imageNamed:@"wildfire"];
+        self.firstLoad = TRUE;
+    }
+    return self;
+}
+
+- (id) initWithCoder:(NSCoder *) coder {
+    if (self = [super initWithCoder: coder]) {
+        self.landmarkImage = [UIImage imageNamed:@"colosseum"];
+        self.hazardImage = [UIImage imageNamed:@"wildfire"];
+        self.firstLoad = TRUE;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.landmarkImage = [UIImage imageNamed:@"colosseum"];
-    self.hazardImage = [UIImage imageNamed:@"wildfire"];
     self.initialZoom = FALSE;
-    self.navigationController.navigationBarHidden = TRUE;
-    [self hideFollowView];
-    [self setUpBottomView];
-    [self setUpGMSMapView];
-    [self setUpLocationManager];
-
+    if (self.firstLoad) {
+        self.navigationController.navigationBarHidden = TRUE;
+        [self hideFollowView];
+        [self setUpBottomView];
+        [self setUpGMSMapView];
+        [self setUpLocationManager];
+        self.firstLoad = FALSE;
+    }
 }
 
 - (IBAction)didSwitchFollow:(id)sender {
@@ -216,9 +237,7 @@
 
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
-    NSLog(@"yayaya");
     for (int i = 0; i < self.landmarkMarkers.count; i++) {
-        NSLog(@"landmarker = %@", self.landmarkMarkers[i]);
         if (marker == self.landmarkMarkers[i]) {
             LandmarkDetailsViewController *dtvc = [LandmarkDetailsViewController detailViewAttachedToParentView: self safeArea: NO loadImagesLocally: YES];
             [dtvc setLandmarkDetail: self.landmarks[i]];
@@ -266,7 +285,7 @@
 }
 
 - (void) showBottomView {
-
+    NSLog(@"Show bottom view");
     self.bottomView.hidden = FALSE;
     [self.heightConstraint setActive: NO];
     [self.maximizedHeightConstraint setActive: YES];
@@ -283,23 +302,22 @@
 }
 
 - (void) hideBottomView: (bool) animated {
+    NSLog(@"hide bottom view");
     [self.maximizedHeightConstraint setActive: NO];
     [self.heightConstraint setActive: YES];
     if (animated) {
-    [UIView animateWithDuration:1.0 animations:^{
-        CGRect tabBarFrame = self.tabBarController.tabBar.frame;
-        self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y - tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
-        self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
-        [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        if (finished) {
-            self.tabBarController.tabBar.hidden = false;
-            self.bottomView.hidden = TRUE;
-        }
-    }];
+        [UIView animateWithDuration:1.0 animations:^{
+            self.tabBarController.tabBar.frame = self.tabbarFrame;
+            self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.tabBarController.tabBar.hidden = false;
+                self.bottomView.hidden = TRUE;
+            }
+        }];
     } else {
-        CGRect tabBarFrame = self.tabBarController.tabBar.frame;
-        self.tabBarController.tabBar.frame = CGRectMake(tabBarFrame.origin.x, tabBarFrame.origin.y - tabBarFrame.size.height, tabBarFrame.size.width, tabBarFrame.size.height);
+        self.tabBarController.tabBar.frame = self.tabbarFrame;
         self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
         [self.view layoutIfNeeded];
         self.tabBarController.tabBar.hidden = false;
