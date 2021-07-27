@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loadImagesLocally = FALSE;
     self.landmarkImage = [UIImage imageNamed:@"colosseum"];
     self.hazardImage = [UIImage imageNamed:@"wildfire"];
     UITapGestureRecognizer *tappedBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground:)];
@@ -61,6 +60,7 @@
 + (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController safeArea: (bool) safeArea loadImagesLocally: (bool) loadImagesLocally {
     LandmarkDetailsViewController *detailViewController = [[LandmarkDetailsViewController alloc] init];
     detailViewController.showOnlySafeArea = safeArea;
+    detailViewController.loadImagesLocally = loadImagesLocally;
     [detailViewController willMoveToParentViewController: viewController];
     [viewController addChildViewController: detailViewController];
     [viewController.view addSubview: detailViewController.view];

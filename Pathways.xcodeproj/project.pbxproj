@@ -18,6 +18,7 @@
 		E539147E26A901E30011EFEA /* LandmarkPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E539147B26A901E30011EFEA /* LandmarkPhotoCell.m */; };
 		E539148026AA781E0011EFEA /* NewPathBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E539147F26AA781E0011EFEA /* NewPathBottomView.xib */; };
 		E539148326AA785E0011EFEA /* NewPathBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E539148226AA785E0011EFEA /* NewPathBottomView.m */; };
+		E539148A26AF9D6F0011EFEA /* PathFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E539148926AF9D6F0011EFEA /* PathFormatter.m */; };
 		E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */; };
 		E5528E0826A8E528001CAC77 /* LandmarkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5528E0626A8E528001CAC77 /* LandmarkDetailsViewController.m */; };
 		E5528E0926A8E528001CAC77 /* LandmarkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5528E0726A8E528001CAC77 /* LandmarkDetailsViewController.xib */; };
@@ -86,6 +87,8 @@
 		E539147F26AA781E0011EFEA /* NewPathBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPathBottomView.xib; sourceTree = "<group>"; };
 		E539148126AA785E0011EFEA /* NewPathBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPathBottomView.h; sourceTree = "<group>"; };
 		E539148226AA785E0011EFEA /* NewPathBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPathBottomView.m; sourceTree = "<group>"; };
+		E539148826AF9D6F0011EFEA /* PathFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathFormatter.h; sourceTree = "<group>"; };
+		E539148926AF9D6F0011EFEA /* PathFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathFormatter.m; sourceTree = "<group>"; };
 		E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLandmarkViewController.h; sourceTree = "<group>"; };
 		E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLandmarkViewController.m; sourceTree = "<group>"; };
 		E5528E0526A8E528001CAC77 /* LandmarkDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandmarkDetailsViewController.h; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				E594D3AD269CA61200DB5A4F /* Assets.xcassets */,
 				E594D3B2269CA61200DB5A4F /* Info.plist */,
 				E51AF4A8269E691200556BCC /* Keys.plist */,
+				E539148826AF9D6F0011EFEA /* PathFormatter.h */,
+				E539148926AF9D6F0011EFEA /* PathFormatter.m */,
 			);
 			path = Pathways;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E598E49026A7120400718E22 /* WalkPathViewController.m in Sources */,
+				E539148A26AF9D6F0011EFEA /* PathFormatter.m in Sources */,
 				E5DA69EA26A1CE63000C29A0 /* GoogleMapsStaticAPI.m in Sources */,
 				E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */,
 				E594D3A3269CA61100DB5A4F /* AppDelegate.m in Sources */,

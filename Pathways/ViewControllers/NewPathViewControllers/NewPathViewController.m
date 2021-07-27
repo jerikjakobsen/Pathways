@@ -356,6 +356,7 @@
 }
 
 - (void) endPath {
+    [self.pathLine removeAllCoordinates];
     [self.gMapView clear];
     [self.locationManager stopUpdatingLocation];
     [self hideBottomView: NO];
