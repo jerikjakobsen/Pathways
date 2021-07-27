@@ -34,7 +34,7 @@
 }
 
 - (IBAction)onDone:(id)sender {
-    if (self.titleTextField.text.length < 3) {
+    if (self.titleTextField.text.length < 2) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Title too Short" message:@"Title must be at least 2 characters long" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
@@ -59,7 +59,9 @@
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     
-    [self presentViewController: imagePickerVC animated:YES completion:nil];
+    [self presentViewController: imagePickerVC animated:YES completion:^{
+        
+    }];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {

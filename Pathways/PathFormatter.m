@@ -11,10 +11,11 @@
 
 @implementation PathFormatter
 
-+ (void) removeOutliars: (Pathway *) pathway {
++ (NSMutableArray *) removeOutliars: (Pathway *) pathway {
     NSArray *oldPathway = pathway.path;
     unsigned int i = 0;
-    NSMutableArray *removeIndices = [[NSMutableArray alloc] init];
+    NSMutableArray *removedOutliarsArr = [[NSMutableArray alloc] init];
+    [removedOutliarsArr addObject: oldPathway.firstObject];
     for (PFGeoPoint *point in oldPathway) {
         if (i > 1 && i < oldPathway.count - 1) {
             PFGeoPoint *previousPoint = oldPathway[i-1];
@@ -24,13 +25,14 @@
             float distanceFromP2toP3 = (point.latitude - nextPoint.latitude) * (point.latitude - nextPoint.latitude) + (point.longitude - nextPoint.longitude) * (point.longitude - nextPoint.longitude);
             
             float distanceFromP1toP3 = (previousPoint.latitude - nextPoint.latitude) * (previousPoint.latitude - nextPoint.latitude) + (previousPoint.longitude - nextPoint.longitude) * (previousPoint.longitude - nextPoint.longitude);
-            if (distanceFromP1toP3 < distanceFromP2toP3 || distanceFromP1toP3 < distanceFromP1ToP2) {
-                [removeIndices addObject: @(i)];
+            if (distanceFromP1toP3 > distanceFromP2toP3 && distanceFromP1toP3 > distanceFromP1ToP2) {
+                [removedOutliarsArr addObject: point];
             }
         }
-        
         i++;
     }
+    [removedOutliarsArr addObject: oldPathway.lastObject];
+    return removedOutliarsArr;
 }
 
 @end

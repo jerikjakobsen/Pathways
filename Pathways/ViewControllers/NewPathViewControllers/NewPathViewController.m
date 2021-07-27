@@ -141,17 +141,19 @@
         self.initialZoom = TRUE;
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
         [self.locationManager stopUpdatingLocation];
+    } else {
+        [self.pathLine addCoordinate: locations.lastObject.coordinate];
+        [self.pathway addCoordinate: locations.lastObject];
+        self.pathpolyline = nil;
+        self.pathpolyline = [GMSPolyline polylineWithPath: self.pathLine];
+        self.pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
+        self.pathpolyline.strokeWidth = 8.0;
+        self.pathpolyline.map = self.gMapView;
     }
+    
     if ([self.followSwitch isOn]) {
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
     }
-    [self.pathLine addCoordinate: locations.lastObject.coordinate];
-    [self.pathway addCoordinate: locations.lastObject];
-    self.pathpolyline = nil;
-    self.pathpolyline = [GMSPolyline polylineWithPath: self.pathLine];
-    self.pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
-    self.pathpolyline.strokeWidth = 8.0;
-    self.pathpolyline.map = self.gMapView;
 }
 
 - (void)addLandmarkViewController:(id)landmarkVC didAddLandmark:(Landmark *) landmark {
@@ -288,29 +290,25 @@
     [UIView animateWithDuration:1.0 animations:^{
         self.gMapView.padding = self.mapInsetConstant;
         [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        if (finished) {
-        }
     }];
 }
 
 - (void) hideBottomView: (bool) animated {
     [self.maximizedHeightConstraint setActive: NO];
     [self.heightConstraint setActive: YES];
+    self.tabBarController.tabBar.hidden = false;
     if (animated) {
         [UIView animateWithDuration:1.0 animations:^{
             self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
             if (finished) {
-                self.tabBarController.tabBar.hidden = false;
                 self.bottomView.hidden = TRUE;
             }
         }];
     } else {
         self.gMapView.padding = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
         [self.view layoutIfNeeded];
-        self.tabBarController.tabBar.hidden = false;
         self.bottomView.hidden = TRUE;
     }
 }
