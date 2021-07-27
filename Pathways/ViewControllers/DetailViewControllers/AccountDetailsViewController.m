@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberOfPathsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *pathsTableView;
 @property (strong, nonatomic) NSArray *paths;
+@property (strong, nonatomic) NSNumber *totalPaths;
 
 @end
 
@@ -36,7 +37,12 @@
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     }];
     self.numberOfPathsLabel.text = [NSString stringWithFormat: @"%@ Paths Created", [PFUser currentUser][@"totalPaths"]];
-    [Path getUserPaths:[PFUser currentUser].objectId completion:^(NSArray * _Nonnull paths, NSError * _Nonnull error) {
+    [self fetchPaths];
+}
+
+- (void) fetchPaths {
+    self.totalPaths = @(self.totalPaths.intValue + 10);
+    [Path getUserPathsWithLimit: self.totalPaths.intValue userId: [PFUser currentUser].objectId completion:^(NSArray * _Nonnull paths, NSError * _Nonnull error) {
         if (error != nil) {
             NSLog(@"Error loading paths: %@", error.localizedDescription);
         } else {
@@ -87,4 +93,9 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.totalPaths.intValue - 1) {
+        [self fetchPaths];
+    }
+}
 @end

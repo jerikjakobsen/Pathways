@@ -131,4 +131,5 @@
     [detView setLandmarkDetail:self.landmarks[indexPath.row]];
 }
 
+
 @end

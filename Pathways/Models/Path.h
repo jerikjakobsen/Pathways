@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) drawPathToMapWithLandmarksWithCompletion: (void (^)(NSError *, NSArray *, Pathway *)) completion map: (GMSMapView *) mapview;
 
-+ (void) getUserPaths: (NSString *) userId completion: (void (^)(NSArray *, NSError *) ) completion;
++ (void) getUserPathsWithLimit: (int) pathLimit userId: (NSString *) userId completion: (void (^)(NSArray *, NSError *) ) completion;
 
 @end
 

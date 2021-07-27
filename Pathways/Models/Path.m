@@ -29,9 +29,6 @@
     if (self = [super init]) {
         self.name = @"";
         self.startedAt = [NSDate now];
-        self.distance = @(0.0);
-        self.hazardCount = @(0.0);
-        self.landmarkCount = @(0.0);
         self.authorId = @"";
         self.pathId = @"";
     }
@@ -123,10 +120,10 @@
     return @"Path";
 }
 
-+ (void) getUserPaths: (NSString *) userId completion: (void (^)(NSArray *, NSError *) )  completion{
++ (void) getUserPathsWithLimit: (int) pathLimit userId: (NSString *) userId completion: (void (^)(NSArray *, NSError *) ) completion {
     PFQuery *query = [PFQuery queryWithClassName: @"Path"];
     [query whereKey:@"authorId" containsString: [PFUser currentUser].objectId ];
-    query.limit = 10;
+    query.limit = pathLimit;
     [query orderByDescending: @"createdAt"];
     [query findObjectsInBackgroundWithBlock:completion];
 }
