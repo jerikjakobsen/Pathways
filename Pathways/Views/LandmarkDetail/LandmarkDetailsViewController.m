@@ -7,17 +7,12 @@
 
 #import "LandmarkDetailsViewController.h"
 #import "LandmarkPhotoCell.h"
+#import "LandmarkDetailHeaderView.h"
 
-@interface LandmarkDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout>
+@interface LandmarkDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
-@property (weak, nonatomic) IBOutlet UILabel *landmarkName;
-@property (weak, nonatomic) IBOutlet UILabel *landmarkDescription;
-@property (weak, nonatomic) IBOutlet UIImageView *landmarkTypeImageView;
-@property (strong, nonatomic) UIImage *hazardImage;
-@property (strong, nonatomic) UIImage *landmarkImage;
-@property (nonatomic) bool showOnlySafeArea;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSString *cellHeaderId;
 
 @end
 
@@ -25,16 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.landmarkImage = [UIImage imageNamed:@"colosseum"];
-    self.hazardImage = [UIImage imageNamed:@"wildfire"];
+    self.cellHeaderId = @"Header";
     UITapGestureRecognizer *tappedBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground:)];
     tappedBackground.delegate = self;
     [self.view addGestureRecognizer: tappedBackground];
-    self.contentView.layer.cornerRadius = 10;
-    self.photoCollectionView.delegate = self;
-    self.photoCollectionView.dataSource = self ;
+    self.collectionView.layer.cornerRadius = 10;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self ;
     UINib *nib = [UINib nibWithNibName:@"LandmarkPhotoCell" bundle: nil];
-    [self.photoCollectionView registerNib:nib forCellWithReuseIdentifier:@"LandmarkPhotoCell"];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"LandmarkPhotoCell"];
+    
+    [self.collectionView registerClass:LandmarkDetailHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier: self.cellHeaderId];
 }
 
 - (void) configureConstraintsOnParentView: (UIView *) parentView {
@@ -57,39 +53,34 @@
     }
 }
 
-+ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController safeArea: (bool) safeArea loadImagesLocally: (bool) loadImagesLocally {
++ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController safeArea: (bool) safeArea loadImagesLocally: (bool) loadImagesLocally landmark: (Landmark *) landmark {
     LandmarkDetailsViewController *detailViewController = [[LandmarkDetailsViewController alloc] init];
     detailViewController.showOnlySafeArea = safeArea;
     detailViewController.loadImagesLocally = loadImagesLocally;
+    detailViewController.landmark = landmark;
+    
     [detailViewController willMoveToParentViewController: viewController];
     [viewController addChildViewController: detailViewController];
+    [detailViewController didMoveToParentViewController: viewController];
     [viewController.view addSubview: detailViewController.view];
+    
     [detailViewController configureConstraintsOnParentView: viewController.view];
+    
+    // Animations
     detailViewController.view.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent: 0.0];
-    detailViewController.contentView.alpha = 0.0;
+    detailViewController.collectionView.alpha = 0.0;
     [UIView animateWithDuration: 0.2 animations:^{
             detailViewController.view.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent: 0.3];
-        detailViewController.contentView.alpha = 1.0;
+        detailViewController.collectionView.alpha = 1.0;
     }];
-    return detailViewController;
-}
-
-- (void) setLandmarkDetail: (Landmark *) landmark {
-    self.landmark = landmark;
-    self.landmarkName.text = self.landmark.name;
-    self.landmarkDescription.text = self.landmark.details;
-    if ([landmark.type isEqualToString: @"Landmark"]) {
-        [self.landmarkTypeImageView setImage: self.landmarkImage];
-    } else {
-        [self.landmarkTypeImageView setImage: self.hazardImage];
-    }
     
+    return detailViewController;
 }
 
 - (void) didTapBackground:(UITapGestureRecognizer *)recognizer {
     [UIView animateWithDuration: 0.2 animations:^{
             self.view.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent: 0.0];
-            self.contentView.alpha = 0.0;
+            self.collectionView.alpha = 0.0;
     } completion:^(BOOL finished) {
         if (finished) {
             [self.view removeFromSuperview];
@@ -100,7 +91,7 @@
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    LandmarkPhotoCell *cell = [self.photoCollectionView dequeueReusableCellWithReuseIdentifier:@"LandmarkPhotoCell" forIndexPath:indexPath];
+    LandmarkPhotoCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"LandmarkPhotoCell" forIndexPath:indexPath];
     if (self.loadImagesLocally) {
         cell.photoImageView.image = self.landmark.localPhotos[indexPath.row];
     } else {
@@ -115,11 +106,26 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.photoCollectionView.frame.size.width/3 - 4, (self.photoCollectionView.frame.size.width/3 - 4) * 1.5 );
+    return CGSizeMake(self.collectionView.frame.size.width/3 - 4, (self.collectionView.frame.size.width/3 - 4) * 1.5 );
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    LandmarkDetailHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind: kind withReuseIdentifier:self.cellHeaderId forIndexPath:indexPath];
+    [header setDetails: self.landmark];
+    return header;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    NSIndexPath *path = [NSIndexPath indexPathForRow: 0 inSection:section];
+    UICollectionReusableView *header = [collectionView supplementaryViewForElementKind:UICollectionElementKindSectionHeader atIndexPath: path];
+    CGSize size = [((LandmarkDetailHeaderView *) header).titleLabel systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+    NSLog(@"%f %f", size.height, size.width);
+    return CGSizeMake(self.view.frame.size.width, 60);
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    if ([touch.view isDescendantOfView:self.contentView]) {
+    if ([touch.view isDescendantOfView:self.collectionView]) {
         return FALSE;
     }
     return TRUE;

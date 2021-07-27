@@ -237,8 +237,7 @@
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     for (int i = 0; i < self.landmarkMarkers.count; i++) {
         if (marker == self.landmarkMarkers[i]) {
-            LandmarkDetailsViewController *dtvc = [LandmarkDetailsViewController detailViewAttachedToParentView: self safeArea: NO loadImagesLocally: YES];
-            [dtvc setLandmarkDetail: self.landmarks[i]];
+            [LandmarkDetailsViewController detailViewAttachedToParentView: self safeArea: NO loadImagesLocally: YES landmark: self.landmarks[i]];
         }
     }
 }

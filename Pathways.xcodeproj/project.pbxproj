@@ -19,6 +19,7 @@
 		E539148026AA781E0011EFEA /* NewPathBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E539147F26AA781E0011EFEA /* NewPathBottomView.xib */; };
 		E539148326AA785E0011EFEA /* NewPathBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E539148226AA785E0011EFEA /* NewPathBottomView.m */; };
 		E539148A26AF9D6F0011EFEA /* PathFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E539148926AF9D6F0011EFEA /* PathFormatter.m */; };
+		E539148D26B08A920011EFEA /* LandmarkDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E539148C26B08A920011EFEA /* LandmarkDetailHeaderView.m */; };
 		E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */; };
 		E5528E0826A8E528001CAC77 /* LandmarkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5528E0626A8E528001CAC77 /* LandmarkDetailsViewController.m */; };
 		E5528E0926A8E528001CAC77 /* LandmarkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5528E0726A8E528001CAC77 /* LandmarkDetailsViewController.xib */; };
@@ -89,6 +90,8 @@
 		E539148226AA785E0011EFEA /* NewPathBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPathBottomView.m; sourceTree = "<group>"; };
 		E539148826AF9D6F0011EFEA /* PathFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathFormatter.h; sourceTree = "<group>"; };
 		E539148926AF9D6F0011EFEA /* PathFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathFormatter.m; sourceTree = "<group>"; };
+		E539148B26B08A920011EFEA /* LandmarkDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandmarkDetailHeaderView.h; sourceTree = "<group>"; };
+		E539148C26B08A920011EFEA /* LandmarkDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandmarkDetailHeaderView.m; sourceTree = "<group>"; };
 		E544CDF9269FAC2F00A6E6AB /* AddLandmarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLandmarkViewController.h; sourceTree = "<group>"; };
 		E544CDFA269FAC2F00A6E6AB /* AddLandmarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLandmarkViewController.m; sourceTree = "<group>"; };
 		E5528E0526A8E528001CAC77 /* LandmarkDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandmarkDetailsViewController.h; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				E5528E0526A8E528001CAC77 /* LandmarkDetailsViewController.h */,
 				E5528E0626A8E528001CAC77 /* LandmarkDetailsViewController.m */,
 				E5528E0726A8E528001CAC77 /* LandmarkDetailsViewController.xib */,
+				E539148B26B08A920011EFEA /* LandmarkDetailHeaderView.h */,
+				E539148C26B08A920011EFEA /* LandmarkDetailHeaderView.m */,
 			);
 			path = LandmarkDetail;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 				E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */,
 				E544CDFB269FAC2F00A6E6AB /* AddLandmarkViewController.m in Sources */,
 				E5DA69E226A11951000C29A0 /* AccountDetailsViewController.m in Sources */,
+				E539148D26B08A920011EFEA /* LandmarkDetailHeaderView.m in Sources */,
 				E5528E0826A8E528001CAC77 /* LandmarkDetailsViewController.m in Sources */,
 				E51AF459269E4D5700556BCC /* Path.m in Sources */,
 				E594D3A6269CA61100DB5A4F /* SceneDelegate.m in Sources */,

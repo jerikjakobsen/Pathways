@@ -14,12 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) Landmark *landmark;
 @property (nonatomic) bool loadImagesLocally;
+@property (nonatomic) bool showOnlySafeArea;
 
 - (void) configureConstraintsOnParentView: (UIView *) parentView;
 
 - (void) setLandmarkDetail: (Landmark *) landmark;
 
-+ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController safeArea: (bool) safeArea loadImagesLocally: (bool) loadImagesLocally;
++ (LandmarkDetailsViewController *) detailViewAttachedToParentView: (UIViewController *) viewController safeArea: (bool) safeArea loadImagesLocally: (bool) loadImagesLocally landmark: (Landmark *) landmark;
 
 @end
 

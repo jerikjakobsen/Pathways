@@ -29,6 +29,8 @@
     if (self = [super init]) {
         self.name = @"";
         self.startedAt = [NSDate now];
+        self.hazardCount = @(0);
+        self.landmarkCount = @(0);
         self.authorId = @"";
         self.pathId = @"";
     }
