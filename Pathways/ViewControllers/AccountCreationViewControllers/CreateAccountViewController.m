@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *showPasswordButton;
+@property (assign, nonatomic) bool didSetPhoto;
 
 @end
 
@@ -38,7 +39,7 @@
 }
 
 - (IBAction)onSignup:(id)sender {
-    [ParseUserManager registerUser:self.usernameTextField.text email: self.emailTextField.text password:self.passwordTextField.text profilePic:self.profileImageView.image completion:^(NSError * error) {
+    [ParseUserManager registerUser:self.usernameTextField.text email: self.emailTextField.text password:self.passwordTextField.text profilePic: self.didSetPhoto ? self.profileImageView.image : nil completion:^(NSError * error) {
         if (error != nil) {
             NSLog(@"eroor");
             if (error.code == 1) {
@@ -78,6 +79,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     self.profileImageView.image = editedImage;
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
+    self.didSetPhoto = TRUE;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
