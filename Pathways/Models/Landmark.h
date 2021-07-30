@@ -8,7 +8,7 @@
 #import <Parse/Parse.h>
 #import <CoreLocation/CLLocation.h>
 #import <UIKit/UIImage.h>
-#import <GoogleMaps/GoogleMaps.h>
+#import <GoogleMaps/GMSMapView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

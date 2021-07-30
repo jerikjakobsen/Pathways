@@ -10,15 +10,15 @@
 #import "EndPathViewController.h"
 #import "LandmarkDetailsViewController.h"
 #import "NewPathBottomView.h"
+#import "Pathway.h"
+#import "Path.h"
+#import "Landmark.h"
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <GoogleMaps/GMSCameraPosition.h>
 #import <GoogleMaps/GMSMutablePath.h>
 #import <GoogleMaps/GMSPolyline.h>
-#import <CoreLocation/CoreLocation.h>
-#import "Pathway.h"
-#import "Path.h"
-#import "Landmark.h"
+#import <CoreLocation/CLLocationManager.h>
 
 @interface NewPathViewController () <CLLocationManagerDelegate, AddLandMarkViewControllerDelegate, EndPathViewControllerDelegate, GMSMapViewDelegate>
 
@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *followSwitch;
 @property (weak, nonatomic) IBOutlet UIView *followView;
 @property (weak, nonatomic) IBOutlet UIButton *addPathButton;
+@property (weak, nonatomic) IBOutlet UILabel *speedAccelerationTestLabel;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Pathway *pathway;
@@ -34,15 +35,14 @@
 @property (strong, nonatomic) NSMutableArray *landmarkMarkers;
 @property (strong, nonatomic) GMSMutablePath *pathLine;
 @property (strong, nonatomic) GMSPolyline *pathpolyline;
-@property (strong, nonatomic) NSMutableArray *bottomViewLayoutConstraints;
 @property (strong, nonatomic) UIImage *hazardImage;
 @property (strong, nonatomic) UIImage *landmarkImage;
-@property (nonatomic, assign) BOOL initialZoom;
 @property (strong, nonatomic) NewPathBottomView *bottomView;
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
 @property (nonatomic) UIEdgeInsets mapInsetConstant;
 @property (nonatomic) bool firstLoad;
+@property (nonatomic) BOOL initialZoom;
 
 @end
 
@@ -127,7 +127,7 @@
     self.locationManager = [[CLLocationManager alloc]  init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 6;
+    self.locationManager.distanceFilter = 0;
     self.locationManager.allowsBackgroundLocationUpdates = TRUE;
     self.locationManager.pausesLocationUpdatesAutomatically = FALSE;
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -346,7 +346,8 @@
     self.pathway = nil;
     self.path = [[Path alloc] initFromLocal];
     self.pathway = [[Pathway alloc] initFromLocal];
-    
+    [self.pathLine removeAllCoordinates];
+    [self.gMapView clear];
     [self.locationManager startUpdatingLocation];
     [self showBottomView];
     [self hideAddPathButton];

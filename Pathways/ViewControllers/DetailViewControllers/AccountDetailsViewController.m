@@ -27,21 +27,10 @@
 
 @implementation AccountDetailsViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupTableView];
-    self.usernameLabel.text = [PFUser currentUser].username;
-    if ([PFUser currentUser][@"profile_image"] != nil) {
-        self.profileImageView.file = [PFUser currentUser][@"profile_image"];
-        [self.profileImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
-            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
-        }];
-    } else {
-        self.profileImageView.image = [UIImage imageNamed:@"ProfileImagePlaceholder"];
-    }
-
-    self.numberOfPathsLabel.text = [NSString stringWithFormat: @"%@ Paths Created", [PFUser currentUser][@"totalPaths"]];
+    [self setUpUserInfo];
     [self fetchPaths];
 }
 
@@ -55,6 +44,20 @@
             [self.pathsTableView reloadData];
         }
     }];
+}
+
+- (void)setUpUserInfo {
+    self.usernameLabel.text = [PFUser currentUser].username;
+    if ([PFUser currentUser][@"profile_image"] != nil) {
+        self.profileImageView.file = [PFUser currentUser][@"profile_image"];
+        [self.profileImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
+        }];
+    } else {
+        self.profileImageView.image = [UIImage imageNamed:@"ProfileImagePlaceholder"];
+    }
+    
+    self.numberOfPathsLabel.text = [NSString stringWithFormat: @"%@ Paths Created", [PFUser currentUser][@"totalPaths"]];
 }
 
 - (void) setupTableView {

@@ -6,33 +6,40 @@
 //
 
 #import "PathFormatter.h"
-#import "Pathway.h"
 #import <Parse/PFGeoPoint.h>
 
 @implementation PathFormatter
 
-+ (NSMutableArray *) removeOutliars: (Pathway *) pathway {
-    NSArray *oldPathway = pathway.path;
-    unsigned int i = 0;
++ (NSMutableArray *) removeOutliars: (NSMutableArray *) pathway {
+    if (pathway.count < 3) return pathway;
     NSMutableArray *removedOutliarsArr = [[NSMutableArray alloc] init];
-    [removedOutliarsArr addObject: oldPathway.firstObject];
-    for (PFGeoPoint *point in oldPathway) {
-        if (i > 1 && i < oldPathway.count - 1) {
-            PFGeoPoint *previousPoint = oldPathway[i-1];
-            PFGeoPoint *nextPoint = oldPathway[i+1];
-            float distanceFromP1ToP2 = (previousPoint.latitude - point.latitude) * (previousPoint.latitude - point.latitude) + (previousPoint.longitude - point.longitude) *(previousPoint.longitude - point.longitude);
-            
-            float distanceFromP2toP3 = (point.latitude - nextPoint.latitude) * (point.latitude - nextPoint.latitude) + (point.longitude - nextPoint.longitude) * (point.longitude - nextPoint.longitude);
-            
-            float distanceFromP1toP3 = (previousPoint.latitude - nextPoint.latitude) * (previousPoint.latitude - nextPoint.latitude) + (previousPoint.longitude - nextPoint.longitude) * (previousPoint.longitude - nextPoint.longitude);
-            if (distanceFromP1toP3 > distanceFromP2toP3 && distanceFromP1toP3 > distanceFromP1ToP2) {
-                [removedOutliarsArr addObject: point];
-            }
-        }
-        i++;
+    [removedOutliarsArr addObject: pathway.firstObject];
+    for (int i = 1; i < pathway.count - 1; i ++) {
+        PFGeoPoint *point = pathway[i];
+        PFGeoPoint *previousPoint = pathway[i-1];
+        PFGeoPoint *nextPoint = pathway[i+1];
+        
+        float distanceFromP1ToP2 = pow((previousPoint.latitude - point.latitude), 2) + pow((previousPoint.longitude - point.longitude), 2);
+        
+        float distanceFromP2toP3 = pow((point.latitude - nextPoint.latitude), 2) + pow((point.longitude - nextPoint.longitude), 2);
+        
+        float distanceFromP1toP3 = pow((previousPoint.latitude - nextPoint.latitude), 2) + pow((previousPoint.longitude - nextPoint.longitude), 2);
+        
+        if (distanceFromP1toP3 > distanceFromP2toP3 && distanceFromP1toP3 > distanceFromP1ToP2) {
+            [removedOutliarsArr addObject: point];
+        } else i++;
     }
-    [removedOutliarsArr addObject: oldPathway.lastObject];
+    [removedOutliarsArr addObject: pathway.lastObject];
     return removedOutliarsArr;
+}
+
++ (NSMutableArray *) removeAllOutliars: (NSMutableArray *) pathway {
+    unsigned long previousCount = pathway.count;
+    pathway = [PathFormatter removeOutliars: pathway];
+    if (previousCount - pathway.count > 0) {
+        return [PathFormatter removeAllOutliars: pathway];
+    }
+    return pathway;
 }
 
 @end

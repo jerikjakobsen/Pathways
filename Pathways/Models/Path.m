@@ -7,11 +7,11 @@
 
 #import "Path.h"
 #import "Landmark.h"
-#import <CoreLocation/CoreLocation.h>
-#import <Parse/Parse.h>
+#import <Parse/PFGeoPoint.h>
+#import <Parse/PFQuery.h>
 #import <GoogleMaps/GMSPolyline.h>
 #import <GoogleMaps/GMSMutablePath.h>
-#import <GoogleMaps/GMSCameraPosition.h>
+#import "PathFormatter.h"
 
 @implementation Path
 
@@ -29,6 +29,8 @@
     if (self = [super init]) {
         self.name = @"";
         self.startedAt = [NSDate now];
+        self.hazardCount = @(0);
+        self.landmarkCount = @(0);
         self.authorId = @"";
         self.pathId = @"";
     }
@@ -39,14 +41,13 @@
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             pathway.pathId = self.objectId;
-            [pathway saveEventually: completion];
+            
+            [pathway postPathway: completion];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
 }
-
-
 
 - (NSArray *) drawPathToMapWithLandmarks: (NSArray *) landmarks pathway: (Pathway *) pathway map: (GMSMapView *) mapview {
     // Draw Pathway
@@ -54,25 +55,22 @@
         GMSMutablePath *pathLine = [GMSMutablePath path];
         for (PFGeoPoint *point in pathway.path) {
             [pathLine addLatitude:point.latitude longitude:point.longitude];
-    
-    GMSPolyline *pathpolyline = [GMSPolyline polylineWithPath: pathLine];
-    pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
-    pathpolyline.strokeWidth = 7.0;
-    pathpolyline.map = mapview;
         }
+        GMSPolyline *pathpolyline = [GMSPolyline polylineWithPath: pathLine];
+        pathpolyline.strokeColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
+        pathpolyline.strokeWidth = 6.0;
+        pathpolyline.map = mapview;
     }
-    
     // Draw landmarks
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    
+    NSMutableArray *landmarkers = [[NSMutableArray alloc] init];
     if (landmarks != nil) {
         UIImage *hazardImage = [UIImage imageNamed:@"wildfire"];
         UIImage *landmarkImage = [UIImage imageNamed:@"colosseum"];
         for (Landmark *landmark in landmarks) {
-            [array addObject: [landmark addToMap: mapview landmarkImage:landmarkImage hazardImage:hazardImage]];
+            [landmarkers addObject: [landmark addToMap: mapview landmarkImage: landmarkImage hazardImage:hazardImage]];
         }
     }
-    return array;
+    return landmarkers;
     
 }
 

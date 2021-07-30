@@ -26,13 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.landmarkMarkers = [self.path drawPathToMapWithLandmarks:self.landmarks pathway:self.pathway map:self.gMapView];
-    self.gMapView.camera = [GMSCameraPosition cameraWithLatitude:self.path.startPoint.latitude longitude:self.path.startPoint.longitude zoom:20 bearing: [self.pathway startBearing] viewingAngle:0.0];
-    self.gMapView.myLocationEnabled = YES;
-    self.gMapView.settings.myLocationButton  = YES;
-    self.gMapView.delegate = self;
-    
+    [self setUpGMSMapView];
+    [self setUpLocationManager];
+}
+
+- (void)setUpLocationManager {
     self.locationManager = [[CLLocationManager alloc]  init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -41,6 +39,14 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingLocation];
+}
+
+- (void)setUpGMSMapView {
+    self.landmarkMarkers = [self.path drawPathToMapWithLandmarks:self.landmarks pathway:self.pathway map:self.gMapView];
+    self.gMapView.camera = [GMSCameraPosition cameraWithLatitude:self.path.startPoint.latitude longitude:self.path.startPoint.longitude zoom:20 bearing: [self.pathway startBearing] viewingAngle:0.0];
+    self.gMapView.myLocationEnabled = YES;
+    self.gMapView.settings.myLocationButton  = YES;
+    self.gMapView.delegate = self;
 }
 
 - (IBAction)didSwitchFollow:(id)sender {

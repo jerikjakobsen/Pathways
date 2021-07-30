@@ -432,6 +432,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KM-K3-Nbd">
+                                <rect key="frame" x="20" y="143" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xu4-92-Ldq">
                                 <rect key="frame" x="348" y="72" width="50" height="50"/>
                                 <state key="normal" backgroundImage="map-editing"/>
@@ -470,12 +476,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CQz-mN-HNn" firstAttribute="leading" secondItem="YjN-Ug-uTD" secondAttribute="leading" constant="16" id="1Iv-gd-peX"/>
+                            <constraint firstItem="2KM-K3-Nbd" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" constant="20" id="HNE-ID-8T3"/>
+                            <constraint firstItem="2KM-K3-Nbd" firstAttribute="top" secondItem="CQz-mN-HNn" secondAttribute="bottom" constant="40" id="Sle-b5-vt8"/>
                             <constraint firstItem="Xu4-92-Ldq" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="UvN-WJ-nTB"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="tza-Bb-e6u" secondAttribute="trailing" id="XXq-EY-xwU"/>
                             <constraint firstAttribute="bottom" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="XzP-OL-iN3"/>
+                            <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2KM-K3-Nbd" secondAttribute="trailing" constant="10" id="dQL-9q-b2t"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" id="fgC-zl-eNd"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="top" secondItem="YjN-Ug-uTD" secondAttribute="top" id="i1I-VZ-sy4"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="Xu4-92-Ldq" secondAttribute="trailing" constant="16" id="k9d-Uk-R2y"/>
+                            <constraint firstItem="CUc-DX-Nss" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2KM-K3-Nbd" secondAttribute="bottom" constant="10" id="tKr-Hq-qhg"/>
                             <constraint firstItem="CQz-mN-HNn" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="yDg-2l-2T7"/>
                         </constraints>
                     </view>
@@ -485,6 +495,7 @@
                         <outlet property="followSwitch" destination="gPP-nd-8Dx" id="5kW-8V-L0w"/>
                         <outlet property="followView" destination="CQz-mN-HNn" id="MTB-pj-sOM"/>
                         <outlet property="gMapView" destination="tza-Bb-e6u" id="gVp-gR-SxF"/>
+                        <outlet property="speedAccelerationTestLabel" destination="2KM-K3-Nbd" id="dgu-4e-Add"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToHazard" id="Vrn-I0-TQ9"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToLandmark" id="Fcp-C2-lw3"/>
                         <segue destination="1eB-sd-8tk" kind="presentation" identifier="NewPathToDone" id="gBL-zZ-qP0"/>
@@ -492,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjR-qu-BHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1503" y="2006"/>
+            <point key="canvasLocation" x="1502.8985507246377" y="2005.5803571428571"/>
         </scene>
         <!--Add Landmark View Controller-->
         <scene sceneID="khG-h8-ZVX">

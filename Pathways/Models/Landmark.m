@@ -6,8 +6,9 @@
 //
 
 #import "Landmark.h"
-#import <Parse/Parse.h>
-
+#import <GoogleMaps/GMSMarker.h>
+#import <Parse/PFFileObject.h>
+#import <Parse/PFQuery.h>
 
 @implementation Landmark
 

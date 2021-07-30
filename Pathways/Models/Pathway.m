@@ -6,9 +6,10 @@
 //
 
 #import "Pathway.h"
-#import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CLLocation.h>
 #import <Parse/PFGeoPoint.h>
 #import <Parse/PFQuery.h>
+#import "PathFormatter.h"
 
 @implementation Pathway
 @dynamic path;
@@ -39,11 +40,13 @@
 }
 
 - (void) postPathway: (PFBooleanResultBlock _Nullable) completion {
+    self.path =  [PathFormatter removeAllOutliars: self.path];
     [self saveInBackgroundWithBlock:completion];
 }
 
 - (double) startBearing {
-    if (self.path. count > 1) {
+    //Configures the starting view orientation of the user (On the map)
+    if (self.path.count > 1) {
     PFGeoPoint *firstPoint = self.path.firstObject;
     PFGeoPoint *secondPoint = self.path[1];
     if (secondPoint == nil || firstPoint == nil) {

@@ -34,6 +34,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setUpUIInfo];
+    [self setupTableView];
+    [self setUpMapView];
+}
+
+- (void)setUpMapView {
+    [self.path drawPathToMapWithLandmarksWithCompletion:^(NSError * error, NSArray * landmarks, Pathway * pathway) {
+        if (error == nil) {
+            self.landmarks = landmarks;
+            [self.landmarkTableView reloadData];
+            self.pathway = pathway;
+            GMSMutablePath *pathLine = [GMSMutablePath path];
+            for (PFGeoPoint *point in pathway.path) {
+                [pathLine addLatitude:point.latitude longitude:point.longitude];
+            }
+            GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:pathLine];
+            UIEdgeInsets mapInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+            GMSCameraPosition* camera = [self.gMapView cameraForBounds:bounds insets:mapInsets];
+            [self.gMapView animateToCameraPosition: camera];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        
+    } map:self.gMapView];
+    [self.gMapView animateToZoom: 20];
+}
+
+- (void)setUpUIInfo {
     self.landmarkImage = [UIImage imageNamed:@"colosseum"];
     self.hazardImage = [UIImage imageNamed:@"wildfire"];
     self.titleLabel.text = self.path.name;
@@ -42,28 +70,6 @@
     [format setDateFormat: @"MMMM d, yyyy"];
     self.dateLabel.text = [format stringFromDate: self.path.startedAt];
     self.timeTakenLabel.text = [self timeTakenString: self.path.startedAt];
-    self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [self setupTableView];
-    
-    [self.path drawPathToMapWithLandmarksWithCompletion:^(NSError * error, NSArray * landmarks, Pathway * pathway) {
-            if (error == nil) {
-                self.landmarks = landmarks;
-                [self.landmarkTableView reloadData];
-                self.pathway = pathway;
-                GMSMutablePath *pathLine = [GMSMutablePath path];
-                for (PFGeoPoint *point in pathway.path) {
-                    [pathLine addLatitude:point.latitude longitude:point.longitude];
-                }
-                GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:pathLine];
-                UIEdgeInsets mapInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
-                GMSCameraPosition* camera = [self.gMapView cameraForBounds:bounds insets:mapInsets];
-                [self.gMapView animateToCameraPosition: camera];
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-
-    } map:self.gMapView];
-    [self.gMapView animateToZoom: 20];
 }
 
 - (void) setupTableView {

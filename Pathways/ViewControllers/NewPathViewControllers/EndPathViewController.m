@@ -23,6 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setLabels];
+}
+
+- (void)setLabels {
     float distanceTravelled = [self.delegate endPathViewControllerDistanceTravelled].floatValue;
     self.distanceTravelledLabel.text = [NSString stringWithFormat:@"%.1f meters",  distanceTravelled];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
