@@ -14,6 +14,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WalkPathViewController.h"
 #import "LandmarkDetailsViewController.h"
+#import "GoogleMapsStaticAPI.h"
+#import <Parse/PFImageView.h>
 
 @interface PathDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,9 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeTakenLabel;
 @property (weak, nonatomic) IBOutlet UITableView *landmarkTableView;
-@property (weak, nonatomic) IBOutlet GMSMapView *gMapView;
+@property (weak, nonatomic) IBOutlet PFImageView *mapImageView;
 @property (strong, nonatomic) NSArray *landmarks;
-@property (strong, nonatomic) Pathway *pathway;
 @property (strong, nonatomic) UIImage *hazardImage;
 @property (strong, nonatomic) UIImage *landmarkImage;
 
@@ -36,29 +37,18 @@
     [super viewDidLoad];
     [self setUpUIInfo];
     [self setupTableView];
-    [self setUpMapView];
-}
-
-- (void)setUpMapView {
-    [self.path drawPathToMapWithLandmarksWithCompletion:^(NSError * error, NSArray * landmarks, Pathway * pathway) {
-        if (error == nil) {
+    [Landmark getLandmarks: self.path.objectId completion:^(NSArray * _Nonnull landmarks, NSError * _Nonnull error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
             self.landmarks = landmarks;
             [self.landmarkTableView reloadData];
-            self.pathway = pathway;
-            GMSMutablePath *pathLine = [GMSMutablePath path];
-            for (PFGeoPoint *point in pathway.path) {
-                [pathLine addLatitude:point.latitude longitude:point.longitude];
-            }
-            GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:pathLine];
-            UIEdgeInsets mapInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
-            GMSCameraPosition* camera = [self.gMapView cameraForBounds:bounds insets:mapInsets];
-            [self.gMapView animateToCameraPosition: camera];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-        
-    } map:self.gMapView];
-    [self.gMapView animateToZoom: 20];
+    }];
+    if (self.path[@"map_image"] != nil) {
+        self.mapImageView.file = self.path[@"map_image"];
+        [self.mapImageView loadInBackground];
+    }
+    
 }
 
 - (void)setUpUIInfo {
@@ -118,7 +108,6 @@
         WalkPathViewController *WPVC = segue.destinationViewController;
         WPVC.landmarks = self.landmarks;
         WPVC.path = self.path;
-        WPVC.pathway = self.pathway;
     }
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

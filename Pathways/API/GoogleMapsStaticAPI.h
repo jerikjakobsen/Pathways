@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Pathway.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,15 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype) shared;
 
-@property (weak, nonatomic, readonly) NSString *baseURL;
-@property (weak, nonatomic) NSURLSession *session;
+- (void) getStaticMapImage: (Pathway *) pathway size: (NSNumber *) size completion: (void (^)(NSError *, UIImage *)) completion;
 
-+ (NSString *) decToBin: (NSNumber *) dec;
-+ (NSString *) leftShift: (NSString *) bin;
-+ (NSNumber *) binToDec: (NSString *) bin;
-+ (NSString *) invert: (NSString *) bin;
-+ (NSString *) decToBin2ComplementWith8digits:(NSNumber *)dec;
-+ (NSMutableArray *) breakIntoGroupsOf5ReverseOrder: (NSString *) bin;
++ (NSString *) baseURL;
++ (void) setBaseURL: (NSString *) newBaseURL;
+
+@property (weak, nonatomic, readonly) NSString *baseURL;
+@property (strong, nonatomic) NSString *key;
 
 @end
 

@@ -34,10 +34,16 @@
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MMM d, yyyy"];
     self.dateLabel.text = [format stringFromDate: path.startedAt];
+    [self setPathOverview];
 }
 
 - (void) setPathOverview {
-    //TODO: Get image from google of the overview of the path and set it to self.pathOverViewPFImage
+    //self.pathOverViewPFImage.tintColor = [UIColor colorWithRed:78.0/255.0 green:222.0/255.0 blue:147.0/255.0 alpha:1.0];
+    self.pathOverViewPFImage.image = [UIImage systemImageNamed: @"map"];
+    if (self.path[@"map_image"] != nil) {
+        self.pathOverViewPFImage.file = self.path[@"map_image"];
+        [self.pathOverViewPFImage loadInBackground];
+    }
 }
 
 @end

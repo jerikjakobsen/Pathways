@@ -12,6 +12,8 @@
 #import <GoogleMaps/GMSPolyline.h>
 #import <GoogleMaps/GMSMutablePath.h>
 #import "PathFormatter.h"
+#import "GoogleMapsStaticAPI.h"
+#import "ParseUserManager.h"
 
 @implementation Path
 
@@ -38,13 +40,21 @@
 }
 
 - (void) postPath: (Pathway *) pathway completion: (PFBooleanResultBlock _Nullable) completion {
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            pathway.pathId = self.objectId;
-            
-            [pathway postPathway: completion];
+    pathway.path = [PathFormatter removeAllOutliars:pathway.path];
+    [[GoogleMapsStaticAPI shared] getStaticMapImage:pathway size:@640 completion:^(NSError *error, UIImage *image) {
+        if (error != nil) {
+            completion(FALSE, error);
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            self[@"map_image"] = [ParseUserManager getPFFileFromImage: image];
+            [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    pathway.pathId = self.objectId;
+                    
+                    [pathway postPathway: completion];
+                } else {
+                    NSLog(@"%@", error.localizedDescription);
+                }
+            }];
         }
     }];
 }

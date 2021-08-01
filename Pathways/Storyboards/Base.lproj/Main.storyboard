@@ -287,45 +287,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kri-wi-9Fr" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="280.5"/>
-                                <color key="backgroundColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0k-Uk-7UP">
-                                <rect key="frame" x="20" y="308.5" width="35" height="20.5"/>
+                                <rect key="frame" x="20" y="356.5" width="35" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance Walked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMC-sN-UHg">
-                                <rect key="frame" x="20" y="341" width="107.5" height="17"/>
+                                <rect key="frame" x="20" y="389" width="107.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEL-wv-Wjm">
-                                <rect key="frame" x="20" y="368" width="69.5" height="17"/>
+                                <rect key="frame" x="20" y="416" width="69.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Taken" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awo-HV-Bnu">
-                                <rect key="frame" x="20" y="395" width="74" height="17"/>
+                                <rect key="frame" x="20" y="443" width="74" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SK9-bE-CEV">
-                                <rect key="frame" x="0.0" y="432" width="414" height="410"/>
+                                <rect key="frame" x="0.0" y="480" width="414" height="362"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxJ-LF-ekc">
-                                <rect key="frame" x="326" y="388.5" width="68" height="30"/>
+                                <rect key="frame" x="326" y="436.5" width="68" height="30"/>
                                 <state key="normal" title="Walk Path"/>
                                 <connections>
                                     <action selector="didTapWalkPath:" destination="rtf-eU-WXP" eventType="touchUpInside" id="tJ9-0Z-T0E"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8V9-bz-qkr" customClass="PFImageView">
+                                <rect key="frame" x="0.0" y="56" width="414" height="280.5"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fZo-H0-3uA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -343,23 +342,23 @@
                             <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VEL-wv-Wjm" secondAttribute="trailing" constant="20" id="TgC-la-6O2"/>
                             <constraint firstItem="IMC-sN-UHg" firstAttribute="top" secondItem="c0k-Uk-7UP" secondAttribute="bottom" constant="12" id="UH0-vm-N7I"/>
                             <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" secondItem="ZxJ-LF-ekc" secondAttribute="trailing" constant="20" id="V2K-kD-Q9i"/>
-                            <constraint firstItem="Kri-wi-9Fr" firstAttribute="top" secondItem="Qot-gB-Mzh" secondAttribute="top" id="Wy3-MS-cbr"/>
-                            <constraint firstItem="c0k-Uk-7UP" firstAttribute="top" secondItem="Kri-wi-9Fr" secondAttribute="bottom" constant="28" id="ZBY-3w-eEt"/>
+                            <constraint firstItem="fZo-H0-3uA" firstAttribute="trailing" secondItem="8V9-bz-qkr" secondAttribute="trailing" id="Z5y-Kc-Goj"/>
                             <constraint firstItem="ZxJ-LF-ekc" firstAttribute="centerY" secondItem="awo-HV-Bnu" secondAttribute="centerY" id="aHD-8M-3bO"/>
-                            <constraint firstItem="Kri-wi-9Fr" firstAttribute="leading" secondItem="fZo-H0-3uA" secondAttribute="leading" id="e4w-2D-mte"/>
-                            <constraint firstItem="Kri-wi-9Fr" firstAttribute="height" secondItem="Qot-gB-Mzh" secondAttribute="height" multiplier="1:3" id="euS-h7-Eap"/>
+                            <constraint firstItem="c0k-Uk-7UP" firstAttribute="top" secondItem="8V9-bz-qkr" secondAttribute="bottom" constant="20" id="hQD-gi-Npf"/>
                             <constraint firstItem="VEL-wv-Wjm" firstAttribute="top" secondItem="IMC-sN-UHg" secondAttribute="bottom" constant="10" id="htc-Id-sEv"/>
                             <constraint firstAttribute="bottom" secondItem="SK9-bE-CEV" secondAttribute="bottom" id="nQv-rR-AEE"/>
-                            <constraint firstItem="Kri-wi-9Fr" firstAttribute="trailing" secondItem="fZo-H0-3uA" secondAttribute="trailing" id="q9O-W1-9m2"/>
+                            <constraint firstItem="8V9-bz-qkr" firstAttribute="height" secondItem="Qot-gB-Mzh" secondAttribute="height" multiplier="1:3" id="qOY-bF-SyY"/>
                             <constraint firstItem="SK9-bE-CEV" firstAttribute="top" secondItem="awo-HV-Bnu" secondAttribute="bottom" constant="20" id="wGk-SB-s7b"/>
+                            <constraint firstItem="8V9-bz-qkr" firstAttribute="leading" secondItem="fZo-H0-3uA" secondAttribute="leading" id="wXQ-hx-BQD"/>
+                            <constraint firstItem="8V9-bz-qkr" firstAttribute="top" secondItem="Qot-gB-Mzh" secondAttribute="topMargin" id="y2n-Ag-L5w"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="47I-Ul-udR"/>
                     <connections>
                         <outlet property="dateLabel" destination="VEL-wv-Wjm" id="tQV-Cz-AdX"/>
                         <outlet property="distanceWalkedLabel" destination="IMC-sN-UHg" id="7SQ-OB-By7"/>
-                        <outlet property="gMapView" destination="Kri-wi-9Fr" id="O0m-3C-3Ym"/>
                         <outlet property="landmarkTableView" destination="SK9-bE-CEV" id="L40-q2-CMa"/>
+                        <outlet property="mapImageView" destination="8V9-bz-qkr" id="Mxm-oG-jsx"/>
                         <outlet property="timeTakenLabel" destination="awo-HV-Bnu" id="4dc-FW-Hox"/>
                         <outlet property="titleLabel" destination="c0k-Uk-7UP" id="pc9-Xv-W6L"/>
                         <segue destination="C7Q-07-Mhw" kind="show" identifier="PathDetailsToWalkPath" id="DPA-p2-mQJ"/>
@@ -432,12 +431,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KM-K3-Nbd">
-                                <rect key="frame" x="20" y="143" width="41.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xu4-92-Ldq">
                                 <rect key="frame" x="348" y="72" width="50" height="50"/>
                                 <state key="normal" backgroundImage="map-editing"/>
@@ -476,16 +469,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CQz-mN-HNn" firstAttribute="leading" secondItem="YjN-Ug-uTD" secondAttribute="leading" constant="16" id="1Iv-gd-peX"/>
-                            <constraint firstItem="2KM-K3-Nbd" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" constant="20" id="HNE-ID-8T3"/>
-                            <constraint firstItem="2KM-K3-Nbd" firstAttribute="top" secondItem="CQz-mN-HNn" secondAttribute="bottom" constant="40" id="Sle-b5-vt8"/>
                             <constraint firstItem="Xu4-92-Ldq" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="UvN-WJ-nTB"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="tza-Bb-e6u" secondAttribute="trailing" id="XXq-EY-xwU"/>
                             <constraint firstAttribute="bottom" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="XzP-OL-iN3"/>
-                            <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2KM-K3-Nbd" secondAttribute="trailing" constant="10" id="dQL-9q-b2t"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="leading" secondItem="CUc-DX-Nss" secondAttribute="leading" id="fgC-zl-eNd"/>
                             <constraint firstItem="tza-Bb-e6u" firstAttribute="top" secondItem="YjN-Ug-uTD" secondAttribute="top" id="i1I-VZ-sy4"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="Xu4-92-Ldq" secondAttribute="trailing" constant="16" id="k9d-Uk-R2y"/>
-                            <constraint firstItem="CUc-DX-Nss" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2KM-K3-Nbd" secondAttribute="bottom" constant="10" id="tKr-Hq-qhg"/>
                             <constraint firstItem="CQz-mN-HNn" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="yDg-2l-2T7"/>
                         </constraints>
                     </view>
@@ -495,7 +484,6 @@
                         <outlet property="followSwitch" destination="gPP-nd-8Dx" id="5kW-8V-L0w"/>
                         <outlet property="followView" destination="CQz-mN-HNn" id="MTB-pj-sOM"/>
                         <outlet property="gMapView" destination="tza-Bb-e6u" id="gVp-gR-SxF"/>
-                        <outlet property="speedAccelerationTestLabel" destination="2KM-K3-Nbd" id="dgu-4e-Add"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToHazard" id="Vrn-I0-TQ9"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToLandmark" id="Fcp-C2-lw3"/>
                         <segue destination="1eB-sd-8tk" kind="presentation" identifier="NewPathToDone" id="gBL-zZ-qP0"/>

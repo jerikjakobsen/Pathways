@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *followSwitch;
 @property (weak, nonatomic) IBOutlet UIView *followView;
 @property (weak, nonatomic) IBOutlet UIButton *addPathButton;
-@property (weak, nonatomic) IBOutlet UILabel *speedAccelerationTestLabel;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Pathway *pathway;
@@ -41,7 +40,7 @@
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
 @property (nonatomic) UIEdgeInsets mapInsetConstant;
-@property (nonatomic) bool firstLoad;
+@property (nonatomic) BOOL firstLoad;
 @property (nonatomic) BOOL initialZoom;
 
 @end
@@ -206,16 +205,15 @@
     [PFUser currentUser][@"totalPaths"] = @(totalPaths.intValue + 1);
     [self.path postPath: self.pathway completion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"Error: %@", error.localizedDescription);
         } else {
-            [self endPath];
             [Landmark postLandmarks: self.landmarks pathId: self.path.objectId completion:^(BOOL succeeded, NSError * _Nullable error) {
                     [self.landmarkMarkers removeAllObjects];
                     [self.landmarks removeAllObjects];
                     self.path = nil;
                     self.pathway = nil;
                      if (error != nil) {
-                         NSLog(@"%@", error.localizedDescription);
+                         NSLog(@"Error: %@", error.localizedDescription);
                      }
             }];
         }
@@ -223,9 +221,10 @@
     
     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"Error: %@", error.localizedDescription);
         }
     }];
+    [self endPath];
     
 }
 
@@ -319,6 +318,8 @@
 
 - (void) hideFollowView {
     self.followView.hidden = YES;
+    [self.followSwitch setOn: NO];
+    [self didSwitchFollow: self.followSwitch];
 }
 
 - (void) showAddPathButton {

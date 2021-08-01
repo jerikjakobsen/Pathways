@@ -7,6 +7,7 @@
 
 #import "WalkPathViewController.h"
 #import "LandmarkDetailsViewController.h"
+#import "Pathway.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CLLocationManager.h>
 #import <CoreLocation/CLLocationManagerDelegate.h>
@@ -19,14 +20,20 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSArray *landmarkMarkers;
 
-
 @end
 
 @implementation WalkPathViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpGMSMapView];
+    [Pathway GET:self.path.objectId completion:^(Pathway * _Nonnull pathway, NSError * _Nonnull error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            self.pathway = pathway;
+            [self setUpGMSMapView];
+        }
+    }];
     [self setUpLocationManager];
 }
 
