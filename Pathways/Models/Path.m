@@ -135,14 +135,12 @@
 
 + (NSArray *) drawPathMarksToMap: (NSArray *) paths mapView: (GMSMapView *) mapView {
     NSMutableArray *pathMarkers = [[NSMutableArray alloc] init];
-    NSMutableDictionary *pathDict = [[NSMutableDictionary alloc] init];
     for (Path *path in paths) {
         CLLocation *location = [[CLLocation alloc] initWithLatitude:path.startPoint.latitude longitude:path.startPoint.longitude];
         GMSMarker *marker = [GMSMarker markerWithPosition: location.coordinate];
         marker.title = path.name;
         marker.collisionBehavior = GMSCollisionBehaviorRequiredAndHidesOptional;
         marker.map = mapView;
-        pathDict setObject:marker forKey:marker.markerId
         [pathMarkers addObject: marker];
     }
     return pathMarkers;
