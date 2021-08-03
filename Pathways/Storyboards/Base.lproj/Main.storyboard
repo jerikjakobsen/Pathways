@@ -431,6 +431,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT1-67-ZcV">
+                                <rect key="frame" x="350.5" y="142" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="TOP-uT-rdZ"/>
+                                    <constraint firstAttribute="width" constant="45" id="pCd-AI-c2U"/>
+                                </constraints>
+                                <state key="normal" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="didPressRefreshMap:" destination="MKI-7u-UP0" eventType="touchUpInside" id="jIM-pJ-eIb"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xu4-92-Ldq">
                                 <rect key="frame" x="348" y="72" width="50" height="50"/>
                                 <state key="normal" backgroundImage="map-editing"/>
@@ -469,6 +480,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CQz-mN-HNn" firstAttribute="leading" secondItem="YjN-Ug-uTD" secondAttribute="leading" constant="16" id="1Iv-gd-peX"/>
+                            <constraint firstItem="kT1-67-ZcV" firstAttribute="top" secondItem="Xu4-92-Ldq" secondAttribute="bottom" constant="20" id="Aey-eT-foJ"/>
+                            <constraint firstItem="kT1-67-ZcV" firstAttribute="centerX" secondItem="Xu4-92-Ldq" secondAttribute="centerX" id="Eaj-ft-TJV"/>
                             <constraint firstItem="Xu4-92-Ldq" firstAttribute="top" secondItem="CUc-DX-Nss" secondAttribute="top" constant="16" id="UvN-WJ-nTB"/>
                             <constraint firstItem="CUc-DX-Nss" firstAttribute="trailing" secondItem="tza-Bb-e6u" secondAttribute="trailing" id="XXq-EY-xwU"/>
                             <constraint firstAttribute="bottom" secondItem="tza-Bb-e6u" secondAttribute="bottom" id="XzP-OL-iN3"/>
@@ -484,6 +497,7 @@
                         <outlet property="followSwitch" destination="gPP-nd-8Dx" id="5kW-8V-L0w"/>
                         <outlet property="followView" destination="CQz-mN-HNn" id="MTB-pj-sOM"/>
                         <outlet property="gMapView" destination="tza-Bb-e6u" id="gVp-gR-SxF"/>
+                        <outlet property="refreshMapButton" destination="kT1-67-ZcV" id="7Ml-LI-dbG"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToHazard" id="Vrn-I0-TQ9"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToLandmark" id="Fcp-C2-lw3"/>
                         <segue destination="1eB-sd-8tk" kind="presentation" identifier="NewPathToDone" id="gBL-zZ-qP0"/>
@@ -818,6 +832,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ProfileImagePlaceholder" width="286.66665649414062" height="226"/>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="map-editing" width="50" height="50"/>
         <image name="stop" catalog="system" width="128" height="113"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>

@@ -11,6 +11,8 @@
 #import <Parse/PFQuery.h>
 #import <GoogleMaps/GMSPolyline.h>
 #import <GoogleMaps/GMSMutablePath.h>
+#import <GoogleMaps/GMSMarker.h>
+#import <GoogleMaps/GMSMarker+Premium.h>
 #import "PathFormatter.h"
 #import "GoogleMapsStaticAPI.h"
 #import "ParseUserManager.h"
@@ -124,7 +126,40 @@
     }];
 }
 
-+ (nonnull NSString *)parseClassName {
++ (void) getPathsNear: (CLLocation *) userLocation completion: (void (^)(NSArray *, NSError *)) completion {
+    PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLocation: userLocation];
+    PFQuery *query = [PFQuery queryWithClassName: @"Path"];
+    [query whereKey: @"startPoint" nearGeoPoint:geopoint withinMiles: 2.0];
+    [query findObjectsInBackgroundWithBlock: completion];
+}
+
++ (NSArray *) drawPathMarksToMap: (NSArray *) paths mapView: (GMSMapView *) mapView {
+    NSMutableArray *pathMarkers = [[NSMutableArray alloc] init];
+    NSMutableDictionary *pathDict = [[NSMutableDictionary alloc] init];
+    for (Path *path in paths) {
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:path.startPoint.latitude longitude:path.startPoint.longitude];
+        GMSMarker *marker = [GMSMarker markerWithPosition: location.coordinate];
+        marker.title = path.name;
+        marker.collisionBehavior = GMSCollisionBehaviorRequiredAndHidesOptional;
+        marker.map = mapView;
+        pathDict setObject:marker forKey:marker.markerId
+        [pathMarkers addObject: marker];
+    }
+    return pathMarkers;
+}
+
++ (void) drawPathMarksToMapInBackground: (CLLocation *) userLocation mapView: (GMSMapView *) mapView completion: (void (^)(bool succeeded, NSError * error, NSArray *pathMarkers)) completion {
+    [self getPathsNear:userLocation completion:^(NSArray *paths, NSError *error) {
+        if (error != nil) {
+            completion(FALSE, error, nil);
+        } else {
+            completion(TRUE, nil, [self drawPathMarksToMap:paths mapView:mapView]);
+        }
+        
+    }];
+}
+
++ (nonnull NSString *) parseClassName {
     return @"Path";
 }
 

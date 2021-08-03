@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *followSwitch;
 @property (weak, nonatomic) IBOutlet UIView *followView;
 @property (weak, nonatomic) IBOutlet UIButton *addPathButton;
+@property (weak, nonatomic) IBOutlet UIButton *refreshMapButton;
+
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Pathway *pathway;
@@ -39,6 +41,7 @@
 @property (strong, nonatomic) NewPathBottomView *bottomView;
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
+@property (strong, nonatomic) NSArray *pathMarkers;
 @property (nonatomic) UIEdgeInsets mapInsetConstant;
 @property (nonatomic) BOOL firstLoad;
 @property (nonatomic) BOOL initialZoom;
@@ -126,7 +129,7 @@
     self.locationManager = [[CLLocationManager alloc]  init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 0;
+    self.locationManager.distanceFilter = 6.0;
     self.locationManager.allowsBackgroundLocationUpdates = TRUE;
     self.locationManager.pausesLocationUpdatesAutomatically = FALSE;
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -140,6 +143,7 @@
         self.initialZoom = TRUE;
         [self.gMapView animateToLocation:locations.lastObject.coordinate];
         [self.locationManager stopUpdatingLocation];
+        [self showRefreshButton];
     } else {
         [self.pathLine addCoordinate: locations.lastObject.coordinate];
         [self.pathway addCoordinate: locations.lastObject];
@@ -256,6 +260,20 @@
 - (IBAction)didPressNewPath:(id)sender {
     [self startPath];
 }
+- (IBAction)didPressRefreshMap:(id)sender {
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:self.gMapView.camera.target.latitude longitude:self.gMapView.camera.target.longitude];
+    [Path drawPathMarksToMapInBackground: location mapView:self.gMapView completion:^(bool succeeded, NSError *  error, NSArray *pathMarkers) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error);
+        } else {
+            for (GMSMarker *marker in self.pathMarkers) {
+                marker.map = nil;
+            }
+            self.pathMarkers = nil;
+            self.pathMarkers = pathMarkers;
+        }
+    }];
+}
 
 // Animation Transitions
 
@@ -330,6 +348,20 @@
     self.addPathButton.hidden = YES;
 }
 
+- (void) hideRefreshButton {
+    self.refreshMapButton.hidden = YES;
+    for (GMSMarker *marker in self.pathMarkers) {
+        marker.map = nil;
+    }
+}
+
+- (void) showRefreshButton {
+    self.refreshMapButton.hidden = NO;
+    for (GMSMarker *marker in self.pathMarkers) {
+        marker.map = self.gMapView;
+    }
+}
+
 - (void) startPath {
     if (self.landmarks == nil) {
         self.landmarks = [[NSMutableArray alloc] init];
@@ -353,6 +385,7 @@
     [self showBottomView];
     [self hideAddPathButton];
     [self showFollowView];
+    [self hideRefreshButton];
 }
 
 - (void) endPath {
@@ -362,6 +395,7 @@
     [self hideBottomView: NO];
     [self showAddPathButton];
     [self hideFollowView];
+    [self showRefreshButton];
 }
 
 @end

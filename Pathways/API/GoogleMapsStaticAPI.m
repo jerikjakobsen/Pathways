@@ -84,7 +84,7 @@ static NSString *_baseURL = nil;
     }
     
     NSString *sizeStr = [NSString stringWithFormat:@"%@x%@",size, size];
-    NSString *pathParameter = [NSString stringWithFormat: @"mapId=1dd1155d695f866b&size=%@&path=color:0x4ede94%%7Cweight:5%%7C%@&key=%@", sizeStr, locations, self.key];
+    NSString *pathParameter = [NSString stringWithFormat: @"mapId=1dd1155d695f866b&size=%@&path=color:0x4ede94%%7Cweight:7%%7C%@&key=%@", sizeStr, locations, self.key];
     NSString *fullURLString = [NSString stringWithFormat:@"%@%@", [self baseURL] ,pathParameter];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionTask *task = [session dataTaskWithURL:[NSURL URLWithString:fullURLString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

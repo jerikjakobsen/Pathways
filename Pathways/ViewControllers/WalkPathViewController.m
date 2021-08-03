@@ -31,6 +31,7 @@
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
             self.pathway = pathway;
+            NSLog(@"%lu", pathway.path.count);
             [self setUpGMSMapView];
         }
     }];
