@@ -52,12 +52,12 @@ static NSString *_baseURL = nil;
     // Reference Link: https://developers.google.com/maps/documentation/maps-static/start#url-size-restriction
     int skip = 0;
     int pathLength = pathway.path.count;
-    if ( pathLength * 20 > 8000) {
-        int removePoints = pathLength - 8000/20;
+    if ( pathLength > 400) {
+        int removePoints = pathLength - 400;
         if (removePoints <= 0) {
             skip = 0;
         } else {
-            skip = pathLength/(pathLength - removePoints);
+            skip = pathLength/(400);
         }
     }
 
