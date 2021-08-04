@@ -42,6 +42,11 @@
                 NSLog(@"Error: %@", error.localizedDescription);
             }
             self.landmarks = landmarks;
+        if (self.landmarks.count == 0) {
+            [self setEmptyTableView];
+        } else {
+            [self restoreTableView];
+        }
             [self.landmarkTableView reloadData];
     }];
     if (self.path[@"map_image"] != nil) {
@@ -127,4 +132,19 @@
 }
 
 
+- (void) setEmptyTableView {
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"No Landmarks";
+    label.textColor = [UIColor blackColor];
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    self.landmarkTableView.backgroundView = label;
+    self.landmarkTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+- (void) restoreTableView {
+    self.landmarkTableView.backgroundView = nil;
+    self.landmarkTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+}
 @end
