@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
 #import <Parse/PFFileObject.h>
+#import <Parse/PFUser.h>
 
 NS_ASSUME_NONNULL_BEGIN
 // This Class handles all the User related API requests
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) registerUser: (NSString *) username email: (NSString *) email password: (NSString *) password profilePic: (UIImage *) profilePic completion: (void (^)(NSError *)) completion;
 
 + (void) loginUser: (NSString *) username  password: (NSString *) password completion: (void (^)(NSError *)) completion;
+
++ (void) getUser: (NSString *) userId completion: (void (^)(PFUser *, NSError *)) completion;
 
 @end
 

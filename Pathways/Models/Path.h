@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/PFObject.h>
+#import <Parse/PFUser.h>
 #import <CoreLocation/CLLocation.h>
 #import "Pathway.h"
 #import <GoogleMaps/GMSMapView.h>
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSString *pathId;
 @property (nonatomic, strong) NSString *authorId;
+@property (nonatomic, strong) PFUser *author;
 @property (nonatomic, strong) NSNumber *hazardCount;
 @property (nonatomic, strong) NSNumber *landmarkCount;
 

@@ -26,6 +26,7 @@
 @dynamic distance;
 @dynamic pathId;
 @dynamic authorId;
+@dynamic author;
 @dynamic startedAt;
 @dynamic hazardCount;
 @dynamic landmarkCount;
@@ -38,6 +39,7 @@
         self.landmarkCount = @(0);
         self.authorId = @"";
         self.pathId = @"";
+        self.author = [PFUser currentUser];
     }
     return self;
 }
@@ -131,6 +133,7 @@
     PFGeoPoint *geopoint = [PFGeoPoint geoPointWithLocation: userLocation];
     PFQuery *query = [PFQuery queryWithClassName: @"Path"];
     [query whereKey: @"startPoint" nearGeoPoint:geopoint withinMiles: 2.0];
+    [query includeKey:@"author"];
     [query findObjectsInBackgroundWithBlock: completion];
 }
 
@@ -140,6 +143,7 @@
         CLLocation *location = [[CLLocation alloc] initWithLatitude:path.startPoint.latitude longitude:path.startPoint.longitude];
         GMSMarkerWithID *marker = [GMSMarkerWithID markerWithPosition: location.coordinate markerID:path.objectId isPath:YES];
         marker.title = path.name;
+        marker.snippet = path.author.username;
         marker.collisionBehavior = GMSCollisionBehaviorRequiredAndHidesOptional;
         marker.map = mapView;
         [pathMarkers addObject: marker];
@@ -152,6 +156,7 @@
         if (error != nil) {
             completion(FALSE, error, nil, nil);
         } else {
+            
             NSMutableDictionary *pathIDtoPath = [[NSMutableDictionary alloc] init];
             for (Path *path in paths) {
                 [pathIDtoPath setObject:path forKey: path.objectId];

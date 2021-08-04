@@ -47,6 +47,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.30588235294117649" green="0.87058823529411766" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gkB-tI-LDB" secondAttribute="trailing" constant="8" id="Aup-Qu-ovx"/>
                             <constraint firstItem="gkB-tI-LDB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="PlS-zs-WCp"/>
@@ -63,6 +64,9 @@
                             <constraint firstItem="tAd-NL-5Ku" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QaG-Mt-bPG" secondAttribute="trailing" constant="8" id="wBq-gR-I6V"/>
                             <constraint firstItem="QaG-Mt-bPG" firstAttribute="leading" secondItem="3xP-dU-7lU" secondAttribute="leading" constant="20" id="ynG-Sd-bNX"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="804-HY-Y4W" appends="YES" id="rw7-AW-mgV"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="3xP-dU-7lU" id="kGZ-Iu-X2c"/>
@@ -71,6 +75,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="804-HY-Y4W">
+                    <connections>
+                        <action selector="didTapView:" destination="BYZ-38-t0r" id="zRk-q9-mqe"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-581" y="-145"/>
         </scene>
@@ -501,7 +510,7 @@
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToHazard" id="Vrn-I0-TQ9"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToLandmark" id="Fcp-C2-lw3"/>
                         <segue destination="1eB-sd-8tk" kind="presentation" identifier="NewPathToDone" id="gBL-zZ-qP0"/>
-                        <segue destination="C7Q-07-Mhw" kind="show" identifier="PathDetailsToWalkPath" id="SYG-89-5AS"/>
+                        <segue destination="rtf-eU-WXP" kind="show" identifier="HomeToPathDetails" id="lS4-QR-S9P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjR-qu-BHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -525,7 +534,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ngt-qn-hb3">
                                 <rect key="frame" x="41.5" y="141.5" width="331" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OAY-AY-ctN">
                                 <rect key="frame" x="41.5" y="236.5" width="331" height="168.5"/>
@@ -564,6 +573,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5v5-SR-dNp"/>
                         <color key="backgroundColor" red="0.30588235289999999" green="0.87058823529999996" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="I7p-Fu-Owa" firstAttribute="centerX" secondItem="eyp-dC-WIh" secondAttribute="centerX" id="07w-Jt-CdO"/>
                             <constraint firstItem="5v5-SR-dNp" firstAttribute="trailing" secondItem="SnP-Le-qg7" secondAttribute="trailing" constant="20" id="31Q-Ir-XJo"/>
@@ -590,6 +600,9 @@
                             <constraint firstItem="Ngt-qn-hb3" firstAttribute="centerX" secondItem="eyp-dC-WIh" secondAttribute="centerX" id="z8U-1W-WWz"/>
                             <constraint firstItem="Ngt-qn-hb3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5v5-SR-dNp" secondAttribute="leading" constant="5" id="z9V-Uy-JOs"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Qft-Gh-6xJ" appends="YES" id="9XT-bG-fFb"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Eb6-dZ-0B2"/>
                     <connections>
@@ -600,6 +613,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zw-eW-a2P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Qft-Gh-6xJ">
+                    <connections>
+                        <action selector="didTapView:" destination="zOq-8u-wf8" id="DUt-wW-89D"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3070" y="2397"/>
         </scene>
@@ -689,7 +707,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the Path" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZY5-9K-Ccv">
                                 <rect key="frame" x="30" y="380" width="354" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-fM-RZe">
                                 <rect key="frame" x="166" y="430" width="82" height="30"/>
@@ -828,9 +846,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Jtp-kf-74b"/>
+        <segue reference="pWw-Gg-RHJ"/>
         <segue reference="Vrn-I0-TQ9"/>
-        <segue reference="SYG-89-5AS"/>
+        <segue reference="lS4-QR-S9P"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ProfileImagePlaceholder" width="286.66665649414062" height="226"/>

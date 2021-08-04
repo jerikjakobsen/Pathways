@@ -69,5 +69,8 @@
     [self.landmark addPhoto: editedImage];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)didTapView:(id)sender {
+    [self.view endEditing: TRUE];
+}
 
 @end

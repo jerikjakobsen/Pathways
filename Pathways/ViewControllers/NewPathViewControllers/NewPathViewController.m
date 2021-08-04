@@ -9,7 +9,7 @@
 #import "AddLandmarkViewController.h"
 #import "EndPathViewController.h"
 #import "LandmarkDetailsViewController.h"
-#import "WalkPathViewController.h"
+#import "PathDetailsViewController.h"
 #import "NewPathBottomView.h"
 #import "Pathway.h"
 #import "Path.h"
@@ -115,10 +115,10 @@
 
         endPathVC.delegate = self;
     }
-    if ([segue.identifier isEqualToString: @"PathDetailsToWalkPath"]) {
-        WalkPathViewController *WPVC = (WalkPathViewController *) segue.destinationViewController;
+    if ([segue.identifier isEqualToString: @"HomeToPathDetails"]) {
+        PathDetailsViewController *PDVC = (PathDetailsViewController *) segue.destinationViewController;
         GMSMarkerWithID *marker = (GMSMarkerWithID *) sender;
-        WPVC.path = [self.pathIDtoPaths objectForKey: [marker markerID]];
+        PDVC.path = [self.pathIDtoPaths objectForKey: [marker markerID]];
     }
 }
 
@@ -250,10 +250,11 @@
         if (marker == self.landmarkMarkers[i]) {
             LandmarkDetailsViewController *dtvc = [LandmarkDetailsViewController detailViewAttachedToParentView: self safeArea: NO loadImagesLocally: YES];
             [dtvc setLandmarkDetail: self.landmarks[i]];
+            return;
         }
     }
     GMSMarkerWithID *markerWithID = (GMSMarkerWithID *) marker;
-    [self performSegueWithIdentifier:@"PathDetailsToWalkPath" sender: markerWithID];
+    [self performSegueWithIdentifier:@"HomeToPathDetails" sender: markerWithID];
 }
 
 - (void) didPressAddHazard: (id) sender {
