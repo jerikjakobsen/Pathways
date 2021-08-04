@@ -501,6 +501,7 @@
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToHazard" id="Vrn-I0-TQ9"/>
                         <segue destination="zOq-8u-wf8" kind="presentation" identifier="NewPathToLandmark" id="Fcp-C2-lw3"/>
                         <segue destination="1eB-sd-8tk" kind="presentation" identifier="NewPathToDone" id="gBL-zZ-qP0"/>
+                        <segue destination="C7Q-07-Mhw" kind="show" identifier="PathDetailsToWalkPath" id="SYG-89-5AS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjR-qu-BHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -829,6 +830,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Jtp-kf-74b"/>
         <segue reference="Vrn-I0-TQ9"/>
+        <segue reference="SYG-89-5AS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ProfileImagePlaceholder" width="286.66665649414062" height="226"/>

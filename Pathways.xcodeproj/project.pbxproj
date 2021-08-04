@@ -35,6 +35,7 @@
 		E5BAE940269CDB3A0052A515 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE93F269CDB3A0052A515 /* LoginViewController.m */; };
 		E5BAE943269CDBB80052A515 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */; };
 		E5BAE946269D1B9A0052A515 /* ParseUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BAE945269D1B9A0052A515 /* ParseUserManager.m */; };
+		E5BB308F26B9FF1C0094770A /* GMSMarkerWithID.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BB308E26B9FF1C0094770A /* GMSMarkerWithID.m */; };
 		E5DA69DC269FD18C000C29A0 /* EndPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */; };
 		E5DA69E226A11951000C29A0 /* AccountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69E126A11951000C29A0 /* AccountDetailsViewController.m */; };
 		E5DA69E626A11BE6000C29A0 /* PathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA69E426A11BE6000C29A0 /* PathCell.m */; };
@@ -121,6 +122,8 @@
 		E5BAE942269CDBB80052A515 /* CreateAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		E5BAE944269D1B9A0052A515 /* ParseUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseUserManager.h; sourceTree = "<group>"; };
 		E5BAE945269D1B9A0052A515 /* ParseUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseUserManager.m; sourceTree = "<group>"; };
+		E5BB308D26B9FF1C0094770A /* GMSMarkerWithID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMSMarkerWithID.h; sourceTree = "<group>"; };
+		E5BB308E26B9FF1C0094770A /* GMSMarkerWithID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GMSMarkerWithID.m; sourceTree = "<group>"; };
 		E5DA69DA269FD18C000C29A0 /* EndPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndPathViewController.h; sourceTree = "<group>"; };
 		E5DA69DB269FD18C000C29A0 /* EndPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EndPathViewController.m; sourceTree = "<group>"; };
 		E5DA69E026A11951000C29A0 /* AccountDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountDetailsViewController.h; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				E5BAE945269D1B9A0052A515 /* ParseUserManager.m */,
 				E5DA69E826A1CE63000C29A0 /* GoogleMapsStaticAPI.h */,
 				E5DA69E926A1CE63000C29A0 /* GoogleMapsStaticAPI.m */,
+				E5BB308D26B9FF1C0094770A /* GMSMarkerWithID.h */,
+				E5BB308E26B9FF1C0094770A /* GMSMarkerWithID.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5BB308F26B9FF1C0094770A /* GMSMarkerWithID.m in Sources */,
 				E598E49026A7120400718E22 /* WalkPathViewController.m in Sources */,
 				E539148A26AF9D6F0011EFEA /* PathFormatter.m in Sources */,
 				E5DA69EA26A1CE63000C29A0 /* GoogleMapsStaticAPI.m in Sources */,

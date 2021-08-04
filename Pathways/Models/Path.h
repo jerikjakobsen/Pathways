@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) getUserPathsWithLimit: (int) pathLimit userId: (NSString *) userId completion: (void (^)(NSArray *, NSError *) ) completion;
 
-+ (void) drawPathMarksToMapInBackground: (CLLocation *) userLocation mapView: (GMSMapView *) mapView completion: (void (^)(bool succeeded, NSError * error, NSArray *)) completion;
++ (void) drawPathMarksToMapInBackground: (CLLocation *) userLocation mapView: (GMSMapView *) mapView completion: (void (^)(bool succeeded, NSError * error, NSArray *, NSMutableDictionary *)) completion;
 
 //Returns an array of the path markers created
 + (NSArray *) drawPathMarksToMap: (NSArray *) paths mapView: (GMSMapView *) mapView;

@@ -9,10 +9,12 @@
 #import "AddLandmarkViewController.h"
 #import "EndPathViewController.h"
 #import "LandmarkDetailsViewController.h"
+#import "WalkPathViewController.h"
 #import "NewPathBottomView.h"
 #import "Pathway.h"
 #import "Path.h"
 #import "Landmark.h"
+#import "GMSMarkerWithID.h"
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <GoogleMaps/GMSCameraPosition.h>
@@ -42,6 +44,7 @@
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *maximizedHeightConstraint;
 @property (strong, nonatomic) NSArray *pathMarkers;
+@property (strong, nonatomic) NSMutableDictionary *pathIDtoPaths;
 @property (nonatomic) UIEdgeInsets mapInsetConstant;
 @property (nonatomic) BOOL firstLoad;
 @property (nonatomic) BOOL initialZoom;
@@ -111,6 +114,11 @@
         EndPathViewController *endPathVC = (EndPathViewController *) segue.destinationViewController;
 
         endPathVC.delegate = self;
+    }
+    if ([segue.identifier isEqualToString: @"PathDetailsToWalkPath"]) {
+        WalkPathViewController *WPVC = (WalkPathViewController *) segue.destinationViewController;
+        GMSMarkerWithID *marker = (GMSMarkerWithID *) sender;
+        WPVC.path = [self.pathIDtoPaths objectForKey: [marker markerID]];
     }
 }
 
@@ -244,6 +252,8 @@
             [dtvc setLandmarkDetail: self.landmarks[i]];
         }
     }
+    GMSMarkerWithID *markerWithID = (GMSMarkerWithID *) marker;
+    [self performSegueWithIdentifier:@"PathDetailsToWalkPath" sender: markerWithID];
 }
 
 - (void) didPressAddHazard: (id) sender {
@@ -262,7 +272,7 @@
 }
 - (IBAction)didPressRefreshMap:(id)sender {
     CLLocation *location = [[CLLocation alloc] initWithLatitude:self.gMapView.camera.target.latitude longitude:self.gMapView.camera.target.longitude];
-    [Path drawPathMarksToMapInBackground: location mapView:self.gMapView completion:^(bool succeeded, NSError *  error, NSArray *pathMarkers) {
+    [Path drawPathMarksToMapInBackground: location mapView:self.gMapView completion:^(bool succeeded, NSError *  error, NSArray *pathMarkers, NSMutableDictionary *pathIDtoPath) {
         if (error != nil) {
             NSLog(@"Error: %@", error);
         } else {
@@ -271,6 +281,7 @@
             }
             self.pathMarkers = nil;
             self.pathMarkers = pathMarkers;
+            self.pathIDtoPaths = pathIDtoPath;
         }
     }];
 }

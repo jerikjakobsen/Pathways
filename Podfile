@@ -9,6 +9,7 @@ target 'Pathways' do
 	pod 'Parse'
 	pod 'Parse/UI'
 	pod 'GoogleMaps', '5.1.0'
+	pod 'FCUUID'
   target 'PathwaysTests' do
     inherit! :search_paths
     # Pods for testing

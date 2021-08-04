@@ -16,6 +16,7 @@
 #import "PathFormatter.h"
 #import "GoogleMapsStaticAPI.h"
 #import "ParseUserManager.h"
+#import "GMSMarkerWithID.h"
 
 @implementation Path
 
@@ -137,7 +138,7 @@
     NSMutableArray *pathMarkers = [[NSMutableArray alloc] init];
     for (Path *path in paths) {
         CLLocation *location = [[CLLocation alloc] initWithLatitude:path.startPoint.latitude longitude:path.startPoint.longitude];
-        GMSMarker *marker = [GMSMarker markerWithPosition: location.coordinate];
+        GMSMarkerWithID *marker = [GMSMarkerWithID markerWithPosition: location.coordinate markerID:path.objectId isPath:YES];
         marker.title = path.name;
         marker.collisionBehavior = GMSCollisionBehaviorRequiredAndHidesOptional;
         marker.map = mapView;
@@ -146,12 +147,16 @@
     return pathMarkers;
 }
 
-+ (void) drawPathMarksToMapInBackground: (CLLocation *) userLocation mapView: (GMSMapView *) mapView completion: (void (^)(bool succeeded, NSError * error, NSArray *pathMarkers)) completion {
++ (void) drawPathMarksToMapInBackground: (CLLocation *) userLocation mapView: (GMSMapView *) mapView completion: (void (^)(bool succeeded, NSError * error, NSArray *pathMarkers, NSMutableDictionary *pathIDtoPath)) completion {
     [self getPathsNear:userLocation completion:^(NSArray *paths, NSError *error) {
         if (error != nil) {
-            completion(FALSE, error, nil);
+            completion(FALSE, error, nil, nil);
         } else {
-            completion(TRUE, nil, [self drawPathMarksToMap:paths mapView:mapView]);
+            NSMutableDictionary *pathIDtoPath = [[NSMutableDictionary alloc] init];
+            for (Path *path in paths) {
+                [pathIDtoPath setObject:path forKey: path.objectId];
+            }
+            completion(TRUE, nil, [self drawPathMarksToMap:paths mapView:mapView], pathIDtoPath);
         }
         
     }];
