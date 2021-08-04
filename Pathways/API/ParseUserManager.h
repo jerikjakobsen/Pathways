@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) loginUser: (NSString *) username  password: (NSString *) password completion: (void (^)(NSError *)) completion;
 
-+ (void) getUser: (NSString *) userId completion: (void (^)(PFUser *, NSError *)) completion;
-
 @end
 
 NS_ASSUME_NONNULL_END
