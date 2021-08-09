@@ -44,6 +44,13 @@
                                     <segue destination="A5E-4x-muR" kind="show" id="hLp-nv-WLS"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="output-onlinepngtools" translatesAutoresizingMaskIntoConstraints="NO" id="NvW-wf-tmK">
+                                <rect key="frame" x="68.5" y="114" width="277" height="173"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="173" id="UNd-Sr-MQ4"/>
+                                    <constraint firstAttribute="width" constant="277" id="ySy-gu-o8G"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.30588235294117649" green="0.87058823529411766" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,10 +58,12 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gkB-tI-LDB" secondAttribute="trailing" constant="8" id="Aup-Qu-ovx"/>
                             <constraint firstItem="gkB-tI-LDB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="PlS-zs-WCp"/>
+                            <constraint firstItem="NvW-wf-tmK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sk4-Qi-vmW"/>
                             <constraint firstItem="QaG-Mt-bPG" firstAttribute="top" secondItem="3xP-dU-7lU" secondAttribute="bottom" constant="30" id="XTV-Ah-4G7"/>
                             <constraint firstItem="tAd-NL-5Ku" firstAttribute="centerY" secondItem="QaG-Mt-bPG" secondAttribute="centerY" id="Y2g-Rh-xxY"/>
                             <constraint firstItem="3xP-dU-7lU" firstAttribute="trailing" secondItem="gkB-tI-LDB" secondAttribute="trailing" id="Yde-em-W4R"/>
                             <constraint firstItem="tAd-NL-5Ku" firstAttribute="trailing" secondItem="3xP-dU-7lU" secondAttribute="trailing" constant="-20" id="isd-iv-O3D"/>
+                            <constraint firstItem="NvW-wf-tmK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="jCM-42-v1F"/>
                             <constraint firstItem="gkB-tI-LDB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lG8-WK-3Cf"/>
                             <constraint firstItem="3xP-dU-7lU" firstAttribute="width" secondItem="gkB-tI-LDB" secondAttribute="width" id="lUV-Nb-E03"/>
                             <constraint firstItem="gkB-tI-LDB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="5:8" id="pd4-df-79x"/>
@@ -81,7 +90,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-581" y="-145"/>
+            <point key="canvasLocation" x="-581.15942028985512" y="-145.3125"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="QKV-qu-jh3">
@@ -846,7 +855,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pWw-Gg-RHJ"/>
+        <segue reference="Jtp-kf-74b"/>
         <segue reference="Vrn-I0-TQ9"/>
         <segue reference="lS4-QR-S9P"/>
     </inferredMetricsTieBreakers>
@@ -854,6 +863,7 @@
         <image name="ProfileImagePlaceholder" width="286.66665649414062" height="226"/>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="map-editing" width="50" height="50"/>
+        <image name="output-onlinepngtools" width="166.5" height="166.5"/>
         <image name="stop" catalog="system" width="128" height="113"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
